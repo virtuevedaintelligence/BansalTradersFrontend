@@ -1,5 +1,5 @@
 # Getting Started with Create React App
-Gang gang madafakas!!!
+!!!Gang gang madafakas!!!
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
