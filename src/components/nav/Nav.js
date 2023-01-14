@@ -5,6 +5,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import "./nav.css";
 import "./responsive.css";
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 function Topnavbar() {
   return (
@@ -15,17 +16,24 @@ function Topnavbar() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
+              <NavLink className="nav-link" to="/">
+                Home
+              </NavLink>
               <NavDropdown title="Products" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Dry Fruits</NavDropdown.Item>
+                <NavLink className="dropdown-item" to="/products/dryfruits">Dry Fruits</NavLink>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.2">Spices</NavDropdown.Item>
+                <NavLink className="dropdown-item" to="/products/spices">Spices</NavLink>
               </NavDropdown>
-              <Nav.Link href="#link">Contact</Nav.Link>
-              <Nav.Link href="#link">About</Nav.Link>
-              <Nav.Link className="loginNavLink" href="#link">
+              <NavLink className="nav-link" to="/contact">Contact</NavLink>
+              <NavLink className="nav-link" to="/about">
+                About
+              </NavLink>
+              <NavLink className="nav-link" to="/mission">
+                Our Mission
+              </NavLink>
+              <NavLink className="nav-link loginNavLink" to="/login">
                 Login
-              </Nav.Link>
+              </NavLink>
             </Nav>
           </Navbar.Collapse>
         </Container>
