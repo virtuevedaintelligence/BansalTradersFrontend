@@ -1,0 +1,16 @@
+.nav-bg {
+  background: rgb(200, 234, 137);
+  background: linear-gradient(180deg, rgba(200, 234, 137, 1) 0%, rgba(200, 234, 137, 1) 35%, rgba(255, 255, 255, 1) 100%);
+
+  font-weight: bold;
+}
+
+.nav-bg .container a {
+  color: #4163ef;
+}
+
+.loginNavLink {
+  position: absolute;
+  left: auto !important;
+  right: 0px;
+}
