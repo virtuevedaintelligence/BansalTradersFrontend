@@ -19,12 +19,18 @@ function Topnavbar() {
               <NavLink className="nav-link" to="/">
                 Home
               </NavLink>
-              <NavDropdown title="Products" id="basic-nav-dropdown">
-                <NavLink className="dropdown-item" to="/products/dryfruits">Dry Fruits</NavLink>
+              <NavDropdown title="Products" id="basic-nav-dropdown" className="">
+                <NavLink className="dropdown-item" to="/products/dryfruits">
+                  Dry Fruits
+                </NavLink>
                 <NavDropdown.Divider />
-                <NavLink className="dropdown-item" to="/products/spices">Spices</NavLink>
+                <NavLink className="dropdown-item" to="/products/spices">
+                  Spices
+                </NavLink>
               </NavDropdown>
-              <NavLink className="nav-link" to="/contact">Contact</NavLink>
+              <NavLink className="nav-link" to="/contact">
+                Contact
+              </NavLink>
               <NavLink className="nav-link" to="/about">
                 About
               </NavLink>

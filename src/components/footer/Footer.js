@@ -7,39 +7,33 @@ const footerUl = "flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:te
 const mr4 = "mr-4";
 const footerNavlinkTwo = "mr-4 hover:underline md:mr-6";
 function Footer() {
-    return (
-        <footer className={footerMain}>
-            <span className={footerSpanOne}>
-                © 2023{" "}
-                <NavLink to="/" className={footerNavlinkOne}>
-                    Bansal Traders
-                </NavLink>
-                . All Rights Reserved.
-            </span>
-            <ul className={footerUl}>
-                <li className={mr4}>
-                    <NavLink to="/about" className={footerNavlinkTwo}>
-                        About
-                    </NavLink>
-                </li>
-                <li className={mr4}>
-                    <NavLink to="/faq" className={footerNavlinkTwo}>
-                        FAQ
-                    </NavLink>
-                </li>
-                <li className={mr4}>
-                    <NavLink to="/products" className={footerNavlinkTwo}>
-                        Products
-                    </NavLink>
-                </li>
-                <li className={mr4}>
-                    <NavLink to="/contact" className={footerNavlinkOne}>
-                        Contact
-                    </NavLink>
-                </li>
-            </ul>
-        </footer>
-    );
+  return (
+    <footer className="py-3 bg-dark">
+      <ul className="nav justify-content-center border-bottom pb-3 mb-3">
+        <li className="nav-item">
+          <NavLink className="nav-link px-2 text-muted" to="/">
+            Home
+          </NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink to="/contact" className="nav-link px-2 text-muted">
+            Contact
+          </NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink to="/about" className="nav-link px-2 text-muted">
+            About
+          </NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink to="/mission" className="nav-link px-2 text-muted">
+            Our Mission
+          </NavLink>
+        </li>
+      </ul>
+      <p className="text-center text-muted">© 2023 Bansal Tranders</p>
+    </footer>
+  );
 }
 
 export default Footer;
