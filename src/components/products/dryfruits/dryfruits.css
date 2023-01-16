@@ -13,7 +13,7 @@
 
 .productDiscCost {
   position: absolute;
-  bottom: 21%;
+  bottom: 33%;
   right: 10%;
   background: white;
   box-shadow: 1px 1px 5px 2px #ccc;
@@ -42,4 +42,13 @@ div.scrollmenu a {
 
 div.scrollmenu a:hover {
   background-color: #4163ef;
+}
+
+.qty_cost_bg {
+  background: transparent !important;
+  border: 0 !important;
+  text-align: right;
+}
+.add_to_cart {
+  float: right;
 }

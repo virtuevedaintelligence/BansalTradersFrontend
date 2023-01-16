@@ -3,6 +3,7 @@ import ProductService from "../../../services/ProductService";
 import CategoryService from "../../../services/CategoryService";
 import { MDBContainer, MDBRow } from "mdb-react-ui-kit";
 import DryFruit from "./DryFruit";
+import DryFruitDetail from "./DryFruitDetail";
 
 function DryFruits() {
   const [loading, setLoading] = useState(true);
@@ -60,6 +61,7 @@ function DryFruits() {
           </MDBRow>
         )}
       </MDBContainer>
+      {/* <DryFruitDetail /> */}
     </>
   );
 }
