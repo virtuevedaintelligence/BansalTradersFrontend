@@ -6,13 +6,14 @@ import "./nav.css";
 import "./responsive.css";
 import React from "react";
 import { NavLink } from "react-router-dom";
+import Cart from "../cart/Cart";
 
 function Topnavbar() {
   return (
     <>
       <Navbar expand="lg" className="nav-bg">
         <Container>
-          <Navbar.Brand href="#home">Bansal Traders</Navbar.Brand>
+          <Navbar.Brand href="/">Bansal Traders</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
@@ -37,9 +38,17 @@ function Topnavbar() {
               <NavLink className="nav-link" to="/mission">
                 Our Mission
               </NavLink>
-              <NavLink className="nav-link loginNavLink" to="/login">
-                Login
-              </NavLink>
+              <div className="loginNavLink d-flex">
+                <NavLink className="nav-link" to="/orders">
+                  Orders
+                </NavLink>
+                <NavLink className="nav-link">
+                  <Cart />
+                </NavLink>
+                <NavLink className="nav-link" to="/login">
+                  Login
+                </NavLink>
+              </div>
             </Nav>
           </Navbar.Collapse>
         </Container>

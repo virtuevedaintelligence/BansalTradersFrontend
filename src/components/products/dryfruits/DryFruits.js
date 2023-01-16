@@ -61,6 +61,7 @@ function DryFruits() {
           </MDBRow>
         )}
       </MDBContainer>
+
       {/* <DryFruitDetail /> */}
     </>
   );

@@ -13,4 +13,6 @@
   position: absolute;
   left: auto !important;
   right: 0px;
+
+  width: 200px;
 }
