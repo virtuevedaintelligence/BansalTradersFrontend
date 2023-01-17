@@ -16,7 +16,6 @@ function Example({ name, ...props }) {
       CatsetLoading(true);
       try {
         const response1 = await CategoryService.getCategories();
-        console.log(response1.data);
         setCategory(response1.data);
       } catch (error) {
         console.log(error);
