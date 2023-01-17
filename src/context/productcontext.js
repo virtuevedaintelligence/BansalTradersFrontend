@@ -17,9 +17,7 @@ const ProductProvider = ({ children }) => {
         dispatch({ type: "PRODUCT_LOADING" });
         try {
             const response = await ProductService.getProducts();
-            console.log(response);
             const products = await response.data;
-            console.log(products);
             dispatch({ type: "SET_PRODUCT_DATA", payload: products });
         } catch (error) {
             console.log(error);

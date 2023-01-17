@@ -3,20 +3,21 @@ import CategoryService from "../../../services/CategoryService";
 import { MDBContainer, MDBRow } from "mdb-react-ui-kit";
 import DryFruit from "./DryFruit";
 import DryFruitDetail from "./DryFruitDetail";
-import { ProductContext, useProductContext } from "../../../context/productcontext"
+import { useProductContext } from "../../../context/productcontext"
 
 const DryFruits = () => {
     const { isLoading, products } = useProductContext();
     const [Catloading, CatsetLoading] = useState(true);
     const [categories, setCategory] = useState(null);
+    console.log(products);
+    console.log("In DryFruits page");
 
     useEffect(() => {
         const fetchData = async () => {
             CatsetLoading(true);
             try {
-                const response1 = await CategoryService.getCategories();
-                console.log(response1.data);
-                setCategory(response1.data);
+                const categors = await CategoryService.getCategories();
+                setCategory(categors.data);
             } catch (error) {
                 console.log(error);
             }
@@ -43,7 +44,7 @@ const DryFruits = () => {
             <MDBContainer fluid className="my-5">
                 <MDBRow>
                     {products.map((product) => {
-                        <DryFruit key={product.productId} {...product} />
+                        <DryFruit key={product.productId} product={product} />
                     })}
                 </MDBRow>
             </MDBContainer>
