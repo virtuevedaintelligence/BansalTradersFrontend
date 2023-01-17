@@ -7,6 +7,7 @@ import "./responsive.css";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Cart from "../cart/Cart";
+import Shopbycategory from "../home/Shopbycategory";
 
 function Topnavbar() {
   return (
@@ -29,6 +30,9 @@ function Topnavbar() {
                   Spices
                 </NavLink>
               </NavDropdown>
+              <NavLink className="nav-link">
+                <Shopbycategory />
+              </NavLink>
               <NavLink className="nav-link" to="/contact">
                 Contact
               </NavLink>

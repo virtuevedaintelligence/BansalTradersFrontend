@@ -1,12 +1,12 @@
 import React from "react";
-import Shopbycategory from "./Shopbycategory";
+import Featuredproducts from "./Featuredproducts";
 import Slider from "./Slider";
 
 export default function Home() {
   return (
     <>
       <Slider />
-      <Shopbycategory />
+      <Featuredproducts />
     </>
   );
 }
