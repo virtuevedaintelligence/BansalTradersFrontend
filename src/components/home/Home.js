@@ -8,10 +8,8 @@ import Shopbycategory from "./Shopbycategory";
 export default function Home() {
   const { isLoading, featuredProducts } = useProductContext();
   if (isLoading) {
-    return <div>... Loading</div>;
+    return <div className="">... Loading</div>;
   }
-  console.log(featuredProducts);
-  console.log("Home");
   return (
     <>
       <Slider />
@@ -19,7 +17,9 @@ export default function Home() {
       <MDBContainer fluid className="my-5">
         <MDBRow>
           {featuredProducts.map((product) => {
-            <DryFruit key={product.productId} {...product} />;
+            return (
+              <DryFruit key={product.productId} product={product} />
+            );
           })}
         </MDBRow>
       </MDBContainer>

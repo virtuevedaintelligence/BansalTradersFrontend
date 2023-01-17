@@ -6,13 +6,20 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 
 function DryFruit({ product }) {
-    console.log("Product")
     var [actualPrice, setActualPrice] = useState();
     function calculateActualPrice(productPrice) {
         actualPrice = productPrice + 200;
         setActualPrice(actualPrice);
     }
-    const { productId, productName, productImageUrl, productDescription, productPrice, quantity, weight, categoryName, featured } = product;
+    const { productId,
+        productName,
+        productImageUrl,
+        productDescription,
+        productPrice,
+        quantity,
+        weight,
+        categoryName,
+        featured } = product;
 
     useEffect(() => {
         calculateActualPrice(productPrice);

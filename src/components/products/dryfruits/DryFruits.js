@@ -9,9 +9,6 @@ const DryFruits = () => {
     const { isLoading, products } = useProductContext();
     const [Catloading, CatsetLoading] = useState(true);
     const [categories, setCategory] = useState(null);
-    console.log(products);
-    console.log("In DryFruits page");
-
     useEffect(() => {
         const fetchData = async () => {
             CatsetLoading(true);
@@ -44,7 +41,9 @@ const DryFruits = () => {
             <MDBContainer fluid className="my-5">
                 <MDBRow>
                     {products.map((product) => {
-                        <DryFruit key={product.productId} product={product} />
+                        return (
+                            <DryFruit key={product.productId} product={product} />
+                        );
                     })}
                 </MDBRow>
             </MDBContainer>
