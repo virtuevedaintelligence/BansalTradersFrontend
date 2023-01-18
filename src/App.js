@@ -13,6 +13,7 @@ import Cart from "./components/cart/Cart";
 import Orders from "./components/orders/Orders";
 import Footer from "./components/footer/Footer";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import DryFruitDetail from "./components/products/dryfruits/DryFruitDetail";
 // import { BrowserRouter as Route } from "react-router-dom";
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
           <Route activeClassName="active_class" exact path="/cart" element={<Cart />}></Route>
           <Route activeClassName="active_class" exact path="/orders" element={<Orders />}></Route>
           <Route activeClassName="active_class" exact path="/login" element={<Login />}></Route>
+          <Route activeClassName="active_class" exact path="/dryfruitdetails" element={<DryFruitDetail />}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
         <Footer />

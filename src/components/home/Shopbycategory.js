@@ -1,29 +1,15 @@
 import React, { useEffect, useState } from "react";
-import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import CategoryService from "../../services/CategoryService";
+import { useCategoryContext } from "../../context/categorycontext";
 
 function Example({ name, ...props }) {
+  const { isLoadingCategory, categories } = useCategoryContext();
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [Catloading, CatsetLoading] = useState(true);
-  const [categories, setCategory] = useState(null);
-  useEffect(() => {
-    const fetchData = async () => {
-      CatsetLoading(true);
-      try {
-        const response1 = await CategoryService.getCategories();
-        setCategory(response1.data);
-      } catch (error) {
-        console.log(error);
-      }
-      CatsetLoading(false);
-    };
-    fetchData();
-  }, []);
   return (
     <>
       <p onClick={handleShow} className="m-0">
@@ -34,7 +20,7 @@ function Example({ name, ...props }) {
           <Offcanvas.Title>Shop By Categories</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          {!Catloading && (
+          {!isLoadingCategory && (
             <div className="row">
               {categories.map((category) => (
                 <div key={category.id} className="col-sm-12">

@@ -1,0 +1,17 @@
+.category_div {
+  border: thin solid #eee !important;
+  transition: 0.5s;
+}
+
+.category_div:hover {
+  box-shadow: 0px 0px 5px 2px #ccc;
+}
+.featuredProductImg {
+  height: 200px !important;
+}
+
+.featuredProductDesc {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
