@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import CategoryService from "../../services/CategoryService";
 import { useCategoryContext } from "../../context/categorycontext";
+import "./shopbycategory.css";
 
 function Example({ name, ...props }) {
   const { isLoadingCategory, categories } = useCategoryContext();
@@ -23,8 +23,8 @@ function Example({ name, ...props }) {
           {!isLoadingCategory && (
             <div className="row">
               {categories.map((category) => (
-                <div key={category.id} className="col-sm-12">
-                  <div className="card p-4">{category.categoryName}</div>
+                <div key={category.id} className="col-sm-12 ">
+                  <div className="card p-4 sidebar-cat">{category.categoryName}</div>
                 </div>
               ))}
             </div>

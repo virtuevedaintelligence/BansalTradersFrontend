@@ -15,3 +15,21 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.fpbox .icon-box {
+  transition: all 0.3s ease-in-out;
+  border: thin solid #eee;
+  margin-bottom: 5px;
+}
+.fpbox .icon-box:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+  box-shadow: 0 0 29px 0 rgb(18 66 101 / 8%);
+  -webkit-transform: scale(1.02);
+  -moz-transform: scale(1.02);
+  -ms-transform: scale(1.02);
+  -o-transform: scale(1.02);
+}
+.featuredProduct-section {
+  padding: 80px 0;
+  overflow: hidden;
+}

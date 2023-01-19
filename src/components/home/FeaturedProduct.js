@@ -15,8 +15,8 @@ function FeaturedProduct({ product }) {
   }, []);
   return (
     <>
-      <div className="col-sm-4 mb-3">
-        <div className="card rounded shadow-lg p-2">
+      <div className="col-sm-4 mb-3 fpbox" data-aos="flip-right">
+        <div className="card rounded p-2 icon-box">
           <img className="img-fluid featuredProductImg" src={productImageUrl} alt="Sunset in the mountains" />
           <div className="px-6 pt-4">
             <div className="font-bold text-xl mb-2">{productName}</div>
@@ -25,10 +25,10 @@ function FeaturedProduct({ product }) {
             </p>
           </div>
           <div className="px-6">
-            <span className="d-inline-block bg-secondary rounded px-3 py-1 text-sm text-light m-2">
-              <s>{actualPrice}</s>
+            <span className="d-inline-block bg-danger rounded px-3 py-1 text-sm text-light m-2">
+              <s>₹{actualPrice}</s>
             </span>
-            <span className="d-inline-block bg-secondary rounded  px-3 py-1 text-sm text-light m-2">{productPrice}</span>
+            <span className="d-inline-block bg-success rounded  px-3 py-1 text-sm text-light m-2">₹{productPrice}</span>
           </div>
         </div>
       </div>
