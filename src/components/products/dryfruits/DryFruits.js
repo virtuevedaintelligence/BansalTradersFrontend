@@ -3,6 +3,8 @@ import { MDBContainer, MDBRow } from "mdb-react-ui-kit";
 import DryFruit from "./DryFruit";
 import { useProductContext } from "../../../context/productcontext";
 import { useCategoryContext } from "../../../context/categorycontext";
+import Category from "./Category";
+import CategorySlider from "./CategorySlider";
 
 const DryFruits = () => {
   const { isLoading, products } = useProductContext();
@@ -17,14 +19,16 @@ const DryFruits = () => {
 
   return (
     <>
-      <div className="scrollmenu">
-        <div>
-          {categories.map((category) => (
-            <a key={category.id} href="#home">
-              {category.categoryName}
-            </a>
-          ))}
+      <div className="categories">
+        <div className="scrollmenu">
+          {categories.map((category) => {
+            return <Category key={category.categoryId} category={category} />;
+          })}
         </div>
+        <button className="btn btn-primary btn-sm" style={{ marginRight: "10px" }}>
+          Add New Category
+        </button>
+        <button className="btn btn-primary btn-sm">Add New Product</button>
       </div>
       <MDBContainer fluid className="my-5">
         <MDBRow>
