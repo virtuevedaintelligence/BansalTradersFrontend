@@ -9,7 +9,9 @@ const initialState = {
     products: [],
     featuredProducts: [],
     isSingleProductLoading: false,
-    singleProduct: {}
+    singleProduct: {},
+    isSaveProductLoading: false,
+    saveProduct: {}
 };
 
 const ProductProvider = ({ children }) => {
@@ -39,12 +41,25 @@ const ProductProvider = ({ children }) => {
             dispatch({ type: "SINGLE_ERROR" });
         }
     }
+
+    const saveProductCall = async (product) => {
+        dispatch({ type: "SAVE_PRODUCT_LOADING" });
+        try {
+            const saveReponse = await ProductService.saveProduct(product);
+            const saveProduct = await saveReponse.data;
+            dispatch({ type: "SAVE_PRODUCT", payload: saveProduct });
+        }
+        catch (error) {
+            console.log(error);
+            dispatch({ type: "SAVE_ERROR" });
+        }
+    }
     useEffect(() => {
         fetchData();
     }, []);
 
     return (
-        <ProductContext.Provider value={{ ...state, getSingleProduct }}>
+        <ProductContext.Provider value={{ ...state, getSingleProduct, saveProductCall }}>
             {children}
         </ProductContext.Provider >
     );

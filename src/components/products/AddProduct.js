@@ -1,93 +1,94 @@
-import { Form, InputGroup, Row, } from "react-bootstrap";
+import { useState } from "react";
+import { Form, Row } from "react-bootstrap";
 import { useCategoryContext } from "../../context/categorycontext";
-
+import { useProductContext } from "../../context/productcontext";
 function AddProduct() {
     const { isLoadingCategory, categories } = useCategoryContext();
+    const { isSaveProductLoading, saveProductCall } = useProductContext();
+
+    const { product, setProduct } = useState({
+        productName: "",
+        productImageUrl: "",
+        productDescription: "",
+        productPrice: 0,
+        quantity: 0,
+        weight: 0,
+        categoryName: "",
+        featured: false
+    });
+    const save = (e) => {
+        e.preventDefault();
+        saveProductCall(product);
+    }
+    const handleChange = (e) => {
+        const value = e.target.value;
+        setProduct({ ...product, [e.target.name]: value });
+    };
+
     if (isLoadingCategory) {
+        return <div>... Loading</div>;
+    }
+    if (isSaveProductLoading) {
         return <div>... Loading</div>;
     }
     return (
         <div>
             <form className="container mt-3 mb-3">
                 <Row className="mb-3">
-                    <Form.Group controlId="productName" className="col col-sm-6">
-                        <Form.Label>Product Name</Form.Label>
-                        <Form.Control type="name" name="product_name" value="{form.first_name}" className="form-control" />
+                    <Form.Group className="col col-sm-6">
+                        <Form.Control type="name" name="productName" placeholder="Product Name" className="form-control"
+                            value={product.productName}
+                            onChange={(e) => handleChange(e)}>
+                            {product.productName}
+                        </Form.Control>
                     </Form.Group>
-                    <Form.Group controlId="categoryName" className="col col-sm-4">
-                        <Form.Label>Category Name</Form.Label>
-                        <Form.Select defaultValue="Choose..." className="form-control" name="weight" value="{form.a_state}" >
+                    <Form.Group className="col col-sm-6">
+                        <Form.Select defaultValue="Choose..." className="form-control" name="weight" onChange={(e) => handleChange(e)}  >
                             {categories.map((category) => {
-                                return <option key={category.categoryId} value={category.name}>{category.name}</option>;
+                                return <option key={category.categoryId} value={category.categoryName}>{category.categoryName}</option>;
                             })}
                         </Form.Select>
                     </Form.Group>
                 </Row>
                 <Row className="mb-3">
-                    <Form.Group controlId="formBasicMobile" className="col col-sm-6">
-                        <Form.Label>Mobile Number</Form.Label>
-                        <InputGroup>
-                            <InputGroup.Text id="basic-addon1">+91</InputGroup.Text>
-                            <Form.Control aria-label="Mobile Number" type="mobile" aria-describedby="basic-addon1" className="form-control" name="mobile" value="{form.mobile}" />
-                        </InputGroup>
+                    <Form.Group className="col col-sm-6">
+                        <Form.Control aria-label="Upload Product Image" type="file" className="form-control" name="image"
+                            value={product.productImageUrl} onChange={(e) => handleChange(e)} />
                     </Form.Group>
-                    <Form.Group controlId="formBasicEmail" className="col col-sm-6">
-                        <Form.Label>Email</Form.Label>
-                        <InputGroup>
-                            <Form.Control aria-label="Recipient's username" aria-describedby="basic-addon2" type="email" name="email" value="{form.email}" />
-                            <InputGroup.Text id="basic-addon2">@gmail.com</InputGroup.Text>
-                        </InputGroup>
+                    <Form.Group className="col col-sm-6">
+                        <Form.Check label="featured"
+                            value={product.featured} onChange={(e) => handleChange(e)} />
                     </Form.Group>
                 </Row>
                 <Row className="mb-3">
-                    <Form.Group className=" col col-sm-6" controlId="formGridAddress1">
-                        <Form.Label>Address</Form.Label>
-                        <Form.Control className="form-control" type="text" name="address1" value="{form.address1}" />
-                    </Form.Group>
-                    <Form.Group className="col col-sm-6" controlId="formGridAddress2">
-                        <Form.Label>Address 2</Form.Label>
-                        <Form.Control className="form-control" name="address2" value="{form.address2}" type="text" />
+                    <Form.Group className=" col col-sm-12">
+                        <Form.Control as="textarea" placeholder="Product Description"
+                            className="form-control" type="text-area" name="description"
+                            value={product.productDescription} onChange={(e) => handleChange(e)} />
                     </Form.Group>
                 </Row>
                 <Row className="mb-3">
-                    <Form.Group controlId="weight" className="col col-sm-4">
-                        <Form.Label>weight</Form.Label>
-                        <Form.Control className="form-control" type="text" name="weight" value="{form.city}" />
-                    </Form.Group>
-                    <Form.Group controlId="formGridState" className="col col-sm-4">
-                        <Form.Label>Weight</Form.Label>
-                        <Form.Select defaultValue="Choose..." className="form-control" name="weight" value="{form.a_state}" >
-                            <option value="Choose...">Choose...</option>
-                            <option value="Delhi">250gm</option>
-                            <option value="Bombay">500gm</option>
-                            <option value="New York">1000gm</option>
+                    <Form.Group className="col col-sm-4">
+                        <Form.Select defaultValue="Choose..." className="form-control" name="weight" onChange={(e) => handleChange(e)} >
+                            <option value="Choose...">Select Weight</option>
+                            <option value="250">250gm</option>
+                            <option value="500">500gm</option>
+                            <option value="1000">1000gm</option>
                         </Form.Select>
                     </Form.Group>
-                    <Form.Group controlId="formGridpin" className="col col-sm-4">
-                        <Form.Label>Pin Code</Form.Label>
-                        <Form.Control className="form-control" type="pin" name="pin" value="{form.pin}" />
+                    <Form.Group className="col col-sm-4">
+                        <Form.Control className="form-control" type="pin" name="price" placeholder="Enter Price"
+                            value={product.productPrice} onChange={(e) => handleChange(e)} />
+                    </Form.Group>
+                    <Form.Group className="col col-sm-4">
+                        <Form.Control className="form-control" type="number" name="quantity" placeholder="Enter Quantity"
+                            value={product.quantity} onChange={(e) => handleChange(e)} />
                     </Form.Group>
                 </Row>
                 <Row className="mb-3">
-                    <Form.Group controlId="formGridCheckbox" className="col col-sm-6">
-                        <Form.Label>Menu</Form.Label>
-                        <Form.Select defaultValue="Choose..." className="form-control" name="menu" value="{form.menu}" >
-                            <option value="Choose...">Choose...</option>
-                            <option value="Veg Biryani">Veg Biryani</option>
-                            <option value="BBQ Chicken Wings">BBQ Chicken Wings</option>
-                            <option value="Rasmalai">Rasmalai</option>
-                            <option value="Beer">Beer</option>
-                        </Form.Select>
-                    </Form.Group>
-                    <Form.Group controlId="formGridlabel" className="col col-sm-6">
-                        <Form.Label>Order Details</Form.Label>
-                        <Form.Control as="textarea" rows="{3}" className="form-control" name="order" value="{form.order}" />
-                    </Form.Group>
-                </Row>
-                <Row className="mb-3">
-                    <Form.Group controlId="formGridCheckbox" className="col col-sm-6">
-                        <button type="submit" onClick="{submitButton}" className="me-4 btn btn-success btn-lg btn-block">Submit</button>
-                        <button type="reset" onClick="{resetButton}" className="me-4 btn btn-danger btn-lg btn-block">Cancel</button>
+                    <Form.Group className="col col-sm-6">
+                        <button type="submit" className="me-4 btn btn-success btn-lg btn-block" onClick={save}>Submit</button>
+                        <button type="reset" className="me-4 btn btn-danger btn-lg btn-block">Cancel</button>
                     </Form.Group>
                 </Row>
             </form>
