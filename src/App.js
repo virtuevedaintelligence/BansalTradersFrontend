@@ -12,6 +12,8 @@ import Mission from "./components/mission/Mission";
 import Cart from "./components/cart/Cart";
 import Orders from "./components/orders/Orders";
 import Footer from "./components/footer/Footer";
+import AddProduct from "../src/components/products/AddProduct"
+import UpdateProduct from "../src/components/products/UpdateProduct"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import DryFruitDetail from "./components/products/dryfruits/DryFruitDetail";
 // import { BrowserRouter as Route } from "react-router-dom";
@@ -39,9 +41,10 @@ function App() {
           <Route activeClassName="active_class" exact path="/orders" element={<Orders />}></Route>
           <Route activeClassName="active_class" exact path="/login" element={<Login />}></Route>
           <Route activeClassName="active_class" exact path="/dryfruitdetails/:productId" element={<DryFruitDetail />}></Route>
+          <Route activeClassName="active_class" exact path="/addproduct" element={<AddProduct />}></Route>
+          <Route activeClassName="active_class" exact path="/update/:productId" element={<UpdateProduct />}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
-
         <Footer />
       </Router>
     </>

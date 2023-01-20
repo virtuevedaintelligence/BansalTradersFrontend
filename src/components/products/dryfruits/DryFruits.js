@@ -4,6 +4,7 @@ import DryFruit from "../dryfruits/DryFruit";
 import { useProductContext } from "../../../context/productcontext";
 import { useCategoryContext } from "../../../context/categorycontext";
 import Category from "../categories/Category";
+import { NavLink } from "react-router-dom";
 const DryFruits = () => {
   const { isLoading, products } = useProductContext();
   const { isLoadingCategory, categories } = useCategoryContext();
@@ -23,10 +24,14 @@ const DryFruits = () => {
             return <Category key={category.categoryId} category={category} />;
           })}
         </div>
-        <button className="btn btn-primary btn-sm" style={{ marginRight: "10px" }}>
-          Add New Category
-        </button>
-        <button className="btn btn-primary btn-sm">Add New Product</button>
+        <NavLink>
+          <button className="btn btn-primary btn-sm" style={{ marginRight: "10px" }}>
+            Add New Category
+          </button>
+        </NavLink>
+        <NavLink to="/addproduct">
+          <button className="btn btn-primary btn-sm">Add New Product</button>
+        </NavLink>
       </div>
       <MDBContainer fluid className="my-5">
         <MDBRow>
