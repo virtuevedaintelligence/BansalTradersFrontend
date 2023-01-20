@@ -8,6 +8,7 @@ import { Button } from "react-bootstrap";
 
 import { IoIosAddCircle } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
+import FormatPrice from "../../../helper/formatprice/FormatPrice";
 
 function DryFruit({ product }) {
   var [actualPrice, setActualPrice] = useState();
@@ -30,73 +31,73 @@ function DryFruit({ product }) {
   return (
     <>
       <MDBCol md="4" lg="4" className="mb-4 products">
-        {/* <NavLink className="nav-link" to={productId}> */}
         <MDBCard key={productId}>
-          <div className="d-flex justify-content-between p-3">
-            <p className="lead mb-0">{productName}</p>
-            <div className="justify-content-between">
-              <Button className="btn-sm btn-success" style={{ marginRight: "10px" }}>
-                <IoIosAddCircle />
-              </Button>
-              <Button className="btn-sm btn-danger">
-                <MdDelete />
-              </Button>
-            </div>
-            <div className=" rounded-circle d-flex align-items-center justify-content-center shadow-1-strong" style={{ width: "35px", height: "35px" }}>
-              <p className="text-white mb-0 small">
-                <FcLike />
-              </p>
-            </div>
-          </div>
-          <MDBCardImage src={productImageUrl} position="top" alt={productName} />
-          <MDBCardBody>
-            <div className="d-flex justify-content-between">
-              <p className="small mb-2">
-                <a href="#!" className="text-muted">
-                  {categoryName}
-                </a>
-              </p>
-              <div className="productDiscCost">
-                ₹{productPrice} | <s value={actualPrice}>₹{actualPrice}</s>
+          <NavLink to={`/dryfruitdetails/${productId}`}>
+            <div className="d-flex justify-content-between p-3">
+              <p className="lead mb-0">{productName}</p>
+              <div className="justify-content-between">
+                <Button className="btn-sm btn-success" style={{ marginRight: "10px" }}>
+                  <IoIosAddCircle />
+                </Button>
+                <Button className="btn-sm btn-danger">
+                  <MdDelete />
+                </Button>
+              </div>
+              <div className=" rounded-circle d-flex align-items-center justify-content-center shadow-1-strong" style={{ width: "35px", height: "35px" }}>
+                <p className="text-white mb-0 small">
+                  <FcLike />
+                </p>
               </div>
             </div>
-            <div className="d-flex justify-content-between mb-2">
-              <h6 className="mb-0 productDesc">{productDescription}</h6>
-            </div>
-            <div className="d-flex justify-content-between mb-2">
-              <p className="text-muted mb-0 productQty  m-0">
-                In Stock: <span className="fw-bold">{quantity} packets</span>
-              </p>
-              <p className="text-muted mb-0">
-                Weight: <span className="fw-bold">{weight} gms</span>
-              </p>
-            </div>
-            <div className="row">
-              <div className="col-md-4">
-                <Form.Select aria-label="Default select example" size="sm">
-                  <option>Select Weight</option>
-                  <option value="1">250 GM</option>
-                  <option value="2">500 GM</option>
-                  <option value="3">1000 Gm</option>
-                </Form.Select>
+            <MDBCardImage src={productImageUrl} position="top" alt={productName} />
+            <MDBCardBody>
+              <div className="d-flex justify-content-between">
+                <p className="small mb-2">
+                  <a href="#!" className="text-muted">
+                    {categoryName}
+                  </a>
+                </p>
+                <div className="productDiscCost">
+                  {<FormatPrice productPrice={productPrice} />} |
+                  {<s value={actualPrice}> <FormatPrice actualPrice={actualPrice} /></s>}
+                </div>
               </div>
-              <div className="col-md-4  d-flex">
-                <button className="btn btn-sm btn-primary mb-0">-</button>
-                <Form.Control size="sm" readOnly disabled type="text" className="text-center qty_cost_bg" placeholder="1" />
-                <button className="btn btn-sm btn-primary mb-0">+</button>
+              <div className="d-flex justify-content-between mb-2">
+                <h6 className="mb-0 productDesc">{productDescription}</h6>
               </div>
-              <div className="col-md-4">
-                <Form.Control size="sm" readOnly disabled type="text" className="qty_cost_bg" placeholder="Cost" />
+              <div className="d-flex justify-content-between mb-2">
+                <p className="text-muted mb-0 productQty  m-0">
+                  In Stock: <span className="fw-bold">{quantity} packets</span>
+                </p>
+                <p className="text-muted mb-0">
+                  Weight: <span className="fw-bold">{weight} gms</span>
+                </p>
               </div>
-              <div className="col-md-12 mt-3">
-                <button className="btn btn-primary btn-sm mb-0 add_to_cart">Add To Cart</button>
+              <div className="row">
+                <div className="col-md-4">
+                  <Form.Select aria-label="Default select example" size="sm">
+                    <option>Select Weight</option>
+                    <option value="1">250 GM</option>
+                    <option value="2">500 GM</option>
+                    <option value="3">1000 Gm</option>
+                  </Form.Select>
+                </div>
+                <div className="col-md-4  d-flex">
+                  <button className="btn btn-sm btn-primary mb-0">-</button>
+                  <Form.Control size="sm" readOnly disabled type="text" className="text-center qty_cost_bg" placeholder="1" />
+                  <button className="btn btn-sm btn-primary mb-0">+</button>
+                </div>
+                <div className="col-md-4">
+                  <Form.Control size="sm" readOnly disabled type="text" className="qty_cost_bg" placeholder="Cost" />
+                </div>
+                <div className="col-md-12 mt-3">
+                  <button className="btn btn-primary btn-sm mb-0 add_to_cart">Add To Cart</button>
+                </div>
               </div>
-            </div>
-          </MDBCardBody>
+            </MDBCardBody>
+          </NavLink>
         </MDBCard>
-        {/* </NavLink> */}
       </MDBCol>
-      {/* code for detail page */}
     </>
   );
 }

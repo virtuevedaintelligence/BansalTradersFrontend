@@ -7,7 +7,9 @@ const initialState = {
     isLoading: false,
     isError: false,
     products: [],
-    featuredProducts: []
+    featuredProducts: [],
+    isSingleProductLoading: false,
+    singleProduct: {}
 };
 
 const ProductProvider = ({ children }) => {
@@ -25,12 +27,24 @@ const ProductProvider = ({ children }) => {
         }
     };
 
+    const getSingleProduct = async (id) => {
+        dispatch({ type: "SINGLE_PRODUCT_LOADING" });
+        try {
+            const singleResponse = await ProductService.getProductById(id);
+            const singleProduct = await singleResponse.data;
+            dispatch({ type: "SET_SINGLE_DATA", payload: singleProduct });
+        }
+        catch (error) {
+            console.log(error);
+            dispatch({ type: "SINGLE_ERROR" });
+        }
+    }
     useEffect(() => {
         fetchData();
     }, []);
 
     return (
-        <ProductContext.Provider value={{ ...state }}>
+        <ProductContext.Provider value={{ ...state, getSingleProduct }}>
             {children}
         </ProductContext.Provider >
     );

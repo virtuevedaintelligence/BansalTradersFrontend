@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { MDBContainer, MDBRow } from "mdb-react-ui-kit";
-import DryFruit from "./DryFruit";
+import DryFruit from "../dryfruits/DryFruit";
 import { useProductContext } from "../../../context/productcontext";
 import { useCategoryContext } from "../../../context/categorycontext";
-import Category from "./Category";
-import CategorySlider from "./CategorySlider";
-
+import Category from "../categories/Category";
 const DryFruits = () => {
   const { isLoading, products } = useProductContext();
   const { isLoadingCategory, categories } = useCategoryContext();

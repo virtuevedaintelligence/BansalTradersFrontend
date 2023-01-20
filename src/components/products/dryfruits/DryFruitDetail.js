@@ -1,7 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./dryfruitdetail.css";
-import MoreProducts from "./MoreProducts";
+import MoreProducts from "../moreproducts/MoreProducts";
+import { useParams } from "react-router-dom";
+import { useProductContext } from "../../../context/productcontext";
+import Reviews from "../../reviews/Reviews";
 function DryFruitDetail() {
+  const { productId } = useParams();
+  const {
+    getSingleProduct,
+    isSingleProductLoading,
+    singleProduct } = useProductContext();
+  const {
+    productId: id,
+    productName,
+    productImageUrl,
+    productDescription,
+    productPrice,
+    quantity,
+    weight,
+    categoryName
+  } = singleProduct;
+  useEffect(() => {
+    getSingleProduct(productId);
+  }, []);
+  if (isSingleProductLoading) {
+    return <div>... Loading</div>;
+  }
   return (
     <>
       <div className="container m-auto">
@@ -9,14 +33,14 @@ function DryFruitDetail() {
           <div className="row hedding m-0 pl-3 pt-0 pb-3">Home / DryFruits / Almonds / California Almonds</div>
           <div className="row m-0">
             <div className="col-lg-4 left-side-product-box pb-3">
-              <img src="http://nicesnippets.com/demo/pd-image1.jpg" className="border p-3" />
+              <img src={productImageUrl} className="border p-3" />
             </div>
             <div className="col-lg-8">
               <div className="right-side-pro-detail border p-3 m-0">
                 <div className="row">
                   <div className="col-lg-12">
-                    <span className="text-secondary">Cateogry Name</span>
-                    <p className="text-dark m-0 p-0">Product Name</p>
+                    <span className="text-secondary">{categoryName}</span>
+                    <p className="text-dark m-0 p-0">{productName}</p>
                   </div>
                   <div className="col-lg-12  d-flex">
                     <p className="m-0 p-0 price-pro">₹30</p>
@@ -25,12 +49,12 @@ function DryFruitDetail() {
                   </div>
                   <div className="col-lg-12 pt-2">
                     <h5>Product Detail</h5>
-                    <span>Product Description 255 chars</span>
+                    <span>{productDescription}</span>
                     <hr className="m-0 pt-2 mt-2" />
                   </div>
                   <div className="col-lg-12 pt-2">
                     <h5>In stock</h5>
-                    <span>Product Description 255 chars</span>
+                    <span>Only {quantity} left!!!</span>
                     <h5> Hurry Up</h5>
                     <hr className="m-0 pt-2 mt-2" />
                   </div>
@@ -74,6 +98,13 @@ function DryFruitDetail() {
               <h4>More Product</h4>
             </div>
             <MoreProducts />
+          </div>
+
+          <div className="row">
+            <div className="col-lg-12 text-center pt-3">
+              <h4>Reviews</h4>
+            </div>
+            <Reviews />
           </div>
         </div>
       </div>

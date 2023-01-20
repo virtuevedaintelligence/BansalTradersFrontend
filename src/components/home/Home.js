@@ -1,11 +1,10 @@
 import React from "react";
 import Slider from "./Slider";
 import { useProductContext } from "../../context/productcontext";
-import FeaturedProduct from "./FeaturedProduct";
+import FeaturedProduct from "../products/featureproducts/FeaturedProduct";
 import { Container } from "react-bootstrap";
 
 import Contact from "../contact/Contact";
-import Faq from "./Faq";
 import About from "../about/About";
 import Ourmission from "../ourmission/Ourmission";
 import Feedbacks from "../feedbacks/Feedbacks";
@@ -40,10 +39,10 @@ export default function Home() {
           </div>
         </section>
       </Container>
-      <About />
-      <Contact />
       <Ourmission />
       <Feedbacks />
+      <About />
+      <Contact />
       {/* <Faq /> */}
     </>
   );

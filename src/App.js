@@ -24,20 +24,21 @@ function App() {
         <Routes>
           <Route activeClassName="active_class" exact path="/" element={<Home />}></Route>
           <Route activeClassName="active_class" exact path="/products" element={<Products />}>
-            <Route activeClassName="active_class" path="dryfruits" element={<DryFruits />}>
+            <Route path="dryfruits" element={<DryFruits />}>
               {" "}
             </Route>
-            <Route activeClassName="active_class" path="spices" element={<Spices />}>
+            <Route path="spices" element={<Spices />}>
               {" "}
             </Route>
           </Route>
+          <Route path="/dryfruitdetail/:id" element={<DryFruitDetail />} />
           <Route activeClassName="active_class" exact path="/about" element={<About />}></Route>
           <Route activeClassName="active_class" exact path="/contact" element={<Contact />}></Route>
           <Route activeClassName="active_class" exact path="/mission" element={<Mission />}></Route>
           <Route activeClassName="active_class" exact path="/cart" element={<Cart />}></Route>
           <Route activeClassName="active_class" exact path="/orders" element={<Orders />}></Route>
           <Route activeClassName="active_class" exact path="/login" element={<Login />}></Route>
-          <Route activeClassName="active_class" exact path="/dryfruitdetails" element={<DryFruitDetail />}></Route>
+          <Route activeClassName="active_class" exact path="/dryfruitdetails/:productId" element={<DryFruitDetail />}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
 
