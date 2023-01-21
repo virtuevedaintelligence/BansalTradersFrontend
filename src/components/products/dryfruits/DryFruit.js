@@ -17,7 +17,7 @@ function DryFruit({ product }) {
     setActualPrice(actualPrice);
   }
   const { productId, productName, productImageUrl, productDescription, productPrice, quantity, weight, categoryName, featured } = product;
-
+  //   console.log(product.productPrice);
   useEffect(() => {
     calculateActualPrice(productPrice);
   }, []);
@@ -53,7 +53,12 @@ function DryFruit({ product }) {
               </p>
               <div className="productDiscCost">
                 {<FormatPrice productPrice={productPrice} />} |
-                {<s value={actualPrice}> <FormatPrice actualPrice={actualPrice} /></s>}
+                {
+                  <s value={actualPrice}>
+                    {" "}
+                    <FormatPrice productPrice={actualPrice} />
+                  </s>
+                }
               </div>
             </div>
             <div className="d-flex justify-content-between mb-2">

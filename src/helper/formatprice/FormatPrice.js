@@ -1,9 +1,9 @@
-function FormatPrice({ price }) {
-    return Intl.NumberFormat("en-IN", {
-        style: "currency",
-        currency: "INR",
-        maximumFractionDigits: 2,
-    }).format(price / 100);
-};
+function FormatPrice({ productPrice }) {
+  return Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+    maximumFractionDigits: 2,
+  }).format(productPrice);
+}
 
 export default FormatPrice;
