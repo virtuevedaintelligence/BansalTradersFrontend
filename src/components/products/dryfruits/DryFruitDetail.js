@@ -6,20 +6,8 @@ import { useProductContext } from "../../../context/productcontext";
 import Reviews from "../../reviews/Reviews";
 function DryFruitDetail() {
   const { productId } = useParams();
-  const {
-    getSingleProduct,
-    isSingleProductLoading,
-    singleProduct } = useProductContext();
-  const {
-    productId: id,
-    productName,
-    productImageUrl,
-    productDescription,
-    productPrice,
-    quantity,
-    weight,
-    categoryName
-  } = singleProduct;
+  const { getSingleProduct, isSingleProductLoading, singleProduct } = useProductContext();
+  const { productId: id, productName, productImageUrl, productDescription, productPrice, quantity, weight, categoryName } = singleProduct;
   useEffect(() => {
     getSingleProduct(productId);
   }, []);
