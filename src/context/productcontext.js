@@ -11,7 +11,9 @@ const initialState = {
     isSingleProductLoading: false,
     singleProduct: {},
     isSaveProductLoading: false,
-    saveProduct: {}
+    saveProduct: {},
+    isDeleteProductLoading: false,
+    deleteProduct: {}
 };
 
 const ProductProvider = ({ children }) => {
@@ -54,12 +56,24 @@ const ProductProvider = ({ children }) => {
             dispatch({ type: "SAVE_ERROR" });
         }
     }
+    const deleteProductCall = async (id) => {
+        dispatch({ type: "DELETE_PRODUCT_LOADING" });
+        try {
+            const deleteResponse = await ProductService.deleteProduct(id);
+            const deleteProduct = await deleteResponse.data;
+            dispatch({ type: "DELETE_PRODUCT", payload: deleteProduct });
+        }
+        catch (error) {
+            console.log(error);
+            dispatch({ type: "DELETE_ERROR" });
+        }
+    }
     useEffect(() => {
         fetchData();
     }, []);
 
     return (
-        <ProductContext.Provider value={{ ...state, getSingleProduct, saveProductCall }}>
+        <ProductContext.Provider value={{ ...state, getSingleProduct, saveProductCall, deleteProductCall }}>
             {children}
         </ProductContext.Provider >
     );

@@ -53,6 +53,23 @@ const ProductReducer = (state, action) => {
         isSaveProductLoading: false,
         isError: true,
       };
+    case "DELETE_PRODUCT_LOADING":
+      return {
+        ...state,
+        isDeleteProductLoading: true,
+      };
+    case "DELETE_PRODUCT":
+      return {
+        ...state,
+        isDeleteProductLoading: false,
+        deleteProduct: action.payload,
+      };
+    case "DELETE_ERROR":
+      return {
+        ...state,
+        isDeleteProductLoading: false,
+        isError: true,
+      };
     default:
       return state;
   }

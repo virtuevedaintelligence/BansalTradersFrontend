@@ -9,18 +9,26 @@ import { Button } from "react-bootstrap";
 import { IoIosAddCircle } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import FormatPrice from "../../../helper/formatprice/FormatPrice";
+import { useProductContext } from "../../../context/productcontext";
 
 function DryFruit({ product }) {
+  const { isDeleteProductLoading, deleteProductCall } = useProductContext();
   var [actualPrice, setActualPrice] = useState();
   function calculateActualPrice(productPrice) {
     actualPrice = productPrice + 200;
     setActualPrice(actualPrice);
   }
   const { productId, productName, productImageUrl, productDescription, productPrice, quantity, weight, categoryName, featured } = product;
-  //   console.log(product.productPrice);
   useEffect(() => {
     calculateActualPrice(productPrice);
   }, []);
+  const deleteProd = (e) => {
+    e.preventDefault();
+    deleteProductCall(productId);
+  };
+  if (isDeleteProductLoading) {
+    return <div>... Loading</div>;
+  }
   return (
     <>
       <MDBCol sm="6" md="4" lg="4" className="mb-4 products">
@@ -32,7 +40,7 @@ function DryFruit({ product }) {
                 <IoIosAddCircle />
               </Button>
               <Button className="btn-sm btn-danger">
-                <MdDelete />
+                <MdDelete onClick={deleteProd} />
               </Button>
             </div>
             <div className=" rounded-circle d-flex align-items-center justify-content-center shadow-1-strong" style={{ width: "35px", height: "35px" }}>
