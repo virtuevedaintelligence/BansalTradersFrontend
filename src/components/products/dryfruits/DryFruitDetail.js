@@ -4,13 +4,17 @@ import MoreProducts from "../moreproducts/MoreProducts";
 import { useParams } from "react-router-dom";
 import { useProductContext } from "../../../context/productcontext";
 import Reviews from "../../reviews/Reviews";
+import FormatPrice from "../../../helper/formatprice/FormatPrice";
+
 function DryFruitDetail() {
   const { productId } = useParams();
   const { getSingleProduct, isSingleProductLoading, singleProduct } = useProductContext();
   const { productId: id, productName, productImageUrl, productDescription, productPrice, quantity, weight, categoryName } = singleProduct;
+
   useEffect(() => {
     getSingleProduct(productId);
   }, []);
+
   if (isSingleProductLoading) {
     return <div>... Loading</div>;
   }
@@ -31,8 +35,13 @@ function DryFruitDetail() {
                     <p className="text-dark m-0 p-0">{productName}</p>
                   </div>
                   <div className="col-lg-12  d-flex">
-                    <p className="m-0 p-0 price-pro">₹30</p>
-                    <p className="mx-4 p-0 price-pro">₹30</p>
+                    <p className="m-0 p-0 text-success price-pro">{<FormatPrice productPrice={productPrice} />} </p>
+                    <p className="m-0 p-0 text-success price-pro">
+                      <b className="px-2"> | </b>
+                    </p>
+
+                    <p className="m-0 p-0 text-danger price-pro">{<s>{<FormatPrice productPrice={productPrice + 200} />}</s>}</p>
+
                     <hr className="p-0 m-0" />
                   </div>
                   <div className="col-lg-12 pt-2">

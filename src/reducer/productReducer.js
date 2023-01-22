@@ -47,7 +47,7 @@ const ProductReducer = (state, action) => {
         isSaveProductLoading: false,
         saveProduct: action.payload,
       };
-    case "SINGLE_ERROR":
+    case "SAVE_ERROR":
       return {
         ...state,
         isSaveProductLoading: false,

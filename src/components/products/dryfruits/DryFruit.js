@@ -55,7 +55,6 @@ function DryFruit({ product }) {
                 {<FormatPrice productPrice={productPrice} />} |
                 {
                   <s value={actualPrice}>
-                    {" "}
                     <FormatPrice productPrice={actualPrice} />
                   </s>
                 }
