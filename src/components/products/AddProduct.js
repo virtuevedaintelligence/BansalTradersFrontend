@@ -27,8 +27,8 @@ function AddProduct() {
   const handleChange = (e) => {
     const value = e.target.value;
     const feat = e.target.name;
-    if(e.targe.name ==="featured" && e.target.value === "on"){
-
+    if (e.targe.name === "featured" && e.target.value === "on") {
+      value 
     }
     // console.log(value);
     setProduct({ ...product, [e.target.name]: value });
