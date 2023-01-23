@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import { IoIosAddCircle } from "react-icons/io";
+import { FiEdit2 } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
 
 function Category({ category }) {
@@ -10,7 +10,7 @@ function Category({ category }) {
         {category.categoryName}
       </a>
       <Button className="btn-sm btn-success" style={{ marginRight: "10px" }}>
-        <IoIosAddCircle />
+        <FiEdit2 />
       </Button>
       <Button className="btn-sm btn-danger">
         <MdDelete />

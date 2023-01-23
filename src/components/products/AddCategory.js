@@ -10,7 +10,7 @@ function AddCategory() {
 
   const saveCategory = (e) => {
     e.preventDefault();
-    console.log(category);
+
     saveCategoryCall(category);
   };
 

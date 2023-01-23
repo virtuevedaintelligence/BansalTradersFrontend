@@ -4,14 +4,23 @@ import { MDBCard, MDBCardBody, MDBCardImage, MDBCol } from "mdb-react-ui-kit";
 import "./dryfruits.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
-import { Button } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 
-import { IoIosAddCircle } from "react-icons/io";
+import { FiEdit2 } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
 import FormatPrice from "../../../helper/formatprice/FormatPrice";
 import { useProductContext } from "../../../context/productcontext";
+import { useCategoryContext } from "../../../context/categorycontext";
+import UpdateProduct from "../UpdateProduct";
 
 function DryFruit({ product }) {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const { isLoadingCategory, categories } = useCategoryContext();
+
   const { isDeleteProductLoading, deleteProductCall } = useProductContext();
   var [actualPrice, setActualPrice] = useState();
   function calculateActualPrice(productPrice) {
@@ -29,6 +38,7 @@ function DryFruit({ product }) {
   if (isDeleteProductLoading) {
     return <div>... Loading</div>;
   }
+
   return (
     <>
       <MDBCol sm="6" md="4" lg="4" className="mb-4 products" key={productId}>
@@ -36,8 +46,8 @@ function DryFruit({ product }) {
           <div className="d-flex justify-content-between p-3">
             <p className="lead mb-0">{productName}</p>
             <div className="justify-content-between">
-              <Button className="btn-sm btn-success" style={{ marginRight: "10px" }}>
-                <IoIosAddCircle />
+              <Button className="btn-sm btn-success" style={{ marginRight: "10px" }} onClick={handleShow}>
+                <FiEdit2 />
               </Button>
               <Button className="btn-sm btn-danger">
                 <MdDelete onClick={deleteProd} />
@@ -60,12 +70,7 @@ function DryFruit({ product }) {
                 </a>
               </p>
               <div className="productDiscCost">
-                {<FormatPrice productPrice={productPrice} />} |
-                {
-                  <s value={actualPrice}>
-                    <FormatPrice productPrice={actualPrice} />
-                  </s>
-                }
+                {<FormatPrice productPrice={productPrice} />} | <s value={actualPrice}>{<FormatPrice productPrice={actualPrice} />}</s>
               </div>
             </div>
             <div className="d-flex justify-content-between mb-2">
@@ -97,7 +102,7 @@ function DryFruit({ product }) {
                 <Form.Control size="sm" readOnly disabled type="text" className="qty_cost_bg" placeholder="Cost" />
               </div>
               <div className="col-md-6 mt-3">
-                <NavLink className="btn btn-primary btn-sm mb-0 add_to_cart" to={`/dryfruitdetails/${productId}`}>
+                <NavLink className="btn btn-primary btn-sm mb-0" to={`/dryfruitdetails/${productId}`}>
                   View Product
                 </NavLink>
               </div>
@@ -108,6 +113,8 @@ function DryFruit({ product }) {
           </MDBCardBody>
         </MDBCard>
       </MDBCol>
+
+      <UpdateProduct show={show} handleClose={handleClose} product={product} />
     </>
   );
 }

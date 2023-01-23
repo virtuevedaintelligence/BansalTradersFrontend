@@ -20,7 +20,6 @@ function AddProduct() {
 
   const save = (e) => {
     e.preventDefault();
-    console.log(product);
     saveProductCall(product);
   };
 
@@ -28,7 +27,7 @@ function AddProduct() {
     const value = e.target.value;
     const feat = e.target.name;
     if (e.targe.name === "featured" && e.target.value === "on") {
-      value 
+      // value
     }
     // console.log(value);
     setProduct({ ...product, [e.target.name]: value });
