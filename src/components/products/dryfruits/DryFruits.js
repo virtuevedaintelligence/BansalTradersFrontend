@@ -24,7 +24,7 @@ const DryFruits = () => {
             return <Category key={category.categoryId} category={category} />;
           })}
         </div>
-        <NavLink>
+        <NavLink to="/addcategory">
           <button className="btn btn-primary btn-sm" style={{ marginRight: "10px" }}>
             Add New Category
           </button>

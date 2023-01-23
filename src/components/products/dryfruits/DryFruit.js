@@ -31,8 +31,8 @@ function DryFruit({ product }) {
   }
   return (
     <>
-      <MDBCol sm="6" md="4" lg="4" className="mb-4 products">
-        <MDBCard key={productId}>
+      <MDBCol sm="6" md="4" lg="4" className="mb-4 products" key={productId}>
+        <MDBCard>
           <div className="d-flex justify-content-between p-3">
             <p className="lead mb-0">{productName}</p>
             <div className="justify-content-between">

@@ -23,11 +23,23 @@ const CategoryProvider = ({ children }) => {
     }
   };
 
+  const saveCategoryCall = async (category) => {
+    dispatch({ type: "SAVE_CATEGORY_LOADING" });
+    try {
+      const saveReponse = await CategoryService.saveCategory(category);
+      const saveCategory = await saveReponse.data;
+      dispatch({ type: "SAVE_CATEGORY", payload: saveCategory });
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: "SAVE_ERROR" });
+    }
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
 
-  return <CategoryContext.Provider value={{ ...state }}>{children}</CategoryContext.Provider>;
+  return <CategoryContext.Provider value={{ ...state, saveCategoryCall }}>{children}</CategoryContext.Provider>;
 };
 
 //custom hook
