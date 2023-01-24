@@ -48,16 +48,17 @@ function UpdateProduct({ handleClose, show, product }) {
               <Form.Check inline type={"checkbox"} label="Featured" name="featured" />
               <Form.Check inline type={"checkbox"} label="Active" name="isctive" />
             </Form.Group>
+
+            <Form.Group>
+              <button type="submit" className="me-4 btn btn-success btn-sm ">
+                Submit
+              </button>
+              <button type="reset" className="me-4 btn btn-danger btn-sm " onClick={handleClose}>
+                Cancel
+              </button>
+            </Form.Group>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   );

@@ -1,21 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { MDBContainer, MDBRow } from "mdb-react-ui-kit";
 import DryFruit from "../dryfruits/DryFruit";
 import { useProductContext } from "../../../context/productcontext";
 import { useCategoryContext } from "../../../context/categorycontext";
 import Category from "../categories/Category";
-import { NavLink } from "react-router-dom";
-import Addcatmodal from "../Addcatmodal";
-import { Button } from "react-bootstrap";
-import { GrAddCircle } from "react-icons/gr";
+
+import AddCategory from "../AddCategory";
+import AddProduct from "../AddProduct";
 const DryFruits = () => {
   const { isLoading, products } = useProductContext();
   const { isLoadingCategory, categories } = useCategoryContext();
-
-  const [showCat, setShowCat] = useState(false);
-
-  const handleCloseCategory = () => setShowCat(false);
-  const handleShowCategory = () => setShowCat(true);
 
   if (isLoading) {
     return <div>... Loading</div>;
@@ -32,12 +26,12 @@ const DryFruits = () => {
             return <Category key={category.categoryId} category={category} />;
           })}
         </div>
-        <Button className="btn btn-primary btn-sm" style={{ marginRight: "10px" }} onClick={handleShowCategory}>
-          <GrAddCircle />
-        </Button>
-        <NavLink to="/addproduct">
-          <button className="btn btn-primary btn-sm">Add New Product</button>
-        </NavLink>
+        <div className="row">
+          <div className="col-sm-12 d-flex">
+            <AddCategory />
+            <AddProduct />
+          </div>
+        </div>
       </div>
       <MDBContainer fluid className="my-5">
         <MDBRow>
@@ -46,7 +40,6 @@ const DryFruits = () => {
           })}
         </MDBRow>
       </MDBContainer>
-      <Addcatmodal handleCloseCategory={handleCloseCategory} showCat={showCat} />
     </>
   );
 };

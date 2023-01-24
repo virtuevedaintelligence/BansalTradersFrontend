@@ -1,8 +1,13 @@
 import { useState } from "react";
-import { Form, Row } from "react-bootstrap";
+import { Button, Form, Modal, Row } from "react-bootstrap";
 import { useCategoryContext } from "../../context/categorycontext";
 import { useProductContext } from "../../context/productcontext";
 function AddProduct() {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const { isLoadingCategory, categories } = useCategoryContext();
 
   const [product, setProduct] = useState({
@@ -25,11 +30,7 @@ function AddProduct() {
 
   const handleChange = (e) => {
     const value = e.target.value;
-    const feat = e.target.name;
-    if (e.targe.name === "featured" && e.target.value === "on") {
-      // value
-    }
-    // console.log(value);
+
     setProduct({ ...product, [e.target.name]: value });
   };
 
@@ -41,84 +42,94 @@ function AddProduct() {
   }
   return (
     <div>
-      <form className="container mt-3 mb-3">
-        <Row className="mb-3">
-          <Form.Group className="col col-sm-6">
-            <Form.Control type="name" name="productName" placeholder="Product Name" className="form-control" defaultValue={product.productName} onChange={(e) => handleChange(e)} />
-          </Form.Group>
-          <Form.Group className="col col-sm-6">
-            <Form.Select defaultValue="Choose..." className="form-control" name="categoryName" onChange={(e) => handleChange(e)}>
-              {categories.map((category) => {
-                return (
-                  <option key={category.categoryId} value={category.categoryName}>
-                    {category.categoryName}
-                  </option>
-                );
-              })}
-            </Form.Select>
-          </Form.Group>
-        </Row>
-        <Row className="mb-3">
-          <Form.Group className="col col-sm-6">
-            <Form.Control aria-label="Upload Product Image" type="file" className="form-control" name="productImageUrl" defaultValue={product.productImageUrl} onChange={(e) => handleChange(e)} />
-          </Form.Group>
-          <Form.Group className="col col-sm-3">
-            <Form.Check
-              type={"checkbox"}
-              defaultChecked={product.featured}
-              onClick={(e) => {
-                console.log(e.target.checked);
-              }}
-              label="Featured"
-              name="featured"
-              onChange={(e) => handleChange(e)}
-            />
-          </Form.Group>
-          <Form.Group className="col col-sm-3">
-            <Form.Check
-              type={"checkbox"}
-              defaultChecked={product.isactive}
-              onClick={(e) => {
-                console.log(e.target.checked);
-              }}
-              label="Active"
-              name="isactive"
-              onChange={(e) => handleChange(e)}
-            />
-          </Form.Group>
-        </Row>
-        <Row className="mb-3">
-          <Form.Group className=" col col-sm-12">
-            <Form.Control as="textarea" placeholder="Product Description" className="form-control" type="text-area" name="productDescription" defaultValue={product.productDescription} onChange={(e) => handleChange(e)} />
-          </Form.Group>
-        </Row>
-        <Row className="mb-3">
-          <Form.Group className="col col-sm-4">
-            <Form.Select defaultValue="Choose..." className="form-control" name="weight" onChange={(e) => handleChange(e)}>
-              <option value="Choose...">Select Weight</option>
-              <option value="250">250gm</option>
-              <option value="500">500gm</option>
-              <option value="1000">1000gm</option>
-            </Form.Select>
-          </Form.Group>
-          <Form.Group className="col col-sm-4">
-            <Form.Control className="form-control" type="pin" name="productPrice" placeholder="Enter Price" defaultValue={product.productPrice} onChange={(e) => handleChange(e)} />
-          </Form.Group>
-          <Form.Group className="col col-sm-4">
-            <Form.Control className="form-control" type="number" name="quantity" placeholder="Enter Quantity" defaultValue={product.quantity} onChange={(e) => handleChange(e)} />
-          </Form.Group>
-        </Row>
-        <Row className="mb-3">
-          <Form.Group className="col col-sm-6">
-            <button type="submit" className="me-4 btn btn-success btn-lg btn-block" onClick={save}>
-              Submit
-            </button>
-            <button type="reset" className="me-4 btn btn-danger btn-lg btn-block">
-              Cancel
-            </button>
-          </Form.Group>
-        </Row>
-      </form>
+      <Button className="btn btn-primary btn-sm" style={{ marginRight: "10px" }} onClick={handleShow}>
+        Add New Product
+      </Button>
+      <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add New Product</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <form className="container mt-3 mb-3">
+            <Row className="mb-3">
+              <Form.Group className="col col-sm-6">
+                <Form.Control type="name" name="productName" placeholder="Product Name" className="form-control" defaultValue={product.productName} onChange={(e) => handleChange(e)} />
+              </Form.Group>
+              <Form.Group className="col col-sm-6">
+                <Form.Select defaultValue="Choose..." className="form-control" name="categoryName" onChange={(e) => handleChange(e)}>
+                  {categories.map((category) => {
+                    return (
+                      <option key={category.categoryId} value={category.categoryName}>
+                        {category.categoryName}
+                      </option>
+                    );
+                  })}
+                </Form.Select>
+              </Form.Group>
+            </Row>
+            <Row className="mb-3">
+              <Form.Group className="col col-sm-6">
+                <Form.Control aria-label="Upload Product Image" type="file" className="form-control" name="productImageUrl" defaultValue={product.productImageUrl} onChange={(e) => handleChange(e)} />
+              </Form.Group>
+              <Form.Group className="col col-sm-3">
+                <Form.Check
+                  type={"checkbox"}
+                  defaultChecked={product.featured}
+                  onClick={(e) => {
+                    console.log(e.target.checked);
+                  }}
+                  label="Featured"
+                  name="featured"
+                  onChange={(e) => handleChange(e)}
+                />
+              </Form.Group>
+              <Form.Group className="col col-sm-3">
+                <Form.Check
+                  type={"checkbox"}
+                  defaultChecked={product.isactive}
+                  onClick={(e) => {
+                    console.log(e.target.checked);
+                  }}
+                  label="Active"
+                  name="isactive"
+                  onChange={(e) => handleChange(e)}
+                />
+              </Form.Group>
+            </Row>
+            <Row className="mb-3">
+              <Form.Group className=" col col-sm-12">
+                <Form.Control as="textarea" placeholder="Product Description" className="form-control" type="text-area" name="productDescription" defaultValue={product.productDescription} onChange={(e) => handleChange(e)} />
+              </Form.Group>
+            </Row>
+            <Row className="mb-3">
+              <Form.Group className="col col-sm-4">
+                <Form.Select defaultValue="Choose..." className="form-control" name="weight" onChange={(e) => handleChange(e)}>
+                  <option value="Choose...">Select Weight</option>
+                  <option value="250">250gm</option>
+                  <option value="500">500gm</option>
+                  <option value="1000">1000gm</option>
+                </Form.Select>
+              </Form.Group>
+              <Form.Group className="col col-sm-4">
+                <Form.Control className="form-control" type="pin" name="productPrice" placeholder="Enter Price" defaultValue={product.productPrice} onChange={(e) => handleChange(e)} />
+              </Form.Group>
+              <Form.Group className="col col-sm-4">
+                <Form.Control className="form-control" type="number" name="quantity" placeholder="Enter Quantity" defaultValue={product.quantity} onChange={(e) => handleChange(e)} />
+              </Form.Group>
+            </Row>
+            <Row className="mb-3">
+              <Form.Group className="col col-sm-6">
+                <button type="submit" className="me-4 btn btn-success btn-lg btn-block" onClick={save}>
+                  Submit
+                </button>
+                <button type="reset" className="me-4 btn btn-danger btn-lg btn-block">
+                  Cancel
+                </button>
+              </Form.Group>
+            </Row>
+          </form>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }
