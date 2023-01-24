@@ -14,6 +14,8 @@ const initialState = {
   saveProduct: {},
   isDeleteProductLoading: false,
   deleteProduct: {},
+  isUpdateProductLoading: false,
+  updateProduct: {},
 };
 
 const ProductProvider = ({ children }) => {
@@ -64,11 +66,25 @@ const ProductProvider = ({ children }) => {
       dispatch({ type: "DELETE_ERROR" });
     }
   };
+  const updateProductCall = async (id, product) => {
+    dispatch({ type: "UPDATE_PRODUCT_LOADING" });
+    try {
+      const updateResponse = await ProductService.updateProduct(id, product);
+      const updateProduct = await updateResponse.data;
+      dispatch({ type: "UPDATE_PRODUCT", payload: updateProduct });
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: "UPDATE_ERROR" });
+    }
+  };
   useEffect(() => {
     fetchData();
   }, []);
 
-  return <ProductContext.Provider value={{ ...state, getSingleProduct, saveProductCall, deleteProductCall }}>{children}</ProductContext.Provider>;
+  return <ProductContext.Provider value={{
+    ...state, getSingleProduct,
+    saveProductCall, deleteProductCall, updateProductCall
+  }}>{children}</ProductContext.Provider>;
 };
 
 //custom hook

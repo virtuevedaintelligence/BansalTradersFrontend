@@ -70,6 +70,24 @@ const ProductReducer = (state, action) => {
         isDeleteProductLoading: false,
         isError: true,
       };
+
+    case "UPDATE_PRODUCT_LOADING":
+      return {
+        ...state,
+        isUpdateProductLoading: true,
+      };
+    case "UPDATE_PRODUCT":
+      return {
+        ...state,
+        isUpdateProductLoading: false,
+        updateProduct: action.payload,
+      };
+    case "UPDATE_ERROR":
+      return {
+        ...state,
+        isUpdateProductLoading: false,
+        isError: true,
+      };
     default:
       return state;
   }

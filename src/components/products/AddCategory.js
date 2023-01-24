@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Button, Form, Modal, Row } from "react-bootstrap";
 import { useCategoryContext } from "../../context/categorycontext";
-function AddCategory() {
+
+function Addcatmodal(handleCloseCategory, showCat) {
   const [category, setCategory] = useState({
     categoryName: "",
   });
@@ -15,7 +16,6 @@ function AddCategory() {
 
   const saveCategory = (e) => {
     e.preventDefault();
-
     saveCategoryCall(category);
   };
 
@@ -23,7 +23,6 @@ function AddCategory() {
     const value = e.target.value;
     setCategory({ ...category, [e.target.name]: value });
   };
-
   return (
     <>
       <Button className="btn btn-primary btn-sm" style={{ marginRight: "10px" }} onClick={handleShow}>
@@ -57,4 +56,4 @@ function AddCategory() {
   );
 }
 
-export default AddCategory;
+export default Addcatmodal;
