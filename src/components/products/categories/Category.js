@@ -29,7 +29,7 @@ function Category({ category }) {
           <div className="container text-center">
             <Row className="mb-3">
               <Form.Group className="col col-sm-12">
-                <Form.Control type="name" name="categoryName" placeholder="Category Name" className="form-control" defaultValue={category.categoryName} />
+                <Form.Control type="name" name="categoryName" placeholder="Category Name" className="form-control-sm" defaultValue={category.categoryName} />
               </Form.Group>
             </Row>
             <Row className="mb-3">

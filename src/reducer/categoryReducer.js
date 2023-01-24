@@ -17,6 +17,23 @@ const CategoryReducer = (state, action) => {
         isLoadingCategory: false,
         isError: true,
       };
+    case "SAVE_CATEGORY_LOADING":
+      return {
+        ...state,
+        isSaveCategoryLoading: true,
+      };
+    case "SAVE_CATEGORY_DATA":
+      return {
+        ...state,
+        isSaveCategoryLoading: true,
+        saveCategory: action.payload,
+      };
+    case "SAVE_CATEGORY_ERROR":
+      return {
+        ...state,
+        isSaveCategoryLoading: true,
+        isError: true,
+      };
     default:
       return state;
   }

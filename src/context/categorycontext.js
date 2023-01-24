@@ -7,6 +7,8 @@ const initialState = {
   isLoadingCategory: false,
   isError: false,
   categories: [],
+  isSaveCategoryLoading: false,
+  saveCategory: {},
 };
 
 const CategoryProvider = ({ children }) => {

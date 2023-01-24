@@ -23,6 +23,10 @@ function Addcatmodal(handleCloseCategory, showCat) {
     const value = e.target.value;
     setCategory({ ...category, [e.target.name]: value });
   };
+
+  if (isSaveCategoryLoading) {
+    return <div>... Loading</div>;
+  }
   return (
     <>
       <Button className="btn btn-primary btn-sm" style={{ marginRight: "10px" }} onClick={handleShow}>
@@ -36,7 +40,7 @@ function Addcatmodal(handleCloseCategory, showCat) {
           <div className="container text-center">
             <Row className="mb-3">
               <Form.Group className="col col-sm-12">
-                <Form.Control type="name" name="categoryName" placeholder="Category Name" className="form-control" defaultValue={category.categoryName} onChange={(e) => handleChange(e)} />
+                <Form.Control type="name" name="categoryName" placeholder="Category Name" className="form-control-sm" defaultValue={category.categoryName} onChange={(e) => handleChange(e)} />
               </Form.Group>
             </Row>
             <Row className="mb-3">

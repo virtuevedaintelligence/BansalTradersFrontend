@@ -4,9 +4,8 @@ import { MDBCard, MDBCardBody, MDBCardImage, MDBCol } from "mdb-react-ui-kit";
 import "./dryfruits.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
-import { Button, Modal } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
-import { FiEdit2 } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
 import FormatPrice from "../../../helper/formatprice/FormatPrice";
 import { useProductContext } from "../../../context/productcontext";
@@ -14,11 +13,6 @@ import { useCategoryContext } from "../../../context/categorycontext";
 import UpdateProduct from "../UpdateProduct";
 
 function DryFruit({ product }) {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
   const { isLoadingCategory, categories } = useCategoryContext();
 
   const { isDeleteProductLoading, deleteProductCall } = useProductContext();
@@ -46,9 +40,7 @@ function DryFruit({ product }) {
           <div className="d-flex justify-content-between p-3">
             <p className="lead mb-0">{productName}</p>
             <div className="justify-content-between">
-              <Button className="btn-sm btn-success" style={{ marginRight: "10px" }} onClick={handleShow}>
-                <FiEdit2 />
-              </Button>
+              <UpdateProduct product={product} />
               <Button className="btn-sm btn-danger">
                 <MdDelete onClick={deleteProd} />
               </Button>
@@ -113,8 +105,6 @@ function DryFruit({ product }) {
           </MDBCardBody>
         </MDBCard>
       </MDBCol>
-
-      <UpdateProduct show={show} handleClose={handleClose} product={product} />
     </>
   );
 }
