@@ -4,7 +4,6 @@ import { useCategoryContext } from "../../context/categorycontext";
 import { useProductContext } from "../../context/productcontext";
 function AddProduct() {
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -21,16 +20,18 @@ function AddProduct() {
     featured: 0,
     isactive: 0,
   });
+
   const { isSaveProductLoading, saveProductCall } = useProductContext();
 
   const save = (e) => {
     e.preventDefault();
+    console.log("Before save");
+    console.log(product);
     saveProductCall(product);
   };
 
   const handleChange = (e) => {
     const value = e.target.value;
-
     setProduct({ ...product, [e.target.name]: value });
   };
 
@@ -70,7 +71,8 @@ function AddProduct() {
             </Row>
             <Row className="mb-3">
               <Form.Group className="col col-sm-6">
-                <Form.Control aria-label="Upload Product Image" type="file" size="sm" className="form-control" name="productImageUrl" defaultValue={product.productImageUrl} onChange={(e) => handleChange(e)} />
+                <Form.Control aria-label="Upload Product Image" type="file" size="sm" className="form-control"
+                  name="productImageUrl" defaultValue={product.productImageUrl} onChange={(e) => handleChange(e.target.files[0])} />
               </Form.Group>
               <Form.Group className="col col-sm-3">
                 <Form.Check

@@ -16,9 +16,7 @@ import AddProduct from "../src/components/products/AddProduct";
 import UpdateProduct from "../src/components/products/UpdateProduct";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import DryFruitDetail from "./components/products/dryfruits/DryFruitDetail";
-import Category from "./components/products/categories/Category";
-import AddCategory from "./components/products/AddCategory";
-// import { BrowserRouter as Route } from "react-router-dom";
+import AddCategory from "./components/products/categories/AddCategory";
 
 function App() {
   return (

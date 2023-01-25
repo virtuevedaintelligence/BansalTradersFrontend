@@ -5,7 +5,7 @@ import { useProductContext } from "../../../context/productcontext";
 import { useCategoryContext } from "../../../context/categorycontext";
 import Category from "../categories/Category";
 
-import AddCategory from "../AddCategory";
+import AddCategory from "../categories/AddCategory";
 import AddProduct from "../AddProduct";
 const DryFruits = () => {
   const { isLoading, products } = useProductContext();
@@ -17,6 +17,7 @@ const DryFruits = () => {
   if (isLoadingCategory) {
     return <div>... Loading</div>;
   }
+
 
   return (
     <>

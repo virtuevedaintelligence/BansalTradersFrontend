@@ -9,6 +9,10 @@ const initialState = {
   categories: [],
   isSaveCategoryLoading: false,
   saveCategory: {},
+  isDeleteCategoryLoading: false,
+  deleteCategory: {},
+  isUpdateCategoryLoading: false,
+  updateCategory: {}
 };
 
 const CategoryProvider = ({ children }) => {
@@ -37,11 +41,37 @@ const CategoryProvider = ({ children }) => {
     }
   };
 
+  const deleteCategoryCall = async (id) => {
+    dispatch({ type: "DELETE_CATEGORY_LOADING" });
+    try {
+      const deleteReponse = await CategoryService.deleteCategory(id);
+      const deleteCategory = await deleteReponse.data;
+      dispatch({ type: "DELETE_CATEGORY", payload: deleteCategory });
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: "DELETE_ERROR" });
+    }
+  };
+
+  const updateCategoryCall = async (id, category) => {
+    dispatch({ type: "UPDATE_CATEGORY_LOADING" });
+    try {
+      const updateReponse = await CategoryService.updateCategory(category, id);
+      const updateCategory = await updateReponse.data;
+      dispatch({ type: "UPDATE_CATEGORY", payload: updateCategory });
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: "UPDATE_ERROR" });
+    }
+  };
   useEffect(() => {
     fetchData();
   }, []);
 
-  return <CategoryContext.Provider value={{ ...state, saveCategoryCall }}>{children}</CategoryContext.Provider>;
+  return <CategoryContext.Provider value={{
+    ...state, saveCategoryCall, deleteCategoryCall,
+    updateCategoryCall
+  }}>{children}</CategoryContext.Provider>;
 };
 
 //custom hook

@@ -70,7 +70,6 @@ const ProductReducer = (state, action) => {
         isDeleteProductLoading: false,
         isError: true,
       };
-
     case "UPDATE_PRODUCT_LOADING":
       return {
         ...state,

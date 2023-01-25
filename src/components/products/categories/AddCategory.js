@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, Modal, Row } from "react-bootstrap";
-import { useCategoryContext } from "../../context/categorycontext";
+import { useCategoryContext } from "../../../context/categorycontext";
 
 function Addcatmodal(handleCloseCategory, showCat) {
   const [category, setCategory] = useState({

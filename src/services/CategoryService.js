@@ -12,11 +12,11 @@ class CategoryService {
   }
 
   deleteCategory(id) {
-    return axios.delete(CATEGORY_API_BASE_URL + "/" + id);
+    return axios.delete(CATEGORY_API_BASE_URL + "/delete/" + id);
   }
 
   updateCategory(category, id) {
-    return axios.put(CATEGORY_API_BASE_URL + "/" + id, category);
+    return axios.put(CATEGORY_API_BASE_URL + "/updateCategory/" + id, category);
   }
 }
 
