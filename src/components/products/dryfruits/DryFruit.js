@@ -5,7 +5,6 @@ import "./dryfruits.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import { Button } from "react-bootstrap";
-import { FiEdit2 } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
 import FormatPrice from "../../../helper/formatprice/FormatPrice";
 import { useProductContext } from "../../../context/productcontext";
@@ -48,9 +47,7 @@ function DryFruit({ product }) {
           <div className="d-flex justify-content-between p-3">
             <p className="lead mb-0">{productName}</p>
             <div className="justify-content-between">
-              <FiEdit2>
-                <UpdateProduct product={product} />
-              </FiEdit2>
+              <UpdateProduct product={product} />
               <Button className="btn-sm btn-danger">
                 <MdDelete onClick={deleteProd} />
               </Button>

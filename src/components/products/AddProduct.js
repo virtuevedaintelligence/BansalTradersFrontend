@@ -25,8 +25,6 @@ function AddProduct() {
 
   const save = (e) => {
     e.preventDefault();
-    console.log("Before save");
-    console.log(product);
     saveProductCall(product);
   };
 
@@ -74,7 +72,7 @@ function AddProduct() {
             <Row className="mb-3">
               <Form.Group className="col col-sm-6">
                 <Form.Control aria-label="Upload Product Image" type="file" size="sm" className="form-control"
-                  name="productImageUrl" defaultValue={product.productImageUrl} onChange={(e) => handleChange(e)} />
+                  name="productImageUrl" onChange={(e) => handleChange(e)} />
               </Form.Group>
               <Form.Group className="col col-sm-3">
                 <Form.Check

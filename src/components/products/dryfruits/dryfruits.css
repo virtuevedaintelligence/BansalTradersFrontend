@@ -48,6 +48,7 @@ div.scrollmenu a:hover {
   background: transparent !important;
   border: 0 !important;
   text-align: right;
+  width: 100%;
 }
 .add_to_cart {
   float: right;

@@ -39,9 +39,7 @@ function DryFruitDetail() {
                     <p className="m-0 p-0 text-success price-pro">
                       <b className="px-2"> | </b>
                     </p>
-
                     <p className="m-0 p-0 text-danger price-pro">{<s>{<FormatPrice productPrice={productPrice + 200} />}</s>}</p>
-
                     <hr className="p-0 m-0" />
                   </div>
                   <div className="col-lg-12 pt-2">

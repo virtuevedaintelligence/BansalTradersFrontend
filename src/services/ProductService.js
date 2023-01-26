@@ -19,7 +19,9 @@ class ProductService {
     return axios.delete(PRODUCTS_API_BASE_URL + "/delete/" + id);
   }
 
-  updateProduct(product, id) {
+  updateProduct(id, product) {
+    console.log(product);
+    console.log(id);
     return axios.put(PRODUCTS_API_BASE_URL + "/updateProduct/" + id, product);
   }
 }

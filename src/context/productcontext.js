@@ -47,9 +47,7 @@ const ProductProvider = ({ children }) => {
   const saveProductCall = async (product) => {
     dispatch({ type: "SAVE_PRODUCT_LOADING" });
     try {
-      console.log(product);
       const saveReponse = await ProductService.saveProduct(product);
-      console.log(saveReponse);
       const saveProduct = await saveReponse.data;
       dispatch({ type: "SAVE_PRODUCT", payload: saveProduct });
     } catch (error) {
