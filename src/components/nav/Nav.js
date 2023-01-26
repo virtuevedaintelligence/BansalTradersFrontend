@@ -4,12 +4,13 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "./nav.css";
 import "./responsive.css";
-import React from "react";
 import { NavLink } from "react-router-dom";
 import Cart from "../cart/Cart";
 import Shopbycategory from "../home/Shopbycategory";
+import Login from "../login/Login";
 
-function Topnavbar() {
+function TopNavbar() {
+
   return (
     <>
       <Navbar expand="lg" className="nav-bg">
@@ -49,9 +50,7 @@ function Topnavbar() {
                 <NavLink className="nav-link">
                   <Cart />
                 </NavLink>
-                <NavLink className="nav-link" to="/login">
-                  Login
-                </NavLink>
+                <Login className="loginNavLink d-flex" />
               </div>
             </Nav>
           </Navbar.Collapse>
@@ -61,4 +60,4 @@ function Topnavbar() {
   );
 }
 
-export default Topnavbar;
+export default TopNavbar;

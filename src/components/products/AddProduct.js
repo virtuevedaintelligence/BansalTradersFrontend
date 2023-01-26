@@ -17,8 +17,8 @@ function AddProduct() {
     quantity: "",
     weight: "",
     categoryName: "",
-    featured: 0,
-    isactive: 0,
+    featured: "off",
+    isactive: "off",
   });
 
   const { isSaveProductLoading, saveProductCall } = useProductContext();
