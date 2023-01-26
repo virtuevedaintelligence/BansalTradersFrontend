@@ -79,25 +79,17 @@ function AddProduct() {
               <Form.Group className="col col-sm-3">
                 <Form.Check
                   type={"checkbox"}
-                  defaultChecked={product.featured}
-                  onClick={(e) => {
-                    console.log(e.target.checked);
-                  }}
+                  onClick={(e) => handleChange(e)}
                   label="featured"
                   name="featured"
-                  onChange={(e) => handleChange(e)}
                 />
               </Form.Group>
               <Form.Group className="col col-sm-3">
                 <Form.Check
                   type={"checkbox"}
-                  defaultChecked={product.isactive}
-                  onClick={(e) => {
-                    console.log(e.target.checked);
-                  }}
+                  onClick={(e) => handleChange(e)}
                   label="isactive"
                   name="isactive"
-                  onChange={(e) => handleChange(e)}
                 />
               </Form.Group>
             </Row>
