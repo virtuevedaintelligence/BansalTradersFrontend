@@ -22,6 +22,14 @@ function DryFruit({ product }) {
     setActualPrice(actualPrice);
   }
   const { productId, productName, productImageUrl, productDescription, productPrice, quantity, weight, categoryName, featured } = product;
+  const [orderQuantity, setOrderQunatity] = useState(1);
+
+  const decreaseQuantity = () => {
+    orderQuantity > 1 ? setOrderQunatity(orderQuantity - 1) : setOrderQunatity(1);
+  }
+  const increaseQuantity = () => {
+    orderQuantity < quantity ? setOrderQunatity(orderQuantity + 1) : setOrderQunatity(quantity);
+  }
   useEffect(() => {
     calculateActualPrice(productPrice);
   }, []);
@@ -88,9 +96,9 @@ function DryFruit({ product }) {
                 </Form.Select>
               </div>
               <div className="col-md-4  d-flex">
-                <button className="btn btn-sm btn-primary mb-0">-</button>
-                <Form.Control size="sm" readOnly disabled type="text" className="text-center qty_cost_bg" placeholder="1" />
-                <button className="btn btn-sm btn-primary mb-0">+</button>
+                <button className="btn btn-sm btn-primary mb-0" onClick={decreaseQuantity}>-</button>
+                <div size="m" readOnly disabled type="text" className="text-center qty_cost_bg" placeholder="1"> {orderQuantity}</div>
+                <button className="btn btn-sm btn-primary mb-0" onClick={increaseQuantity}>+</button>
               </div>
               <div className="col-md-6 mt-3">
                 <NavLink className="btn btn-primary btn-sm mb-0" to={`/dryfruitdetails/${productId}`}>

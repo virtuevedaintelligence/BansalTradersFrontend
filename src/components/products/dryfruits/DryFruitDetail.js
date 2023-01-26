@@ -66,7 +66,7 @@ function DryFruitDetail() {
                   </div>
                   <div className="col-lg-4">
                     <h6>Quantity :</h6>
-                    <input type="number" className="form-control text-center w-100" />
+                    <input type="number" className="form-control text-center w-100" min="1" max={quantity} />
                   </div>
                   <div className="col-lg-4">
                     <h6>Cost :</h6>
