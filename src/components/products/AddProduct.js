@@ -44,7 +44,7 @@ function AddProduct() {
   return (
     <div>
       <Button className="btn btn-primary btn-sm" style={{ marginRight: "10px" }} onClick={handleShow}>
-        {/* onClick={}> */}
+
         Add New Product
       </Button>
       <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
@@ -58,12 +58,14 @@ function AddProduct() {
                 <Form.Control type="name" name="productName" placeholder="Product Name" className="form-control-sm" defaultValue={product.productName} onChange={(e) => handleChange(e)} />
               </Form.Group>
               <Form.Group className="col col-sm-6">
-                <Form.Select defaultValue="Choose..." size="sm" className="form-control-sm" name="categoryName" onChange={(e) => handleChange(e)}>
+                <Form.Select defaultValue="Choose Category" size="sm" className="form-control-sm" name="categoryName" onChange={(e) => handleChange(e)}>
                   {categories.map((category) => {
                     return (
-                      <option key={category.categoryId} value={category.categoryName}>
-                        {category.categoryName}
-                      </option>
+                      <>
+                        <option key={category.categoryId} value={category.categoryName}>
+                          {category.categoryName}
+                        </option>
+                      </>
                     );
                   })}
                 </Form.Select>
@@ -72,7 +74,7 @@ function AddProduct() {
             <Row className="mb-3">
               <Form.Group className="col col-sm-6">
                 <Form.Control aria-label="Upload Product Image" type="file" size="sm" className="form-control"
-                  name="productImageUrl" defaultValue={product.productImageUrl} onChange={(e) => handleChange(e.target.files[0])} />
+                  name="productImageUrl" defaultValue={product.productImageUrl} onChange={(e) => handleChange(e)} />
               </Form.Group>
               <Form.Group className="col col-sm-3">
                 <Form.Check
@@ -81,7 +83,7 @@ function AddProduct() {
                   onClick={(e) => {
                     console.log(e.target.checked);
                   }}
-                  label="Featured"
+                  label="featured"
                   name="featured"
                   onChange={(e) => handleChange(e)}
                 />
@@ -93,7 +95,7 @@ function AddProduct() {
                   onClick={(e) => {
                     console.log(e.target.checked);
                   }}
-                  label="Active"
+                  label="isactive"
                   name="isactive"
                   onChange={(e) => handleChange(e)}
                 />
@@ -114,10 +116,12 @@ function AddProduct() {
                 </Form.Select>
               </Form.Group>
               <Form.Group className="col col-sm-4">
-                <Form.Control className="form-control-sm" type="pin" name="productPrice" placeholder="Enter Price" defaultValue={product.productPrice} onChange={(e) => handleChange(e)} />
+                <Form.Control className="form-control-sm" type="pin" name="productPrice"
+                  placeholder="Enter Price" defaultValue={product.productPrice} onChange={(e) => handleChange(e)} />
               </Form.Group>
               <Form.Group className="col col-sm-4">
-                <Form.Control className="form-control-sm" type="number" name="quantity" placeholder="Enter Quantity" defaultValue={product.quantity} onChange={(e) => handleChange(e)} />
+                <Form.Control className="form-control-sm" type="number" name="quantity"
+                  placeholder="Enter Quantity" defaultValue={product.quantity} onChange={(e) => handleChange(e)} />
               </Form.Group>
             </Row>
             <Row className="mb-3">

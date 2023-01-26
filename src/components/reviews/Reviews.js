@@ -22,7 +22,6 @@ function Reviews() {
             </div>
           </div>
         </div>
-
         <div className="review-list">
           <ul>
             <li>

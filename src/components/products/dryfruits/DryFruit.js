@@ -5,7 +5,7 @@ import "./dryfruits.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import { Button } from "react-bootstrap";
-
+import { FiEdit2 } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
 import FormatPrice from "../../../helper/formatprice/FormatPrice";
 import { useProductContext } from "../../../context/productcontext";
@@ -40,7 +40,9 @@ function DryFruit({ product }) {
           <div className="d-flex justify-content-between p-3">
             <p className="lead mb-0">{productName}</p>
             <div className="justify-content-between">
-              <UpdateProduct product={product} />
+              <FiEdit2>
+                <UpdateProduct product={product} />
+              </FiEdit2>
               <Button className="btn-sm btn-danger">
                 <MdDelete onClick={deleteProd} />
               </Button>
@@ -89,9 +91,6 @@ function DryFruit({ product }) {
                 <button className="btn btn-sm btn-primary mb-0">-</button>
                 <Form.Control size="sm" readOnly disabled type="text" className="text-center qty_cost_bg" placeholder="1" />
                 <button className="btn btn-sm btn-primary mb-0">+</button>
-              </div>
-              <div className="col-md-4">
-                <Form.Control size="sm" readOnly disabled type="text" className="qty_cost_bg" placeholder="Cost" />
               </div>
               <div className="col-md-6 mt-3">
                 <NavLink className="btn btn-primary btn-sm mb-0" to={`/dryfruitdetails/${productId}`}>

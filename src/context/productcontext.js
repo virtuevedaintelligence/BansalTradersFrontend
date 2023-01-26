@@ -35,8 +35,8 @@ const ProductProvider = ({ children }) => {
   const getSingleProduct = async (id) => {
     dispatch({ type: "SINGLE_PRODUCT_LOADING" });
     try {
-      const singleResponse = await ProductService.getProductById(id);
-      const singleProduct = await singleResponse.data;
+      const response = await ProductService.getProductById(id);
+      const singleProduct = await response.data;
       dispatch({ type: "SET_SINGLE_DATA", payload: singleProduct });
     } catch (error) {
       console.log(error);

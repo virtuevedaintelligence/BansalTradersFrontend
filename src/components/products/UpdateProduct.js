@@ -3,7 +3,6 @@ import { Button, Modal } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { useCategoryContext } from "../../context/categorycontext";
 import { useProductContext } from "../../context/productcontext";
-import { FiEdit2 } from "react-icons/fi";
 
 function UpdateProduct({ product }) {
   const [show, setShow] = useState(false);
@@ -33,7 +32,6 @@ function UpdateProduct({ product }) {
   return (
     <>
       <Button className="btn-sm btn-success" style={{ marginRight: "10px" }} onClick={handleShow}>
-        <FiEdit2 />
       </Button>
       <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
@@ -78,7 +76,7 @@ function UpdateProduct({ product }) {
             </Form.Group>
 
             <Form.Group>
-              <button type="submit" className="me-4 btn btn-success btn-sm ">
+              <button type="submit" className="me-4 btn btn-success btn-sm " onClick={update}>
                 Submit
               </button>
               <button type="reset" className="me-4 btn btn-danger btn-sm " onClick={handleClose}>
