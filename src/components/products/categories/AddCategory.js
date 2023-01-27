@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form, Modal, Row } from "react-bootstrap";
 import { useCategoryContext } from "../../../context/categorycontext";
 
@@ -12,11 +12,16 @@ function Addcatmodal(handleCloseCategory, showCat) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const { isSaveCategoryLoading, saveCategoryCall } = useCategoryContext();
+  const { isSaveCategoryLoading, saveCategoryCall, fetchCategory } = useCategoryContext();
+  useEffect(() => {
+    fetchCategory();
+  }, []);
 
   const saveCategory = (e) => {
     e.preventDefault();
     saveCategoryCall(category);
+    setShow(false);
+    fetchCategory();
   };
 
   const handleChange = (e) => {
@@ -25,7 +30,7 @@ function Addcatmodal(handleCloseCategory, showCat) {
   };
 
   if (isSaveCategoryLoading) {
-    return <div>... Loading</div>;
+    return <div>... Loading</div>
   }
   return (
     <>

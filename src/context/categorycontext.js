@@ -17,7 +17,8 @@ const initialState = {
 
 const CategoryProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const fetchData = async () => {
+
+  const fetchCategory = async () => {
     dispatch({ type: "CATEGORY_LOADING" });
     try {
       const response = await CategoryService.getCategories();
@@ -30,14 +31,16 @@ const CategoryProvider = ({ children }) => {
   };
 
   const saveCategoryCall = async (category) => {
-    dispatch({ type: "SAVE_CATEGORY_LOADING" });
     try {
+      dispatch({ type: "SAVE_CATEGORY_LOADING" });
       const saveReponse = await CategoryService.saveCategory(category);
+      console.log(saveReponse);
       const saveCategory = await saveReponse.data;
-      dispatch({ type: "SAVE_CATEGORY", payload: saveCategory });
+      console.log(saveCategory);
+      dispatch({ type: "SAVE_CATEGORY_DATA", payload: saveCategory });
     } catch (error) {
       console.log(error);
-      dispatch({ type: "SAVE_ERROR" });
+      dispatch({ type: "SAVE_CATEGORY_ERROR" });
     }
   };
 
@@ -65,12 +68,12 @@ const CategoryProvider = ({ children }) => {
     }
   };
   useEffect(() => {
-    fetchData();
+    fetchCategory();
   }, []);
 
   return <CategoryContext.Provider value={{
     ...state, saveCategoryCall, deleteCategoryCall,
-    updateCategoryCall
+    updateCategoryCall, fetchCategory
   }}>{children}</CategoryContext.Provider>;
 };
 

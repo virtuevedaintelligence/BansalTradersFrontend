@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { Form } from "react-bootstrap";
-import { useParams } from "react-router-dom";
 import { useCategoryContext } from "../../context/categorycontext";
 import { useProductContext } from "../../context/productcontext";
 import { FiEdit2 } from "react-icons/fi";
@@ -92,7 +91,6 @@ function UpdateProduct({ product }) {
               <Form.Check inline type={"checkbox"} label="Featured" name="featured" onChange={(e) => handleChange(e)} />
               <Form.Check inline type={"checkbox"} label="Active" name="isactive" onChange={(e) => handleChange(e)} />
             </Form.Group>
-
             <Form.Group>
               <button type="submit" className="me-4 btn btn-success btn-sm " onClick={update}>
                 Submit

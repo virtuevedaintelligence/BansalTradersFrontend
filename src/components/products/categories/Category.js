@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form, Modal, Row } from "react-bootstrap";
 import { FiEdit2 } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
@@ -7,7 +7,7 @@ import { useCategoryContext } from "../../../context/categorycontext";
 function Category({ category }) {
   const [show, setShow] = useState(false);
   const { isDeleteCategoryLoading, deleteCategoryCall,
-    isUpdateCategoryLoading, updateCategoryCall } = useCategoryContext();
+    isUpdateCategoryLoading, updateCategoryCall, fetchCategory } = useCategoryContext();
   const { id, categoryName } = category;
   const [categoryToUpdate, setCategoryToUpdate] = useState({
     categoryName: "",
@@ -17,12 +17,17 @@ function Category({ category }) {
   const deleteCat = (e) => {
     e.preventDefault();
     deleteCategoryCall(id);
+    fetchCategory();
   }
 
+  useEffect(() => {
+    fetchCategory();
+  }, []);
   const updateCat = (e) => {
     e.preventDefault();
     updateCategoryCall(id, categoryToUpdate);
-    handleClose()
+    handleClose();
+    fetchCategory();
   }
   const handleChange = (e) => {
     const value = e.target.value;
