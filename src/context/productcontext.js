@@ -16,6 +16,9 @@ const initialState = {
   deleteProduct: {},
   isUpdateProductLoading: false,
   updateProduct: {},
+  isErrorProductReview: false,
+  productReviews: {},
+  isProductReviewLoading: false,
 };
 
 const ProductProvider = ({ children }) => {
@@ -37,10 +40,23 @@ const ProductProvider = ({ children }) => {
     try {
       const response = await ProductService.getProductById(id);
       const singleProduct = await response.data;
+      console.log(singleProduct);
       dispatch({ type: "SET_SINGLE_DATA", payload: singleProduct });
     } catch (error) {
       console.log(error);
       dispatch({ type: "SINGLE_ERROR" });
+    }
+  };
+  const getProductReviews = async (id) => {
+    dispatch({ type: "PRODUCT_REVIEW_LOADING" });
+    try {
+      const response = await ProductService.getProductReviews(id);
+      const productReviews = await response.data;
+      console.log(productReviews + " In Context");
+      dispatch({ type: "PRODUCT_REVIEW", payload: productReviews });
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: "PRODUCT_REVIEW_ERROR" });
     }
   };
 
@@ -83,7 +99,7 @@ const ProductProvider = ({ children }) => {
 
   return <ProductContext.Provider value={{
     ...state, getSingleProduct,
-    saveProductCall, deleteProductCall, updateProductCall
+    saveProductCall, deleteProductCall, updateProductCall, getProductReviews
   }}>{children}</ProductContext.Provider>;
 };
 

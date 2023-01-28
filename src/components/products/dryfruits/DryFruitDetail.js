@@ -11,8 +11,7 @@ import StarRating from "../../reviews/StarRating";
 function DryFruitDetail() {
   const { productId } = useParams();
   const { getSingleProduct, isSingleProductLoading, singleProduct } = useProductContext();
-  const { productId: id, productName, productImageUrl, productDescription,
-    productPrice, quantity, weight, categoryName, ratingResponse, avgStarRating } = singleProduct;
+  const { productId: id, productName, productImageUrl, productDescription, productPrice, quantity, weight, categoryName, ratingResponse, avgStarRating } = singleProduct;
 
   useEffect(() => {
     getSingleProduct(productId);
@@ -101,7 +100,7 @@ function DryFruitDetail() {
             <div className="col-lg-12 text-center pt-3">
               <h4>Reviews</h4>
             </div>
-            <Reviews ratingResponse={ratingResponse} />
+            <Reviews id={id} ratingResponse={ratingResponse} />
           </div>
         </div>
       </div>

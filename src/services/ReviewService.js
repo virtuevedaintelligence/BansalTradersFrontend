@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const PRODUCTS_API_BASE_URL = "http://localhost:8082/v1/products";
+const PRODUCTS_API_BASE_URL = "http://localhost:8082/v1/ratings";
 
 class ProductService {
   saveProduct(product) {
@@ -23,10 +23,6 @@ class ProductService {
     console.log(product);
     console.log(id);
     return axios.put(PRODUCTS_API_BASE_URL + "/updateProduct/" + id, product);
-  }
-
-  getProductReviews(id) {
-    return axios.get(PRODUCTS_API_BASE_URL + "/productRating/" + id);
   }
 }
 

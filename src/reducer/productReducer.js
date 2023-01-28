@@ -8,11 +8,11 @@ const ProductReducer = (state, action) => {
     case "SET_PRODUCT_DATA":
       console.log(action);
       const featuredProd = action.payload
-        .response.filter((curElement) => curElement.featured === true);
+        .response.filter((curElement) => curElement.isFeatured === true);
       return {
         ...state,
         isLoading: false,
-        products: action.payload.response,
+        products: action.payload.response.filter((curElement) => curElement.isFeatured === true),
         featuredProducts: featuredProd,
       };
     case "PRODUCT_ERROR":
@@ -30,7 +30,7 @@ const ProductReducer = (state, action) => {
       return {
         ...state,
         isSingleProductLoading: false,
-        singleProduct: action.payload.response,
+        singleProduct: action.payload.response
       };
     case "SINGLE_ERROR":
       return {
@@ -48,7 +48,7 @@ const ProductReducer = (state, action) => {
       return {
         ...state,
         isSaveProductLoading: false,
-        saveProduct: action.payload.response,
+        saveProduct: action.payload.response
       };
     case "SAVE_ERROR":
       return {
@@ -89,6 +89,24 @@ const ProductReducer = (state, action) => {
         ...state,
         isUpdateProductLoading: false,
         isError: true,
+      };
+    case "PRODUCT_REVIEW_LOADING":
+      return {
+        ...state,
+        isProductReviewLoading: true,
+      };
+    case "PRODUCT_REVIEW":
+      console.log(action.payload.response);
+      return {
+        ...state,
+        isProductReviewLoading: false,
+        productReviews: action.payload.response,
+      };
+    case "PRODUCT_REVIEW_ERROR":
+      return {
+        ...state,
+        isProductReviewLoading: false,
+        isErrorProductReview: true,
       };
     default:
       return state;

@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaThumbsDown } from "react-icons/fa";
 import { RiCheckDoubleLine } from "react-icons/ri";
+import { useProductContext } from "../../context/productcontext";
 import Review from "./Review";
 import "./review.css";
 import Star from "./Star";
-function Reviews({ ratingResponse }) {
-  var [numbers, setNumbers] = useState([]);
-  numbers = [1, 2, 3, 4, 5];
+function Reviews({ id, ratingResponse }) {
+
+  const { isProductReviewLoading, getProductReviews, productReviews } = useProductContext();
+  useEffect(() => {
+    getProductReviews(id);
+  }, []);
+  if (isProductReviewLoading) {
+    return <div>... Loading</div>;
+  }
   return (
     <>
       <div className="container">
@@ -15,9 +22,7 @@ function Reviews({ ratingResponse }) {
             <div className="col-md-6">
               <table className="stars-counters">
                 <tbody>
-                  {numbers.reverse().map((number) => {
-                    return <Star key={number} number={number} />;
-                  })}
+                  <Star productReviews={productReviews} />
                 </tbody>
               </table>
             </div>
