@@ -4,7 +4,8 @@ import React from 'react'
 
 function StarRating() {
     return (
-        <div>StarRating</div>
+        <>
+        </>
     )
 }
 
