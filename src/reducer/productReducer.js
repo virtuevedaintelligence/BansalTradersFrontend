@@ -6,11 +6,13 @@ const ProductReducer = (state, action) => {
         isLoading: true,
       };
     case "SET_PRODUCT_DATA":
-      const featuredProd = action.payload.filter((curElement) => curElement.featured === true);
+      console.log(action);
+      const featuredProd = action.payload
+        .response.filter((curElement) => curElement.featured === true);
       return {
         ...state,
         isLoading: false,
-        products: action.payload,
+        products: action.payload.response,
         featuredProducts: featuredProd,
       };
     case "PRODUCT_ERROR":
@@ -42,6 +44,7 @@ const ProductReducer = (state, action) => {
         isSaveProductLoading: true,
       };
     case "SAVE_PRODUCT":
+
       return {
         ...state,
         isSaveProductLoading: false,

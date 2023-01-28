@@ -9,7 +9,7 @@ const CategoryReducer = (state, action) => {
       return {
         ...state,
         isLoadingCategory: false,
-        categories: action.payload,
+        categories: action.payload.response,
       };
     case "CATEGORY_ERROR":
       return {
