@@ -24,9 +24,10 @@ function Reviews({ ratingResponse }) {
           </div>
         </div>
         <div className="review-list">
-          {ratingResponse.map((ratingResponse) => {
-            return <Review ratingResponse={ratingResponse} />;
-          })}
+          {ratingResponse &&
+            ratingResponse.map((ratingResponse) => {
+              return <Review ratingResponse={ratingResponse} />;
+            })}
         </div>
       </div>
     </>
