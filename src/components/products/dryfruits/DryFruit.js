@@ -9,18 +9,21 @@ import { MdDelete } from "react-icons/md";
 import FormatPrice from "../../../helper/formatprice/FormatPrice";
 import { useProductContext } from "../../../context/productcontext";
 import { useCategoryContext } from "../../../context/categorycontext";
+import Quantity from "../../../helper/quantity/QuantityHelper";
+
 import UpdateProduct from "../UpdateProduct";
 
 function DryFruit({ product }) {
   const { isLoadingCategory, categories } = useCategoryContext();
 
-  const { isDeleteProductLoading, deleteProductCall } = useProductContext();
+  const { isDeleteProductLoading, deleteProductCall, singleProduct } = useProductContext();
   var [actualPrice, setActualPrice] = useState();
   function calculateActualPrice(productPrice) {
     actualPrice = productPrice + 200;
     setActualPrice(actualPrice);
   }
-  const { productId, productName, productImageUrl, productDescription, productPrice, quantity, weight, categoryName, featured } = product;
+  const { productId, productName, productImageUrl, productDescription, productPrice,
+    quantity, weight, categoryName, featured, ratingResponse } = product;
   const [orderQuantity, setOrderQunatity] = useState(1);
 
   const decreaseQuantity = () => {
@@ -92,18 +95,7 @@ function DryFruit({ product }) {
                   <option value="3">1000 Gm</option>
                 </Form.Select>
               </div>
-              <div className="col-md-4  d-flex">
-                <button className="btn btn-sm btn-primary mb-0" onClick={decreaseQuantity}>
-                  -
-                </button>
-                <div size="m" readOnly disabled type="text" className="text-center qty_cost_bg" placeholder="1">
-                  {" "}
-                  {orderQuantity}
-                </div>
-                <button className="btn btn-sm btn-primary mb-0" onClick={increaseQuantity}>
-                  +
-                </button>
-              </div>
+              <Quantity singleProduct={singleProduct} />
               <div className="col-md-6 mt-3">
                 <NavLink className="btn btn-primary btn-sm mb-0" to={`/dryfruitdetails/${productId}`}>
                   View Product

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-function Quantitycomp({ singleProduct }) {
-  const { productId, productName, productImageUrl, productDescription, productPrice, quantity, weight, categoryName, featured } = singleProduct;
+function QuantityHelper({ singleProduct }) {
+  const { quantity } = singleProduct;
   const [orderQuantity, setOrderQunatity] = useState(1);
   const decreaseQuantity = () => {
     orderQuantity > 1 ? setOrderQunatity(orderQuantity - 1) : setOrderQunatity(1);
@@ -29,4 +29,4 @@ function Quantitycomp({ singleProduct }) {
   );
 }
 
-export default Quantitycomp;
+export default QuantityHelper;

@@ -5,12 +5,13 @@ import { useParams } from "react-router-dom";
 import { useProductContext } from "../../../context/productcontext";
 import Reviews from "../../reviews/Reviews";
 import FormatPrice from "../../../helper/formatprice/FormatPrice";
-import Quantitycomp from "./Quantitycomp";
+import Quantity from "../../../helper/quantity/QuantityHelper";
 
 function DryFruitDetail() {
   const { productId } = useParams();
   const { getSingleProduct, isSingleProductLoading, singleProduct } = useProductContext();
-  const { productId: id, productName, productImageUrl, productDescription, productPrice, quantity, weight, categoryName } = singleProduct;
+  const { productId: id, productName, productImageUrl, productDescription,
+    productPrice, quantity, weight, categoryName, ratingResponse } = singleProduct;
 
   useEffect(() => {
     getSingleProduct(productId);
@@ -65,7 +66,7 @@ function DryFruitDetail() {
                       <option>1000GM</option>
                     </select>
                   </div>
-                  <Quantitycomp singleProduct={singleProduct} />
+                  <Quantity singleProduct={singleProduct} />
                   <div className="col-lg-4">
                     <h6>Cost :</h6>
                     <label className="my-1">₹60</label>
@@ -99,7 +100,7 @@ function DryFruitDetail() {
             <div className="col-lg-12 text-center pt-3">
               <h4>Reviews</h4>
             </div>
-            <Reviews />
+            <Reviews ratingResponse={ratingResponse} />
           </div>
         </div>
       </div>
