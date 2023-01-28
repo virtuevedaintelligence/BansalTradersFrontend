@@ -30,7 +30,7 @@ const ProductReducer = (state, action) => {
       return {
         ...state,
         isSingleProductLoading: false,
-        singleProduct: action.payload,
+        singleProduct: action.payload.response,
       };
     case "SINGLE_ERROR":
       return {
@@ -48,7 +48,7 @@ const ProductReducer = (state, action) => {
       return {
         ...state,
         isSaveProductLoading: false,
-        saveProduct: action.payload,
+        saveProduct: action.payload.response,
       };
     case "SAVE_ERROR":
       return {
@@ -65,7 +65,7 @@ const ProductReducer = (state, action) => {
       return {
         ...state,
         isDeleteProductLoading: false,
-        deleteProduct: action.payload,
+        deleteProduct: action.payload.response,
       };
     case "DELETE_ERROR":
       return {
@@ -82,7 +82,7 @@ const ProductReducer = (state, action) => {
       return {
         ...state,
         isUpdateProductLoading: false,
-        updateProduct: action.payload,
+        updateProduct: action.payload.response,
       };
     case "UPDATE_ERROR":
       return {

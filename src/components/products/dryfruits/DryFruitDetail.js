@@ -6,12 +6,13 @@ import { useProductContext } from "../../../context/productcontext";
 import Reviews from "../../reviews/Reviews";
 import FormatPrice from "../../../helper/formatprice/FormatPrice";
 import Quantity from "../../../helper/quantity/QuantityHelper";
+import StarRating from "../../reviews/StarRating";
 
 function DryFruitDetail() {
   const { productId } = useParams();
   const { getSingleProduct, isSingleProductLoading, singleProduct } = useProductContext();
   const { productId: id, productName, productImageUrl, productDescription,
-    productPrice, quantity, weight, categoryName, ratingResponse } = singleProduct;
+    productPrice, quantity, weight, categoryName, ratingResponse, avgStarRating } = singleProduct;
 
   useEffect(() => {
     getSingleProduct(productId);
@@ -34,7 +35,7 @@ function DryFruitDetail() {
                 <div className="row">
                   <div className="col-lg-12">
                     <span className="text-secondary">{categoryName}</span>
-                    <p className="text-dark m-0 p-0">{productName}</p>
+                    <p className="text-dark m-0 p-0">{productName}</p> <StarRating avgStarRating={avgStarRating} />
                   </div>
                   <div className="col-lg-12  d-flex">
                     <p className="m-0 p-0 text-success price-pro">{<FormatPrice productPrice={productPrice} />} </p>
@@ -47,15 +48,15 @@ function DryFruitDetail() {
                   <div className="col-lg-12 pt-2">
                     <h5>Product Detail</h5>
                     <span>{productDescription}</span>
-                    <hr class="hr hr-blurry" />
+                    <hr className="hr hr-blurry" />
                     {/* <hr className=" hr_sperator" /> */}
                   </div>
                   <div className="col-lg-12 pt-2">
                     <h5>In stock</h5>
-                    <span>Only {quantity} left!!!</span>
+                    <span>Only <b className="text-danger">{quantity}</b> left!!!</span>
                     <h5> Hurry Up</h5>
                     {/* <hr className="m-0 pt-2 mt-2 hr_sperator" /> */}
-                    <hr class="hr hr-blurry" />
+                    <hr className="hr hr-blurry" />
                   </div>
                   <div className="col-lg-4">
                     <h6>Weight :</h6>

@@ -26,12 +26,6 @@ function DryFruit({ product }) {
     quantity, weight, categoryName, featured, ratingResponse } = product;
   const [orderQuantity, setOrderQunatity] = useState(1);
 
-  const decreaseQuantity = () => {
-    orderQuantity > 1 ? setOrderQunatity(orderQuantity - 1) : setOrderQunatity(1);
-  };
-  const increaseQuantity = () => {
-    orderQuantity < quantity ? setOrderQunatity(orderQuantity + 1) : setOrderQunatity(quantity);
-  };
   useEffect(() => {
     calculateActualPrice(productPrice);
   }, []);
