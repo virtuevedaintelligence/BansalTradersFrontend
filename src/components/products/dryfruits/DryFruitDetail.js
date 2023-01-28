@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { useProductContext } from "../../../context/productcontext";
 import Reviews from "../../reviews/Reviews";
 import FormatPrice from "../../../helper/formatprice/FormatPrice";
+import Quantitycomp from "./Quantitycomp";
 
 function DryFruitDetail() {
   const { productId } = useParams();
@@ -40,18 +41,20 @@ function DryFruitDetail() {
                       <b className="px-2"> | </b>
                     </p>
                     <p className="m-0 p-0 text-danger price-pro">{<s>{<FormatPrice productPrice={productPrice + 200} />}</s>}</p>
-                    <hr className="p-0 m-0" />
+                    <hr className="p-0 m-0 hr_sperator" />
                   </div>
                   <div className="col-lg-12 pt-2">
                     <h5>Product Detail</h5>
                     <span>{productDescription}</span>
-                    <hr className="m-0 pt-2 mt-2" />
+                    <hr class="hr hr-blurry" />
+                    {/* <hr className=" hr_sperator" /> */}
                   </div>
                   <div className="col-lg-12 pt-2">
                     <h5>In stock</h5>
                     <span>Only {quantity} left!!!</span>
                     <h5> Hurry Up</h5>
-                    <hr className="m-0 pt-2 mt-2" />
+                    {/* <hr className="m-0 pt-2 mt-2 hr_sperator" /> */}
+                    <hr class="hr hr-blurry" />
                   </div>
                   <div className="col-lg-4">
                     <h6>Weight :</h6>
@@ -62,10 +65,7 @@ function DryFruitDetail() {
                       <option>1000GM</option>
                     </select>
                   </div>
-                  <div className="col-lg-4">
-                    <h6>Quantity :</h6>
-                    <input type="number" className="form-control text-center w-100" min="1" max={quantity} />
-                  </div>
+                  <Quantitycomp singleProduct={singleProduct} />
                   <div className="col-lg-4">
                     <h6>Cost :</h6>
                     <label className="my-1">₹60</label>
@@ -92,7 +92,7 @@ function DryFruitDetail() {
             <div className="col-lg-12 text-center pt-3">
               <h4>More Product</h4>
             </div>
-            <MoreProducts />
+            <MoreProducts categoryName={categoryName} id={id} />
           </div>
 
           <div className="row">
