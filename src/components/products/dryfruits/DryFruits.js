@@ -7,8 +7,10 @@ import Category from "../categories/Category";
 
 import AddCategory from "../categories/AddCategory";
 import AddProduct from "../AddProduct";
+import { useFilterContext } from "../../../context/fitercontext";
 const DryFruits = () => {
   const { isLoading, products } = useProductContext();
+  const { filterProducts } = useFilterContext();
   const { isLoadingCategory, categories } = useCategoryContext();
 
   if (isLoading) {
@@ -23,7 +25,7 @@ const DryFruits = () => {
     <>
       <div className="categories">
         <div className="scrollmenu">
-          {categories.map((category) => {
+          {categories.filter((category) => category.categoryName !== "Choose Category").map((category) => {
             return <Category key={category.categoryId} category={category} />;
           })}
         </div>
@@ -36,7 +38,7 @@ const DryFruits = () => {
       </div>
       <MDBContainer fluid className="my-5">
         <MDBRow>
-          {products.map((product) => {
+          {filterProducts.map((product) => {
             return <DryFruit key={product.productId} product={product} />;
           })}
         </MDBRow>

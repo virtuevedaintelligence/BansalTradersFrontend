@@ -8,6 +8,7 @@ import { CategoryProvider } from "./context/categorycontext";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { FilterContextProvider } from "./context/fitercontext";
 AOS.init();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -16,7 +17,9 @@ root.render(
   <React.StrictMode>
     <ProductProvider>
       <CategoryProvider>
-        <App />
+        <FilterContextProvider>
+          <App />
+        </FilterContextProvider>
       </CategoryProvider>
     </ProductProvider>
   </React.StrictMode>

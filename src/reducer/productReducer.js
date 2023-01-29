@@ -6,13 +6,12 @@ const ProductReducer = (state, action) => {
         isLoading: true,
       };
     case "SET_PRODUCT_DATA":
-      console.log(action);
       const featuredProd = action.payload
         .response.filter((curElement) => curElement.isFeatured === true);
       return {
         ...state,
         isLoading: false,
-        products: action.payload.response.filter((curElement) => curElement.isFeatured === true),
+        products: action.payload.response.filter((curElement) => curElement.isActive === true),
         featuredProducts: featuredProd,
       };
     case "PRODUCT_ERROR":
@@ -96,7 +95,6 @@ const ProductReducer = (state, action) => {
         isProductReviewLoading: true,
       };
     case "PRODUCT_REVIEW":
-      console.log(action.payload.response);
       return {
         ...state,
         isProductReviewLoading: false,

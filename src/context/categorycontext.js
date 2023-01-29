@@ -34,9 +34,7 @@ const CategoryProvider = ({ children }) => {
     try {
       dispatch({ type: "SAVE_CATEGORY_LOADING" });
       const saveReponse = await CategoryService.saveCategory(category);
-      console.log(saveReponse);
       const saveCategory = await saveReponse.data;
-      console.log(saveCategory);
       dispatch({ type: "SAVE_CATEGORY_DATA", payload: saveCategory });
     } catch (error) {
       console.log(error);

@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { useCategoryContext } from "../../context/categorycontext";
+import { useFilterContext } from "../../context/fitercontext";
 import "./shopbycategory.css";
 
 function Example({ name, ...props }) {
   const { isLoadingCategory, categories } = useCategoryContext();
+  const { filters: { cat }, filterProduct } = useFilterContext();
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -22,10 +25,15 @@ function Example({ name, ...props }) {
         <Offcanvas.Body>
           {!isLoadingCategory && (
             <div className="row">
-              {categories.map((category) => (
-                <div key={category.id} className="col-sm-12 ">
+              {categories && categories.filter((category) => category.categoryName !== "Choose Category").map((category) => (
+                <button key={category.id} className="col-sm-12"
+                  type="button"
+                  name="cat"
+                  value={cat}
+                  onClick={filterProduct}
+                >
                   <div className="card p-4 sidebar-cat">{category.categoryName}</div>
-                </div>
+                </button>
               ))}
             </div>
           )}

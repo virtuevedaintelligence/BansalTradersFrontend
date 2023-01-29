@@ -8,6 +8,7 @@ import { NavLink } from "react-router-dom";
 import Cart from "../cart/Cart";
 import Shopbycategory from "../home/Shopbycategory";
 import Login from "../login/Login";
+import Search from "../search/Search";
 
 function TopNavbar() {
 
@@ -44,6 +45,7 @@ function TopNavbar() {
                 Our Mission
               </NavLink>
               <div className="loginNavLink d-flex">
+                <Search />
                 <NavLink className="nav-link" to="/orders">
                   Orders
                 </NavLink>
