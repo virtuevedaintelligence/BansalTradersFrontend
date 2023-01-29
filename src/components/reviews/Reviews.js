@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { FaThumbsDown } from "react-icons/fa";
 import { RiCheckDoubleLine } from "react-icons/ri";
 import { useProductContext } from "../../context/productcontext";
+import AddReview from "./AddReview";
 import Review from "./Review";
 import "./review.css";
 import Star from "./Star";
 function Reviews({ id, ratingResponse }) {
-
   const { isProductReviewLoading, getProductReviews, productReviews } = useProductContext();
   useEffect(() => {
     getProductReviews(id);
@@ -16,6 +16,7 @@ function Reviews({ id, ratingResponse }) {
   }
   return (
     <>
+      <AddReview id={id} />
       <div className="container">
         <div id="reviews" className="review-section">
           <div className="row">

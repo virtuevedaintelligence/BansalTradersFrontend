@@ -1,27 +1,19 @@
 import axios from "axios";
 
-const PRODUCTS_API_BASE_URL = "http://localhost:8082/v1/ratings";
+const REVIEWS_API_BASE_URL = "http://localhost:8082/v1/ratings";
 
-class ProductService {
-  saveProduct(product) {
-    return axios.post(PRODUCTS_API_BASE_URL + "/createProduct", product);
+class ReviewService {
+  saveReview(review) {
+    return axios.post(REVIEWS_API_BASE_URL + "/createReview", review);
   }
 
-  getProducts() {
-    return axios.get(PRODUCTS_API_BASE_URL);
+  deleteReview(id) {
+    return axios.delete(REVIEWS_API_BASE_URL + "/delete/" + id);
   }
 
-  getProductById(id) {
-    return axios.get(PRODUCTS_API_BASE_URL + "/productDetail/" + id);
-  }
-
-  deleteProduct(id) {
-    return axios.delete(PRODUCTS_API_BASE_URL + "/delete/" + id);
-  }
-
-  updateProduct(id, product) {
-    return axios.put(PRODUCTS_API_BASE_URL + "/updateProduct/" + id, product);
+  updateReview(id, review) {
+    return axios.put(REVIEWS_API_BASE_URL + "/updateReview/" + id, review);
   }
 }
 
-export default new ProductService();
+export default new ReviewService();
