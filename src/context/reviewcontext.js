@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import ReviewService from "../services/ReviewService";
-import reducer from "../reducer/ReviewReducer";
+import reducer from "../reducer/reviewReducer";
 
 const ReviewContext = createContext();
 const initialState = {
@@ -18,22 +18,10 @@ const initialState = {
 const ReviewProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const fetchReview = async () => {
-    dispatch({ type: "REVIEW_LOADING" });
-    try {
-      const response = await ReviewService.getreviews();
-      const reviews = await response.data;
-      dispatch({ type: "SET_REVIEW_DATA", payload: reviews });
-    } catch (error) {
-      console.log(error);
-      dispatch({ type: "REVIEW_ERROR" });
-    }
-  };
-
-  const saveReviewCall = async (Review) => {
+  const saveReviewCall = async (review) => {
     try {
       dispatch({ type: "SAVE_REVIEW_LOADING" });
-      const saveReponse = await ReviewService.saveReview(Review);
+      const saveReponse = await ReviewService.saveReview(review);
       console.log(saveReponse);
       const saveReview = await saveReponse.data;
       console.log(saveReview);
@@ -67,9 +55,6 @@ const ReviewProvider = ({ children }) => {
       dispatch({ type: "UPDATE_ERROR" });
     }
   };
-  useEffect(() => {
-    fetchReview();
-  }, []);
 
   return (
     <ReviewContext.Provider
@@ -78,7 +63,6 @@ const ReviewProvider = ({ children }) => {
         saveReviewCall,
         deleteReviewCall,
         updateReviewCall,
-        fetchReview,
       }}
     >
       {children}

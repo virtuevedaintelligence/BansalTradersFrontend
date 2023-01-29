@@ -5,6 +5,7 @@ import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { ProductProvider } from "./context/productcontext";
 import { CategoryProvider } from "./context/categorycontext";
+import { ReviewProvider } from "./context/reviewcontext";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -16,7 +17,9 @@ root.render(
   <React.StrictMode>
     <ProductProvider>
       <CategoryProvider>
-        <App />
+        <ReviewProvider>
+          <App />
+        </ReviewProvider>
       </CategoryProvider>
     </ProductProvider>
   </React.StrictMode>
