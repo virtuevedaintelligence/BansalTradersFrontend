@@ -19,10 +19,11 @@ const FilterReducer = (state, action) => {
             let { allProducts } = state;
             let tempFilterProduct = [...allProducts];
             const { searchText, cat } = state.filters;
-            if (searchText) {
+            const search = searchText.toLowerCase();
+            if (search) {
                 tempFilterProduct = tempFilterProduct.filter((curElem) => {
                     var { productName } = curElem;
-                    return productName.toLowerCase().includes(searchText);
+                    return productName.toLowerCase().includes(search);
                 });
             }
             if (cat !== "all") {

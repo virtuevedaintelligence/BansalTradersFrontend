@@ -4,11 +4,11 @@ const REVIEWS_API_BASE_URL = "http://localhost:8082/v1/ratings";
 
 class ReviewService {
   saveReview(review) {
-    return axios.post(REVIEWS_API_BASE_URL + "/createReview", review);
+    return axios.post(REVIEWS_API_BASE_URL + "/postReview", review);
   }
 
   deleteReview(id) {
-    return axios.delete(REVIEWS_API_BASE_URL + "/delete/" + id);
+    return axios.delete(REVIEWS_API_BASE_URL + "/deleteReview/" + id);
   }
 
   updateReview(id, review) {

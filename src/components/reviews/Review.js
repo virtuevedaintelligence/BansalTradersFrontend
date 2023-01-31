@@ -1,12 +1,27 @@
 import StarRating from "../reviews/StarRating";
+import { Button, Form, Modal, Row } from "react-bootstrap";
+import { MdDelete } from "react-icons/md";
+import { useReviewContext } from "../../context/reviewcontext";
+import UpdateReview from "./UpdateReview";
 function Review({ ratingResponse }) {
-
-    const { reviewBy,
+    const { isDeleteReviewLoading, deleteReviewCall } = useReviewContext();
+    const {
+        id,
+        reviewBy,
         starRating,
         reviewDescription,
         reviewDate,
         location } = ratingResponse;
+
+    const deleteReview = (e) => {
+        e.preventDefault();
+        deleteReviewCall(id);
+    }
+
     const avgStarRating = starRating;
+    if (isDeleteReviewLoading) {
+        return <div>Loading ...</div>
+    }
     return (
         <>
             <ul>
@@ -29,8 +44,12 @@ function Review({ ratingResponse }) {
                             </div>
                             <div className="review-description">
                                 <p>{reviewDescription}</p>
+                                <UpdateReview ratingResponse={ratingResponse} />
+                                <Button className="btn-sm btn-danger">
+                                    <MdDelete onClick={deleteReview} />
+                                </Button>
                             </div>
-                            <span className="publish py-3 d-inline-block w-100">Published on {reviewDate} </span>
+                            <span className="publish py-3 d-inline-block w-100">Published on {reviewDate.slice(0, 10)} </span>
                         </div>
                     </div>
                 </li>

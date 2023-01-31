@@ -6,13 +6,14 @@ import "./nav.css";
 import "./responsive.css";
 import { NavLink } from "react-router-dom";
 import Cart from "../cart/Cart";
-import Shopbycategory from "../home/Shopbycategory";
+import ShopByCategory from "../products/categories/ShopByCategory";
 import Login from "../login/Login";
 import Search from "../search/Search";
+import { useFilterContext } from "../../context/fitercontext";
 
 function TopNavbar() {
-
   return (
+
     <>
       <Navbar expand="lg" className="nav-bg">
         <Container>
@@ -33,7 +34,7 @@ function TopNavbar() {
                 </NavLink>
               </NavDropdown>
               <NavLink className="nav-link">
-                <Shopbycategory />
+                <ShopByCategory />
               </NavLink>
               <NavLink className="nav-link" to="/contact">
                 Contact
