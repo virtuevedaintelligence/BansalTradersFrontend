@@ -1,9 +1,9 @@
-import StarRating from "../reviews/StarRating";
+import StarRating from "./star/StarRating";
 import { Button, Form, Modal, Row } from "react-bootstrap";
 import { MdDelete } from "react-icons/md";
 import { useReviewContext } from "../../context/reviewcontext";
 import UpdateReview from "./UpdateReview";
-function Review({ ratingResponse }) {
+function Review({ ratingResponse, productId }) {
     const { isDeleteReviewLoading, deleteReviewCall } = useReviewContext();
     const {
         id,
@@ -44,7 +44,7 @@ function Review({ ratingResponse }) {
                             </div>
                             <div className="review-description">
                                 <p>{reviewDescription}</p>
-                                <UpdateReview ratingResponse={ratingResponse} />
+                                <UpdateReview ratingResponse={ratingResponse} productId={productId} />
                                 <Button className="btn-sm btn-danger">
                                     <MdDelete onClick={deleteReview} />
                                 </Button>

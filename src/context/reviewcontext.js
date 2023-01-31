@@ -44,10 +44,10 @@ const ReviewProvider = ({ children }) => {
     }
   };
 
-  const updateReviewCall = async (id, Review) => {
+  const updateReviewCall = async (id, review) => {
     dispatch({ type: "UPDATE_REVIEW_LOADING" });
     try {
-      const updateReponse = await ReviewService.updateReview(Review, id);
+      const updateReponse = await ReviewService.updateReview(id, review);
       const updateReview = await updateReponse.data;
       dispatch({ type: "UPDATE_REVIEW", payload: updateReview });
     } catch (error) {

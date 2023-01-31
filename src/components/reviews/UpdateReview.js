@@ -6,21 +6,33 @@ import { useProductContext } from "../../context/productcontext";
 import { FiEdit2 } from "react-icons/fi";
 import { useReviewContext } from "../../context/reviewcontext";
 
-function UpdateReview({ ratingResponse }) {
+function UpdateReview({ ratingResponse, productId }) {
     const { isUpdateReviewLoading, updateReviewCall } = useReviewContext() || {};
     const {
         id,
         reviewBy,
         starRating,
-        reviewDescription,
-        reviewDate,
-        location } = ratingResponse;
+        reviewDescription
+    } = ratingResponse;
 
+    const [location, setLocation] = useState({});
+
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                setLocation({
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude,
+                });
+            },
+            (error) => console.error(error)
+        );
+    }, []);
     const [review, setReview] = useState({
-        reviewBy: "",
-        starRating: "",
-        reviewDescription: "",
-        productId: id,
+        reviewBy: reviewBy,
+        starRating: starRating,
+        reviewDescription: reviewDescription,
+        productId: productId,
         location: JSON.stringify(location).toString,
     });
     const [show, setShow] = useState(false);
@@ -41,13 +53,14 @@ function UpdateReview({ ratingResponse }) {
 
     return (
         <>
-            <Button className="col-2" variant="primary" onClick={handleShow}>
-                Update Review
+            <Button variant="primary" onClick={handleShow}>
+                <FiEdit2 />
             </Button>
 
-            <Modal show={show} size="lg" aria-labelledby="contained-modal-title-vcenter" centered onHide={handleClose} backdrop="static" keyboard={false}>
+            <Modal show={show} size="lg" aria-labelledby="contained-modal-title-vcenter" centered onHide={handleClose}
+                backdrop="static" keyboard={false}>
                 <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-vcenter">Add Review</Modal.Title>
+                    <Modal.Title id="contained-modal-title-vcenter">Update Review</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <h4>Appreciations!!</h4>

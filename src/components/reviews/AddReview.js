@@ -22,7 +22,6 @@ function AddReview({ id }) {
       (error) => console.error(error)
     );
   }, []);
-  console.log(JSON.stringify(location));
 
   //code for converting lat long to addresss in react
   {
@@ -59,13 +58,17 @@ function AddReview({ id }) {
 
   const handleChange = (e) => {
     const value = e.target.value;
-    console.log(value);
     setReview({ ...review, [e.target.name]: value });
   };
   const saveReview = (e) => {
-    console.log(review);
     e.preventDefault();
     saveReviewCall(review);
+    return (
+      <div>
+        <h4>Appreciations!!</h4>
+        <p>Your reviews helps our team to be motivated all the time. </p>
+      </div>
+    )
   };
 
   if (isSaveReviewLoading) {
@@ -83,8 +86,6 @@ function AddReview({ id }) {
           <Modal.Title id="contained-modal-title-vcenter">Add Review</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4>Appreciations!!</h4>
-          <p>Your positive reviews helps our team to be motivated all the time. </p>
           <Form>
             <Form.Label>Star Rating:</Form.Label>
             <div className="rating ">

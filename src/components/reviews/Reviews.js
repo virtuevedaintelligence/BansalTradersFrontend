@@ -5,8 +5,8 @@ import { useProductContext } from "../../context/productcontext";
 import AddReview from "./AddReview";
 import Review from "./Review";
 import "./review.css";
-import Star from "./Star";
-function Reviews({ id, ratingResponse }) {
+import Star from "./star/Star";
+function Reviews({ id, ratingResponse, productId }) {
   const { isProductReviewLoading, getProductReviews, productReviews } = useProductContext();
   useEffect(() => {
     getProductReviews(id);
@@ -32,7 +32,7 @@ function Reviews({ id, ratingResponse }) {
         <div className="review-list">
           {ratingResponse &&
             ratingResponse.map((ratingResponse) => {
-              return <Review ratingResponse={ratingResponse} />;
+              return <Review ratingResponse={ratingResponse} productId={productId} />;
             })}
         </div>
       </div>

@@ -6,7 +6,7 @@ import { useProductContext } from "../../../context/productcontext";
 import Reviews from "../../reviews/Reviews";
 import FormatPrice from "../../../helper/formatprice/FormatPrice";
 import Quantity from "../../../helper/quantity/QuantityHelper";
-import StarRating from "../../reviews/StarRating";
+import StarRating from "../../reviews/star/StarRating";
 
 function DryFruitDetail() {
   const { productId } = useParams();
@@ -100,7 +100,7 @@ function DryFruitDetail() {
             <div className="col-lg-12 text-center pt-3">
               <h4>Reviews</h4>
             </div>
-            <Reviews id={id} ratingResponse={ratingResponse} />
+            <Reviews id={id} ratingResponse={ratingResponse} productId={productId} />
           </div>
         </div>
       </div>

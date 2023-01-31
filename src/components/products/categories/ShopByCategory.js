@@ -7,14 +7,11 @@ import "./shopbycategory.css";
 function Example({ name, ...props }) {
   const { isLoadingCategory, categories } = useCategoryContext();
   let { filters: { cat }, filterProduct } = useFilterContext();
-
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   return (
-
     <>
       <p onClick={handleShow} className="m-0">
         Categories
