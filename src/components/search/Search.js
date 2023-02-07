@@ -2,7 +2,7 @@ import React from 'react'
 import { useFilterContext } from '../../context/fitercontext'
 
 function Search() {
-    const { filters: { searchText }, filterProduct } = useFilterContext();
+    const { filters: { searchText }, filterDryfruits } = useFilterContext();
     return (
         <div>
             <form onSubmit={(e) => e.preventDefault()}>
@@ -11,7 +11,7 @@ function Search() {
                     name="searchText"
                     placeholder="Search"
                     value={searchText}
-                    onChange={filterProduct}
+                    onChange={filterDryfruits}
                 />
             </form>
         </div>

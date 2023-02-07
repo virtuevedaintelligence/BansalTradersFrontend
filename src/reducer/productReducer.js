@@ -11,8 +11,15 @@ const ProductReducer = (state, action) => {
       return {
         ...state,
         isLoading: false,
-        products: action.payload.response.filter((curElement) => curElement.isActive === true),
+        products: action.payload.response,
+        activeProducts: action.payload.response.filter((curElement) => curElement.isActive === true),
         featuredProducts: featuredProd,
+        dryfruits: action.payload.response
+          .filter((curElement) => curElement.isActive === true)
+          .filter((curElement) => curElement.categoryType === "Dryfruit"),
+        species: action.payload.response
+          .filter((curElement) => curElement.isActive === true)
+          .filter((curElement) => curElement.categoryType === "Species"),
       };
     case "PRODUCT_ERROR":
       return {

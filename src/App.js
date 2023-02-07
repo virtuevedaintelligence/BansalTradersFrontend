@@ -15,7 +15,7 @@ import Footer from "./components/footer/Footer";
 import AddProduct from "../src/components/products/AddProduct";
 import UpdateProduct from "../src/components/products/UpdateProduct";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import DryFruitDetail from "./components/products/dryfruits/DryFruitDetail";
+import ProductDetail from "./components/products/ProductDetail";
 import AddCategory from "./components/products/categories/AddCategory";
 
 function App() {
@@ -33,14 +33,14 @@ function App() {
               {" "}
             </Route>
           </Route>
-          <Route path="/dryfruitdetail/:id" element={<DryFruitDetail />} />
+          <Route path="/dryfruitdetail/:id" element={<ProductDetail />} />
           <Route activeClassName="active_class" exact path="/about" element={<About />}></Route>
           <Route activeClassName="active_class" exact path="/contact" element={<Contact />}></Route>
           <Route activeClassName="active_class" exact path="/mission" element={<Mission />}></Route>
           <Route activeClassName="active_class" exact path="/cart" element={<Cart />}></Route>
           <Route activeClassName="active_class" exact path="/orders" element={<Orders />}></Route>
           <Route activeClassName="active_class" exact path="/login" element={<Login />}></Route>
-          <Route activeClassName="active_class" exact path="/dryfruitdetails/:productId" element={<DryFruitDetail />}></Route>
+          <Route activeClassName="active_class" exact path="/dryfruitdetails/:productId" element={<ProductDetail />}></Route>
           <Route activeClassName="active_class" exact path="/addproduct" element={<AddProduct />}></Route>
           <Route activeClassName="active_class" exact path="/addcategory" element={<AddCategory />}></Route>
           <Route activeClassName="active_class" exact path="/update/:productId" element={<UpdateProduct />}></Route>

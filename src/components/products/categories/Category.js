@@ -8,9 +8,10 @@ function Category({ category }) {
   const [show, setShow] = useState(false);
   const { isDeleteCategoryLoading, deleteCategoryCall,
     isUpdateCategoryLoading, updateCategoryCall, fetchCategory } = useCategoryContext();
-  const { id, categoryName } = category;
+  const { id, categoryName, categoryType } = category;
   const [categoryToUpdate, setCategoryToUpdate] = useState({
-    categoryName: "",
+    categoryName: categoryName,
+    categoryType: categoryType
   });
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -58,6 +59,11 @@ function Category({ category }) {
         <Modal.Body>
           <div className="container text-center">
             <Row className="mb-3">
+              <Form.Group className="col col-sm-12">
+                <Form.Control type="name" name="categoryType"
+                  placeholder="Category Type" className="form-control-sm" defaultValue={categoryType}
+                  onChange={(e) => handleChange(e)} />
+              </Form.Group>
               <Form.Group className="col col-sm-12">
                 <Form.Control type="name" name="categoryName"
                   placeholder="Category Name" className="form-control-sm" defaultValue={categoryName}

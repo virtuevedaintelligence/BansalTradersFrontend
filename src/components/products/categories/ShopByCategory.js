@@ -6,7 +6,7 @@ import "./shopbycategory.css";
 
 function Example({ name, ...props }) {
   const { isLoadingCategory, categories } = useCategoryContext();
-  let { filters: { cat }, filterProduct } = useFilterContext();
+  let { filters: { cat }, filterDryfruits } = useFilterContext();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -33,7 +33,7 @@ function Example({ name, ...props }) {
                         type="button"
                         name="cat"
                         value={cat}
-                        onClick={(event) => { filterProduct(event); handleClose(event); }}>
+                        onClick={(event) => { filterDryfruits(event); handleClose(event); }}>
                         {category.categoryName}
                       </button>
                     );
@@ -48,7 +48,7 @@ function Example({ name, ...props }) {
                       type="button"
                       name="cat"
                       value={cat}
-                      onClick={(event) => { filterProduct(event); handleClose(event); }}>
+                      onClick={(event) => { filterDryfruits(event); handleClose(event); }}>
                       {category.categoryName}
                     </button>
                   );

@@ -1,17 +1,18 @@
 import React, { useEffect } from "react";
-import "./dryfruitdetail.css";
-import MoreProducts from "../moreproducts/MoreProducts";
+import "./productdetail.css";
+import MoreProducts from "./moreproducts/MoreProducts";
 import { useParams } from "react-router-dom";
-import { useProductContext } from "../../../context/productcontext";
-import Reviews from "../../reviews/Reviews";
-import FormatPrice from "../../../helper/formatprice/FormatPrice";
-import Quantity from "../../../helper/quantity/QuantityHelper";
-import StarRating from "../../reviews/star/StarRating";
+import { useProductContext } from "../../context/productcontext";
+import Reviews from "../reviews/Reviews";
+import FormatPrice from "../../helper/formatprice/FormatPrice";
+import Quantity from "../../helper/quantity/QuantityHelper";
+import StarRating from "../reviews/star/StarRating";
 
-function DryFruitDetail() {
+function ProductDetail() {
   const { productId } = useParams();
   const { getSingleProduct, isSingleProductLoading, singleProduct } = useProductContext();
-  const { productId: id, productName, productImageUrl, productDescription, productPrice, quantity, weight, categoryName, ratingResponse, avgStarRating } = singleProduct;
+  const { productId: id, productName, productImageUrl, productDescription,
+    productPrice, quantity, weight, categoryName, ratingResponse, avgStarRating } = singleProduct;
 
   useEffect(() => {
     getSingleProduct(productId);
@@ -95,7 +96,6 @@ function DryFruitDetail() {
             </div>
             <MoreProducts categoryName={categoryName} id={id} />
           </div>
-
           <div className="row">
             <div className="col-lg-12 text-center pt-3">
               <h4>Reviews</h4>
@@ -108,4 +108,4 @@ function DryFruitDetail() {
   );
 }
 
-export default DryFruitDetail;
+export default ProductDetail;

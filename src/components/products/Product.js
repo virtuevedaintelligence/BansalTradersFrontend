@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { FcLike } from "react-icons/fc";
 import { MDBCard, MDBCardBody, MDBCardImage, MDBCol } from "mdb-react-ui-kit";
-import "./dryfruits.css";
-import { NavLink, useNavigate } from "react-router-dom";
+import "./products.css";
+import { NavLink } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import { Button } from "react-bootstrap";
 import { MdDelete } from "react-icons/md";
-import FormatPrice from "../../../helper/formatprice/FormatPrice";
-import { useProductContext } from "../../../context/productcontext";
-import { useCategoryContext } from "../../../context/categorycontext";
-import Quantity from "../../../helper/quantity/QuantityHelper";
+import FormatPrice from "../../helper/formatprice/FormatPrice";
+import { useProductContext } from "../../context/productcontext";
+import { useCategoryContext } from "../../context/categorycontext";
+import Quantity from "../../helper/quantity/QuantityHelper";
 
-import UpdateProduct from "../UpdateProduct";
+import UpdateProduct from "./UpdateProduct";
 
-function DryFruit({ product }) {
+function Product({ product }) {
   const { isLoadingCategory, categories } = useCategoryContext();
 
   const { isDeleteProductLoading, deleteProductCall, singleProduct } = useProductContext();
@@ -24,7 +24,6 @@ function DryFruit({ product }) {
   }
   const { productId, productName, productImageUrl, productDescription, productPrice,
     quantity, weight, categoryName, featured, ratingResponse } = product;
-  const [orderQuantity, setOrderQunatity] = useState(1);
 
   useEffect(() => {
     calculateActualPrice(productPrice);
@@ -106,4 +105,4 @@ function DryFruit({ product }) {
   );
 }
 
-export default DryFruit;
+export default Product;

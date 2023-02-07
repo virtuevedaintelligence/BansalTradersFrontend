@@ -1,12 +1,12 @@
 const FilterReducer = (state, action) => {
     switch (action.type) {
-        case "LOAD_FILTER_PRODUCTS":
+        case "LOAD_FILTER_DRYFRUITS":
             return {
                 ...state,
-                filterProducts: [...action.payload],
-                allProducts: [...action.payload],
+                filterdryfruits: [...action.payload],
+                allDryfruits: [...action.payload],
             };
-        case "UPDATE_FILTER_VALUE":
+        case "UPDATE_FILTER_DRYFRUITS":
             const { name, value } = action.payload;
             return {
                 ...state,
@@ -15,25 +15,25 @@ const FilterReducer = (state, action) => {
                     [name]: value,
                 }
             }
-        case "FILTER_PRODUCTS":
-            let { allProducts } = state;
-            let tempFilterProduct = [...allProducts];
+        case "FILTER_DRYFRUITS":
+            let { allDryfruits } = state;
+            let tempFilterDryfruits = [...allDryfruits];
             const { searchText, cat } = state.filters;
             const search = searchText.toLowerCase();
             if (search) {
-                tempFilterProduct = tempFilterProduct.filter((curElem) => {
+                tempFilterDryfruits = tempFilterDryfruits.filter((curElem) => {
                     var { productName } = curElem;
                     return productName.toLowerCase().includes(search);
                 });
             }
             if (cat !== "all") {
-                tempFilterProduct = tempFilterProduct.filter((curElem) => {
+                tempFilterDryfruits = tempFilterDryfruits.filter((curElem) => {
                     return curElem.categoryName === cat;
                 });
             }
             return {
                 ...state,
-                filterProducts: tempFilterProduct,
+                filterdryfruits: tempFilterDryfruits,
             };
         default:
             return state;

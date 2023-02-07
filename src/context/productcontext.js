@@ -19,6 +19,8 @@ const initialState = {
   isErrorProductReview: false,
   productReviews: {},
   isProductReviewLoading: false,
+  dryfruits: [],
+  species: []
 };
 
 const ProductProvider = ({ children }) => {

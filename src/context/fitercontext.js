@@ -6,8 +6,8 @@ import reducer from "../reducer/filterReducer";
 const FilterContext = createContext();
 
 const initialState = {
-    filterProducts: [],
-    allProducts: [],
+    filterdryfruits: [],
+    allDryfruits: [],
     filters: {
         searchText: "",
         cat: "all"
@@ -15,24 +15,24 @@ const initialState = {
 };
 
 const FilterContextProvider = ({ children }) => {
-    const { products } = useProductContext();
+    const { dryfruits } = useProductContext();
     const [state, dispatch] = useReducer(reducer, initialState);
     //sort product
     useEffect(() => {
-        dispatch({ type: "FILTER_PRODUCTS" });
-        dispatch({ type: "SORTING_PRODUCTS" });
-    }, [products, state.sorting_value, state.filters]);
+        dispatch({ type: "FILTER_DRYFRUITS" });
+        dispatch({ type: "SORTING_DRYFRUITS" });
+    }, [dryfruits, state.sorting_value, state.filters]);
 
     useEffect(() => {
-        dispatch({ type: "LOAD_FILTER_PRODUCTS", payload: products });
-    }, [products])
-    const filterProduct = (event) => {
+        dispatch({ type: "LOAD_FILTER_DRYFRUITS", payload: dryfruits });
+    }, [dryfruits])
+    const filterDryfruits = (event) => {
         let name = event.target.name;
         let value = event.target.value;
-        return dispatch({ type: "UPDATE_FILTER_VALUE", payload: { name, value } })
+        return dispatch({ type: "UPDATE_FILTER_DRYFRUITS", payload: { name, value } })
     }
 
-    return <FilterContext.Provider value={{ ...state, filterProduct }}>{children}</FilterContext.Provider>
+    return <FilterContext.Provider value={{ ...state, filterDryfruits }}>{children}</FilterContext.Provider>
 
 }
 
