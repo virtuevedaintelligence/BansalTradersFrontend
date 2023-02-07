@@ -6,10 +6,8 @@ import { useProductContext } from "../../context/productcontext";
 import { FiEdit2 } from "react-icons/fi";
 
 function UpdateProduct({ product }) {
-  const { productId: id, productName, productImageUrl,
-    productDescription, productPrice,
-    quantity, weight, categoryName,
-    featured, isactive } = product;
+  const { productId: id, productName, productImageUrl, productDescription, productPrice, quantity, weight, categoryName, isFeatured, isActive } = product;
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -24,9 +22,10 @@ function UpdateProduct({ product }) {
     quantity: quantity,
     weight: weight,
     categoryName: categoryName,
-    featured: featured,
-    isactive: isactive,
+    featured: isFeatured,
+    isactive: isActive,
   });
+
   const { categories } = useCategoryContext();
   const handleChange = (e) => {
     const value = e.target.value;
@@ -51,45 +50,48 @@ function UpdateProduct({ product }) {
           <Modal.Title>Edit {productName}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3">
-              <Form.Control type="text" name="productName" placeholder="Product Name"
-                defaultValue={productName} autoFocus onChange={(e) => handleChange(e)} />
+          <Form className="row">
+            <Form.Group className="mb-3 col col-sm-6">
+              <Form.Control size="sm" type="text" name="productName" placeholder="Product Name" defaultValue={productName} autoFocus onChange={(e) => handleChange(e)} />
             </Form.Group>
-            <Form.Group className="mb-3">
-              {categories.map((category) => {
-                <Form.Select defaultValue="Choose..." key={category.categoryId} className="form-control"
-                  name="categoryName" onChange={(e) => handleChange(e)}>
-                  return (<option value={category.categoryName}>{category.categoryName}</option>
+            <Form.Group className="mb-3 col col-sm-6">
+              <Form.Select defaultValue={categoryName} size="sm" className="form-control-sm col col-6" name="categoryName" onChange={(e) => handleChange(e)}>
+                {categories.map((category) => {
+                  return (
+                    <>
+                      <option key={category.categoryId} value={category.categoryName} {...(category.categoryName ? "" : "selected")}>
+                        {category.categoryName}
+                      </option>
+                    </>
                   );
-                </Form.Select>;
-              })}
+                })}
+              </Form.Select>
             </Form.Group>
+            <Form.Group className="mb-3 col col-sm-6">
+              <Form.Control size="sm" aria-label="Upload Product Image" type="file" className="form-control" name="productImageUrl" onChange={(e) => handleChange(e)} />
+            </Form.Group>
+
             <Form.Group className="col col-sm-6">
-              <Form.Control aria-label="Upload Product Image" type="file"
-                className="form-control" name="productImageUrl" onChange={(e) => handleChange(e)} />
+              <Form.Check inline type={"checkbox"} label="Featured" checked={isFeatured} name="featured" onChange={(e) => handleChange(e)} />
+              <Form.Check inline type={"checkbox"} label="Active" checked={isActive} name="isactive" onChange={(e) => handleChange(e)} />
             </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Control as="textarea" rows={3} placeholder="Product Description"
-                name="productDescription" defaultValue={productDescription} onChange={(e) => handleChange(e)} />
-            </Form.Group>
-            <Form.Group className="col col-sm-4">
-              <Form.Select defaultValue="Choose..." className="form-control" name="weight" onChange={(e) => handleChange(e)}>
+
+            <Form.Group className="mb-3 col col-sm-4">
+              <Form.Select size="sm" defaultValue={weight} className="form-control" name="weight" onChange={(e) => handleChange(e)}>
                 <option value="Choose...">Select Weight</option>
                 <option value="250">250gm</option>
                 <option value="500">500gm</option>
                 <option value="1000">1000gm</option>
               </Form.Select>
             </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Control type="text" name="productPrice" placeholder="Selling Price" defaultValue={productPrice} onChange={(e) => handleChange(e)} />
+            <Form.Group className="mb-3 col col-sm-4">
+              <Form.Control size="sm" type="text" name="productPrice" placeholder="Selling Price" defaultValue={productPrice} onChange={(e) => handleChange(e)} />
+            </Form.Group>
+            <Form.Group className="mb-3 col col-sm-4">
+              <Form.Control size="sm" type="text" placeholder="Quantity" defaultValue={quantity} onChange={(e) => handleChange(e)} />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Control type="text" placeholder="Quantity" defaultValue={quantity} onChange={(e) => handleChange(e)} />
-            </Form.Group>
-            <Form.Group className="col col-sm-12">
-              <Form.Check inline type={"checkbox"} label="Featured" name="featured" onChange={(e) => handleChange(e)} />
-              <Form.Check inline type={"checkbox"} label="Active" name="isactive" onChange={(e) => handleChange(e)} />
+              <Form.Control as="textarea" rows={3} placeholder="Product Description" name="productDescription" defaultValue={productDescription} onChange={(e) => handleChange(e)} />
             </Form.Group>
             <Form.Group>
               <button type="submit" className="me-4 btn btn-success btn-sm " onClick={update}>
