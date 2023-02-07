@@ -1,9 +1,5 @@
 const FilterReducer = (state, action) => {
-  const { searchText, cat } = state.filters;
-  const search = searchText.toLowerCase();
-  console.log("searchText " + searchText);
-  console.log("cat " + cat);
-  const { name, value } = action.payload;
+
   switch (action.type) {
     case "LOAD_FILTER_DRYFRUITS":
       return {
@@ -12,6 +8,7 @@ const FilterReducer = (state, action) => {
         allDryfruits: [...action.payload],
       };
     case "UPDATE_FILTER_DRYFRUITS":
+      const { name, value } = action.payload;
       return {
         ...state,
         filters: {
@@ -22,6 +19,8 @@ const FilterReducer = (state, action) => {
     case "FILTER_DRYFRUITS":
       let { allDryfruits } = state;
       let tempFilterDryfruits = [...allDryfruits];
+      const { searchText, cat } = state.filters;
+      const search = searchText.toLowerCase();
       if (search) {
         tempFilterDryfruits = tempFilterDryfruits.filter((curElem) => {
           var { productName } = curElem;
@@ -55,16 +54,17 @@ const FilterReducer = (state, action) => {
     case "FILTER_SPICES":
       let { allSpices } = state;
       let tempFilterSpices = [...allSpices];
-
-      if (search) {
+      const { searchText: sT, cat: c } = state.filters;
+      const searchS = sT.toLowerCase();
+      if (searchS) {
         tempFilterSpices = tempFilterSpices.filter((curElem) => {
           var { productName } = curElem;
-          return productName.toLowerCase().includes(search);
+          return productName.toLowerCase().includes(searchS);
         });
       }
-      if (cat !== "all") {
+      if (c !== "all") {
         tempFilterSpices = tempFilterSpices.filter((curElem) => {
-          return curElem.categoryName === cat;
+          return curElem.categoryName === c;
         });
       }
       return {

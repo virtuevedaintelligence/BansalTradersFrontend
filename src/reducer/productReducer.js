@@ -1,5 +1,4 @@
 const ProductReducer = (state, action) => {
-  console.log(action);
   switch (action.type) {
     case "PRODUCT_LOADING":
       return {
@@ -8,8 +7,11 @@ const ProductReducer = (state, action) => {
       };
     case "SET_PRODUCT_DATA":
       const featuredProd = action.payload.response.filter((curElement) => curElement.isFeatured === true);
-      const dryfruitsList = action.payload.response.filter((curElement) => curElement.isActive === true).filter((curElement) => curElement.categoryType === "Dryfruit");
-      const spicesList = action.payload.response.filter((curElement) => curElement.isActive === true).filter((curElement) => curElement.categoryType === "Spices");
+      const dryfruitsList = action.payload.response.filter((curElement) => curElement.isActive === true)
+        .filter((curElement) => curElement.categoryType === "Dryfruit");
+      const spicesList = action.payload.response.filter((curElement) => curElement.isActive === true)
+        .filter((curElement) => curElement.categoryType === "Spices");
+      console.log(spicesList);
       return {
         ...state,
         isLoading: false,

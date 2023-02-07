@@ -22,9 +22,7 @@ const ReviewProvider = ({ children }) => {
     try {
       dispatch({ type: "SAVE_REVIEW_LOADING" });
       const saveReponse = await ReviewService.saveReview(review);
-      console.log(saveReponse);
       const saveReview = await saveReponse.data;
-      console.log(saveReview);
       dispatch({ type: "SAVE_REVIEW_DATA", payload: saveReview });
     } catch (error) {
       console.log(error);
