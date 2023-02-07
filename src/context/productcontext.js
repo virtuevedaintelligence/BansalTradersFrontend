@@ -20,7 +20,7 @@ const initialState = {
   productReviews: {},
   isProductReviewLoading: false,
   dryfruits: [],
-  species: []
+  spices: [],
 };
 
 const ProductProvider = ({ children }) => {
@@ -97,10 +97,20 @@ const ProductProvider = ({ children }) => {
     fetchData();
   }, []);
 
-  return <ProductContext.Provider value={{
-    ...state, getSingleProduct,
-    saveProductCall, deleteProductCall, updateProductCall, getProductReviews
-  }}>{children}</ProductContext.Provider>;
+  return (
+    <ProductContext.Provider
+      value={{
+        ...state,
+        getSingleProduct,
+        saveProductCall,
+        deleteProductCall,
+        updateProductCall,
+        getProductReviews,
+      }}
+    >
+      {children}
+    </ProductContext.Provider>
+  );
 };
 
 //custom hook

@@ -1,4 +1,5 @@
 const ProductReducer = (state, action) => {
+  console.log(action);
   switch (action.type) {
     case "PRODUCT_LOADING":
       return {
@@ -6,20 +7,17 @@ const ProductReducer = (state, action) => {
         isLoading: true,
       };
     case "SET_PRODUCT_DATA":
-      const featuredProd = action.payload
-        .response.filter((curElement) => curElement.isFeatured === true);
+      const featuredProd = action.payload.response.filter((curElement) => curElement.isFeatured === true);
+      const dryfruitsList = action.payload.response.filter((curElement) => curElement.isActive === true).filter((curElement) => curElement.categoryType === "Dryfruit");
+      const spicesList = action.payload.response.filter((curElement) => curElement.isActive === true).filter((curElement) => curElement.categoryType === "Spices");
       return {
         ...state,
         isLoading: false,
         products: action.payload.response,
         activeProducts: action.payload.response.filter((curElement) => curElement.isActive === true),
         featuredProducts: featuredProd,
-        dryfruits: action.payload.response
-          .filter((curElement) => curElement.isActive === true)
-          .filter((curElement) => curElement.categoryType === "Dryfruit"),
-        species: action.payload.response
-          .filter((curElement) => curElement.isActive === true)
-          .filter((curElement) => curElement.categoryType === "Species"),
+        dryfruits: dryfruitsList,
+        spices: spicesList,
       };
     case "PRODUCT_ERROR":
       return {
@@ -36,7 +34,7 @@ const ProductReducer = (state, action) => {
       return {
         ...state,
         isSingleProductLoading: false,
-        singleProduct: action.payload.response
+        singleProduct: action.payload.response,
       };
     case "SINGLE_ERROR":
       return {
@@ -50,11 +48,10 @@ const ProductReducer = (state, action) => {
         isSaveProductLoading: true,
       };
     case "SAVE_PRODUCT":
-
       return {
         ...state,
         isSaveProductLoading: false,
-        saveProduct: action.payload.response
+        saveProduct: action.payload.response,
       };
     case "SAVE_ERROR":
       return {
