@@ -22,8 +22,6 @@ function Login() {
   const sendOTP = (e) => {
     e.preventDefault();
     const url_ = "http://localhost:8082/v1/users/generateOTP/" + contact.contactNo;
-    // console.log(url_);
-    // Make API call http://localhost:8082/v1/users/generateOTP/999999999
 
     axios.get(url_).then((response) => {
       console.log(response.data.message);
@@ -31,24 +29,20 @@ function Login() {
       const msg = response.data.message;
       console.log(setData);
     });
-
-    //fetch(url_).then((response) => console.log(response));
-    // setData(response.json()));
-    // Validate username and OTP
-    // if (!contact.contactNo) {
-    //   setError("Please enter a contact");
-    // } else if (otp !== generatedOtp) {
-    //   setError("Invalid OTP");
-    // } else {
-    //   setError("");
-    //   // alert("Login successful");
-    // }
+  };
+  const verifyOTP = (e) => {
+    e.preventDefault();
   };
 
   const handleChange = (e) => {
     const value = e.target.value;
     console.log(value);
     setContact({ ...contact, [e.target.name]: value });
+  };
+  const handleChangeOTP = (e) => {
+    const value = e.target.value;
+    console.log(value);
+    setOtp({ ...otp, [e.target.name]: value });
   };
 
   return (
@@ -61,10 +55,10 @@ function Login() {
         </Modal.Header>
         <Modal.Body>
           <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
-            {msg ? (
+            {msg === "OTP Generated Successfully" ? (
               <div>
-                <MDBInput wrapperClass="mb-4" label="Enter OTP" name="OTP" id="OTP" type="number" />
-                <MDBBtn className="mb-4" onClick={sendOTP}>
+                <MDBInput wrapperClass="mb-4" label="Enter OTP" name="OTP" id="OTP" type="number" onChange={(e) => handleChangeOTP(e)} />
+                <MDBBtn className="mb-4" onClick={verifyOTP}>
                   Login
                 </MDBBtn>
               </div>
