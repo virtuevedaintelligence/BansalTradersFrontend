@@ -1,0 +1,8 @@
+.registerTab,
+.loginTab {
+  box-shadow: 5px 5px 10px 0px #ccc;
+}
+.form-error {
+  font-size: 14px;
+  color: maroon;
+}
