@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { FaTrash } from "react-icons/fa";
-import { BsFillCartFill } from "react-icons/bs";
+import { BsHandbagFill } from "react-icons/bs";
 
 import Cartitem from "./Cartitem";
 function Cart() {
@@ -13,7 +13,7 @@ function Cart() {
   return (
     <>
       <p variant="primary" onClick={handleShow} className="cartOpenBtn">
-        <BsFillCartFill />
+        <BsHandbagFill />
       </p>
 
       <Offcanvas show={show} onHide={handleClose}>

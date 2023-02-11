@@ -4,7 +4,7 @@ import "./about.css";
 function About() {
   return (
     <>
-      <section id="about" className="about-section" data-aos="flip-down">
+      <section id="about" className="about-section" data-aos="flip-right">
         <div className="container aos-init aos-animate">
           <div className="section-title">
             <h2>About Us</h2>

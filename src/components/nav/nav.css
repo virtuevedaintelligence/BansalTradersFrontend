@@ -15,3 +15,20 @@
   left: auto !important;
   right: 0px;
 }
+
+.loginNavLink {
+  background: #fff;
+  padding: 8px 12px;
+  color: #fe844b;
+  border-radius: 100%;
+  box-shadow: 1px 1px 1px 1px #f4f4f4;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+  margin: 0px;
+}
+.loginNavLink:hover {
+  box-shadow: 1px 1px 1px 1px #ccc;
+}

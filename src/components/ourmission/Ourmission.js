@@ -1,7 +1,7 @@
 import React from "react";
 
 function Ourmission() {
-  return <div>Ourmission</div>;
+  return <div className="container">Ourmission</div>;
 }
 
 export default Ourmission;

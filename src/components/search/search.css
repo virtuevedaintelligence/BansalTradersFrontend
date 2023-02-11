@@ -1,0 +1,11 @@
+.navSearch {
+  width: 130px;
+  box-sizing: border-box;
+  font-size: 14px;
+  padding: 7px 6px;
+  transition: width 0.4s ease-in-out;
+}
+
+.navSearch:focus {
+  width: 100%;
+}
