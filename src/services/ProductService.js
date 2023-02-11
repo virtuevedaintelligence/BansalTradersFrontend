@@ -8,7 +8,7 @@ class ProductService {
   }
 
   getProducts() {
-    return axios.get(PRODUCTS_API_BASE_URL);
+    return axios.get(PRODUCTS_API_BASE_URL + "/getAllProducts");
   }
 
   getProductById(id) {

@@ -50,7 +50,6 @@ function Login() {
       <p variant="primary" onClick={handleShow} className="cartOpenBtn">
         <i className="fas fa-user" onClick={handleShow}></i>
       </p>
-
       <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
           <Modal.Title>Login with OTP</Modal.Title>

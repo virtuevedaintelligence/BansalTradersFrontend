@@ -8,7 +8,7 @@ class CategoryService {
   }
 
   getCategories() {
-    return axios.get(CATEGORY_API_BASE_URL);
+    return axios.get(CATEGORY_API_BASE_URL + "/getAllCategories");
   }
 
   deleteCategory(id) {
