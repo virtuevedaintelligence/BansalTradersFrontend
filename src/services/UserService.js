@@ -9,6 +9,14 @@ class UserService {
     verifyOtp(user) {
         return axios.post(USERS_API_BASE_URL_ + "verifyOTP", user);
     }
+
+    registerAdmin(adminReg) {
+        return axios.post(USERS_API_BASE_URL_ + "register", adminReg);
+    }
+
+    loginAdmin(adminLog) {
+        return axios.post(USERS_API_BASE_URL_ + "login", adminLog);
+    }
 }
 
 export default new UserService();

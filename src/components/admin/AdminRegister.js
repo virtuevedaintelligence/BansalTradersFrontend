@@ -1,7 +1,7 @@
 import { MDBBtn, MDBInput } from "mdb-react-ui-kit";
 import React from "react";
 import { useFormik } from "formik";
-import { signUpSchema } from "../../schemas";
+import { signUpSchema } from "../../validations";
 
 const initialValues = {
   fullname: "",
