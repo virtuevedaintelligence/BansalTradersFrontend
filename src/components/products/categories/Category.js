@@ -3,15 +3,15 @@ import { Button, Form, Modal, Row } from "react-bootstrap";
 import { FiEdit2 } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
 import { useCategoryContext } from "../../../context/categorycontext";
+import Preloader from "../../preloader/Preloader";
 
 function Category({ category }) {
   const [show, setShow] = useState(false);
-  const { isDeleteCategoryLoading, deleteCategoryCall,
-    isUpdateCategoryLoading, updateCategoryCall, fetchCategory } = useCategoryContext();
+  const { isDeleteCategoryLoading, deleteCategoryCall, isUpdateCategoryLoading, updateCategoryCall, fetchCategory } = useCategoryContext();
   const { id, categoryName, categoryType } = category;
   const [categoryToUpdate, setCategoryToUpdate] = useState({
     categoryName: categoryName,
-    categoryType: categoryType
+    categoryType: categoryType,
   });
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -19,7 +19,7 @@ function Category({ category }) {
     e.preventDefault();
     deleteCategoryCall(id);
     fetchCategory();
-  }
+  };
 
   useEffect(() => {
     fetchCategory();
@@ -29,28 +29,28 @@ function Category({ category }) {
     updateCategoryCall(id, categoryToUpdate);
     handleClose();
     fetchCategory();
-  }
+  };
   const handleChange = (e) => {
     const value = e.target.value;
     setCategoryToUpdate({ ...categoryToUpdate, [e.target.name]: value });
   };
   if (isDeleteCategoryLoading) {
-    return <div>... Loading</div>;
+    return <Preloader />;
   }
   if (isUpdateCategoryLoading) {
-    return <div>... Loading</div>;
+    return <Preloader />;
   }
   return (
     <>
       <a key={category.id} href="#home">
         {categoryName}
       </a>
-      <Button className="btn-sm btn-success" style={{ marginRight: "10px" }} onClick={handleShow}>
+      <button className="btn-sm btn btn-success" style={{ marginRight: "10px" }} onClick={handleShow}>
         <FiEdit2 />
-      </Button>
-      <Button className="btn-sm btn-danger">
+      </button>
+      <button className="btn-sm btn btn-danger">
         <MdDelete onClick={deleteCat} />
-      </Button>
+      </button>
 
       <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
@@ -60,14 +60,10 @@ function Category({ category }) {
           <div className="container text-center">
             <Row className="mb-3">
               <Form.Group className="col col-sm-12">
-                <Form.Control type="name" name="categoryType"
-                  placeholder="Category Type" className="form-control-sm" defaultValue={categoryType}
-                  onChange={(e) => handleChange(e)} />
+                <Form.Control type="name" name="categoryType" placeholder="Category Type" className="form-control-sm" defaultValue={categoryType} onChange={(e) => handleChange(e)} />
               </Form.Group>
               <Form.Group className="col col-sm-12">
-                <Form.Control type="name" name="categoryName"
-                  placeholder="Category Name" className="form-control-sm" defaultValue={categoryName}
-                  onChange={(e) => handleChange(e)} />
+                <Form.Control type="name" name="categoryName" placeholder="Category Name" className="form-control-sm" defaultValue={categoryName} onChange={(e) => handleChange(e)} />
               </Form.Group>
             </Row>
             <Row className="mb-3">

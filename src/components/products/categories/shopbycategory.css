@@ -11,3 +11,11 @@
   box-shadow: 2px 2px 4px 2px #eee;
   cursor: pointer;
 }
+.shopbycategory {
+  background: transparent;
+  padding: 10px;
+  margin: 10px 0px;
+  border: thin solid #eee;
+  box-shadow: 1px 1px 5px 4px #eee;
+  font-size: 14px;
+}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import "./review.css";
 import { useReviewContext } from "../../context/reviewcontext";
+import Preloader from "../preloader/Preloader";
 
 function AddReview({ id }) {
   const [show, setShow] = useState(false);
@@ -68,11 +69,11 @@ function AddReview({ id }) {
         <h4>Appreciations!!</h4>
         <p>Your reviews helps our team to be motivated all the time. </p>
       </div>
-    )
+    );
   };
 
   if (isSaveReviewLoading) {
-    return <div>... Loading</div>;
+    return <Preloader />;
   }
 
   return (

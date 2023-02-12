@@ -53,6 +53,11 @@ function TopNavbar() {
           <ul className="navbar-nav">
             <li className="nav-item">
               <NavLink className="nav-link">
+                <ShopByCategory />
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link">
                 <Cart />
               </NavLink>
             </li>

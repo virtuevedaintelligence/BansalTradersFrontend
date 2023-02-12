@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaThumbsDown } from "react-icons/fa";
 import { RiCheckDoubleLine } from "react-icons/ri";
 import { useProductContext } from "../../context/productcontext";
+import Preloader from "../preloader/Preloader";
 import AddReview from "./AddReview";
 import Review from "./Review";
 import "./review.css";
@@ -12,7 +13,7 @@ function Reviews({ id, ratingResponse, productId }) {
     getProductReviews(id);
   }, []);
   if (isProductReviewLoading) {
-    return <div>... Loading</div>;
+    return <Preloader />;
   }
   return (
     <>

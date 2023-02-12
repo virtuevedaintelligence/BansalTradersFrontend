@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, Form, Modal, Row } from "react-bootstrap";
 import { useCategoryContext } from "../../context/categorycontext";
 import { useProductContext } from "../../context/productcontext";
+import Preloader from "../preloader/Preloader";
 function AddProduct() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -34,17 +35,16 @@ function AddProduct() {
   };
 
   if (isLoadingCategory) {
-    return <div>... Loading</div>;
+    return <Preloader />;
   }
   if (isSaveProductLoading) {
-    return <div>... Loading</div>;
+    return <Preloader />;
   }
   return (
     <div>
-      <Button className="btn btn-primary btn-sm" style={{ marginRight: "10px" }} onClick={handleShow}>
-
+      <button className="btn btn-primary btn-sm" style={{ marginRight: "10px" }} onClick={handleShow}>
         Add New Product
-      </Button>
+      </button>
       <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
           <Modal.Title>Add New Product</Modal.Title>
@@ -71,24 +71,13 @@ function AddProduct() {
             </Row>
             <Row className="mb-3">
               <Form.Group className="col col-sm-6">
-                <Form.Control aria-label="Upload Product Image" type="file" size="sm" className="form-control"
-                  name="productImageUrl" onChange={(e) => handleChange(e)} />
+                <Form.Control aria-label="Upload Product Image" type="file" size="sm" className="form-control" name="productImageUrl" onChange={(e) => handleChange(e)} />
               </Form.Group>
               <Form.Group className="col col-sm-3">
-                <Form.Check
-                  type={"checkbox"}
-                  onClick={(e) => handleChange(e)}
-                  label="featured"
-                  name="featured"
-                />
+                <Form.Check type={"checkbox"} onClick={(e) => handleChange(e)} label="featured" name="featured" />
               </Form.Group>
               <Form.Group className="col col-sm-3">
-                <Form.Check
-                  type={"checkbox"}
-                  onClick={(e) => handleChange(e)}
-                  label="isactive"
-                  name="isactive"
-                />
+                <Form.Check type={"checkbox"} onClick={(e) => handleChange(e)} label="isactive" name="isactive" />
               </Form.Group>
             </Row>
             <Row className="mb-3">
@@ -106,12 +95,10 @@ function AddProduct() {
                 </Form.Select>
               </Form.Group>
               <Form.Group className="col col-sm-4">
-                <Form.Control className="form-control-sm" type="pin" name="productPrice"
-                  placeholder="Enter Price" defaultValue={product.productPrice} onChange={(e) => handleChange(e)} />
+                <Form.Control className="form-control-sm" type="pin" name="productPrice" placeholder="Enter Price" defaultValue={product.productPrice} onChange={(e) => handleChange(e)} />
               </Form.Group>
               <Form.Group className="col col-sm-4">
-                <Form.Control className="form-control-sm" type="number" name="quantity"
-                  placeholder="Enter Quantity" defaultValue={product.quantity} onChange={(e) => handleChange(e)} />
+                <Form.Control className="form-control-sm" type="number" name="quantity" placeholder="Enter Quantity" defaultValue={product.quantity} onChange={(e) => handleChange(e)} />
               </Form.Group>
             </Row>
             <Row className="mb-3">

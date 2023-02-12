@@ -20,9 +20,9 @@ function Cartitem() {
               <div className="row">
                 <div className="col-6 d-flex">
                   <div className="d-flex">
-                    <button className="btn btn-sm btn-primary mb-0">-</button>
+                    <button className="btn btn-sm btn-danger mb-0">-</button>
                     <Form.Control size="sm" readOnly disabled type="text" className="text-center qty_cost_bg" placeholder="1" />
-                    <button className="btn btn-sm btn-primary mb-0">+</button>
+                    <button className="btn btn-sm btn-success mb-0">+</button>
                   </div>
                 </div>
                 <div className="col-6">

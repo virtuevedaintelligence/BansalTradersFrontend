@@ -4,6 +4,7 @@ import { Form } from "react-bootstrap";
 import { useCategoryContext } from "../../context/categorycontext";
 import { useProductContext } from "../../context/productcontext";
 import { FiEdit2 } from "react-icons/fi";
+import Preloader from "../preloader/Preloader";
 
 function UpdateProduct({ product }) {
   const { productId: id, productName, productImageUrl, productDescription, productPrice, quantity, weight, categoryName, isFeatured, isActive } = product;
@@ -37,14 +38,14 @@ function UpdateProduct({ product }) {
   };
 
   if (isUpdateProductLoading) {
-    return <div>... Loading</div>;
+    return <Preloader />;
   }
 
   return (
     <>
-      <Button className="btn-sm btn-success" style={{ marginRight: "10px" }} onClick={handleShow}>
+      <button className="btn-sm btn btn-success" style={{ marginRight: "10px" }} onClick={handleShow}>
         <FiEdit2 />
-      </Button>
+      </button>
       <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
           <Modal.Title>Edit {productName}</Modal.Title>

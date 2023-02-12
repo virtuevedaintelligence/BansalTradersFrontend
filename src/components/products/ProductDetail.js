@@ -7,19 +7,19 @@ import Reviews from "../reviews/Reviews";
 import FormatPrice from "../../helper/formatprice/FormatPrice";
 import Quantity from "../../helper/quantity/QuantityHelper";
 import StarRating from "../reviews/star/StarRating";
+import Preloader from "../preloader/Preloader";
 
 function ProductDetail() {
   const { productId } = useParams();
   const { getSingleProduct, isSingleProductLoading, singleProduct } = useProductContext();
-  const { productId: id, productName, productImageUrl, productDescription,
-    productPrice, quantity, weight, categoryName, ratingResponse, avgStarRating } = singleProduct;
+  const { productId: id, productName, productImageUrl, productDescription, productPrice, quantity, weight, categoryName, ratingResponse, avgStarRating } = singleProduct;
 
   useEffect(() => {
     getSingleProduct(productId);
   }, []);
 
   if (isSingleProductLoading) {
-    return <div>... Loading</div>;
+    return <Preloader />;
   }
   return (
     <>
@@ -53,7 +53,9 @@ function ProductDetail() {
                   </div>
                   <div className="col-lg-12 pt-2">
                     <h5>In stock</h5>
-                    <span>Only <b className="text-danger">{quantity}</b> left!!!</span>
+                    <span>
+                      Only <b className="text-danger">{quantity}</b> left!!!
+                    </span>
                     <h5> Hurry Up</h5>
                     {/* <hr className="m-0 pt-2 mt-2 hr_sperator" /> */}
                     <hr className="hr hr-blurry" />

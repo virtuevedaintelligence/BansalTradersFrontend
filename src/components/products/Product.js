@@ -12,6 +12,7 @@ import { useCategoryContext } from "../../context/categorycontext";
 import Quantity from "../../helper/quantity/QuantityHelper";
 
 import UpdateProduct from "./UpdateProduct";
+import Preloader from "../preloader/Preloader";
 
 function Product({ product }) {
   const { isLoadingCategory, categories } = useCategoryContext();
@@ -22,8 +23,7 @@ function Product({ product }) {
     actualPrice = productPrice + 200;
     setActualPrice(actualPrice);
   }
-  const { productId, productName, productImageUrl, productDescription, productPrice,
-    quantity, weight, categoryName, featured, ratingResponse } = product;
+  const { productId, productName, productImageUrl, productDescription, productPrice, quantity, weight, categoryName, featured, ratingResponse } = product;
 
   useEffect(() => {
     calculateActualPrice(productPrice);
@@ -33,7 +33,7 @@ function Product({ product }) {
     deleteProductCall(productId);
   };
   if (isDeleteProductLoading) {
-    return <div>... Loading</div>;
+    return <Preloader />;
   }
 
   return (
@@ -44,9 +44,9 @@ function Product({ product }) {
             <p className="lead mb-0">{productName}</p>
             <div className="justify-content-between">
               <UpdateProduct product={product} />
-              <Button className="btn-sm btn-danger">
+              <button className="btn-sm btn btn-danger">
                 <MdDelete onClick={deleteProd} />
-              </Button>
+              </button>
             </div>
             <div className=" rounded-circle d-flex align-items-center justify-content-center shadow-1-strong" style={{ width: "35px", height: "35px" }}>
               <p className="text-white mb-0 small">
@@ -90,7 +90,7 @@ function Product({ product }) {
               </div>
               <Quantity singleProduct={singleProduct} />
               <div className="col-md-6 mt-3">
-                <NavLink className="btn btn-primary btn-sm mb-0" to={`/dryfruitdetails/${productId}`}>
+                <NavLink className="btn btn-warning btn-sm mb-0" to={`/dryfruitdetails/${productId}`}>
                   View Product
                 </NavLink>
               </div>

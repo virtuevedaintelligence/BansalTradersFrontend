@@ -1,12 +1,13 @@
 import React from "react";
 import { useProductContext } from "../../../context/productcontext";
+import Preloader from "../../preloader/Preloader";
 import MoreProduct from "./MoreProduct";
 
 function MoreProducts({ categoryName, id }) {
   const { isLoading, products } = useProductContext();
 
   if (isLoading) {
-    return <div>... Loading</div>;
+    return <Preloader />;
   }
   return (
     <>

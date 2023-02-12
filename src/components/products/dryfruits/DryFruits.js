@@ -8,16 +8,19 @@ import Category from "../categories/Category";
 import AddCategory from "../categories/AddCategory";
 import AddProduct from "../AddProduct";
 import { useFilterContext } from "../../../context/fitercontext";
+import Preloader from "../../preloader/Preloader";
+
 const DryFruits = () => {
   const { isLoading, products } = useProductContext();
   const { filterdryfruits } = useFilterContext();
   const { isLoadingCategory, categories } = useCategoryContext();
 
   if (isLoading) {
-    return <div>... Loading</div>;
+    return <Preloader />;
   }
   if (isLoadingCategory) {
-    return <div>... Loading</div>;
+    return <Preloader />;
+    
   }
 
   return (

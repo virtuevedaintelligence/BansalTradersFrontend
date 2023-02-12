@@ -2,19 +2,23 @@ import React, { useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { useCategoryContext } from "../../../context/categorycontext";
 import { useFilterContext } from "../../../context/fitercontext";
+import { BiCategoryAlt } from "react-icons/bi";
 import "./shopbycategory.css";
 
 function Example({ name, ...props }) {
   const { isLoadingCategory, categories } = useCategoryContext();
-  let { filters: { cat }, filterDryfruits } = useFilterContext();
+  let {
+    filters: { cat },
+    filterDryfruits,
+  } = useFilterContext();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   return (
     <>
-      <p onClick={handleShow} className="m-0">
-        Categories
+      <p onClick={handleShow} className="m-0 cartOpenBtn">
+        <BiCategoryAlt />
       </p>
       <Offcanvas show={show} onHide={handleClose} {...props}>
         <Offcanvas.Header closeButton>
@@ -23,39 +27,53 @@ function Example({ name, ...props }) {
         <Offcanvas.Body>
           {!isLoadingCategory && (
             <div className="row">
-              {
-                categories && categories.filter((category) => category.categoryName === "all")
+              {categories &&
+                categories
+                  .filter((category) => category.categoryName === "all")
                   .map((category) => {
                     let { categoryName } = category;
                     cat = categoryName;
                     return (
-                      <button key={category.id} className="col-sm-12"
+                      <button
+                        key={category.id}
+                        className="col-sm-12 shopbycategory"
                         type="button"
                         name="cat"
                         value={cat}
-                        onClick={(event) => { filterDryfruits(event); handleClose(event); }}>
+                        onClick={(event) => {
+                          filterDryfruits(event);
+                          handleClose(event);
+                        }}
+                      >
                         {category.categoryName}
                       </button>
                     );
                   })}
-              {categories && categories.filter((category) => category.categoryName !== "Choose Category")
-                .filter((category) => category.categoryName !== "all")
-                .map((category) => {
-                  let { categoryName } = category;
-                  cat = categoryName;
-                  return (
-                    <button key={category.id} className="col-sm-12"
-                      type="button"
-                      name="cat"
-                      value={cat}
-                      onClick={(event) => { filterDryfruits(event); handleClose(event); }}>
-                      {category.categoryName}
-                    </button>
-                  );
-                })}
+              {categories &&
+                categories
+                  .filter((category) => category.categoryName !== "Choose Category")
+                  .filter((category) => category.categoryName !== "all")
+                  .map((category) => {
+                    let { categoryName } = category;
+                    cat = categoryName;
+                    return (
+                      <button
+                        key={category.id}
+                        className="col-sm-12 shopbycategory"
+                        type="button"
+                        name="cat"
+                        value={cat}
+                        onClick={(event) => {
+                          filterDryfruits(event);
+                          handleClose(event);
+                        }}
+                      >
+                        {category.categoryName}
+                      </button>
+                    );
+                  })}
             </div>
-          )
-          }
+          )}
         </Offcanvas.Body>
       </Offcanvas>
     </>
