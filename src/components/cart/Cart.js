@@ -12,9 +12,9 @@ function Cart() {
   const handleShow = () => setShow(true);
   return (
     <>
-      <p variant="primary" onClick={handleShow} className="cartOpenBtn">
+      <span variant="primary" onClick={handleShow} className="cartOpenBtn">
         <BsHandbagFill />
-      </p>
+      </span>
 
       <Offcanvas show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>

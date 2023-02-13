@@ -13,6 +13,7 @@ import Quantity from "../../helper/quantity/QuantityHelper";
 
 import UpdateProduct from "./UpdateProduct";
 import Preloader from "../preloader/Preloader";
+import AddToWishlist from "../AddToWishlist";
 
 function Product({ product }) {
   const { isLoadingCategory, categories } = useCategoryContext();
@@ -48,11 +49,9 @@ function Product({ product }) {
                 <MdDelete onClick={deleteProd} />
               </button>
             </div>
-            <div className=" rounded-circle d-flex align-items-center justify-content-center shadow-1-strong" style={{ width: "35px", height: "35px" }}>
-              <p className="text-white mb-0 small">
-                <FcLike />
-              </p>
-            </div>
+
+            <AddToWishlist />
+            {/* add to wishlist component */}
           </div>
           <NavLink to={`/dryfruitdetails/${productId}`}>
             <MDBCardImage src={productImageUrl} position="top" alt={productName} />

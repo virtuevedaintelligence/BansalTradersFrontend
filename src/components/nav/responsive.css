@@ -1,9 +1,17 @@
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
+  .cartOpenBtn {
+    margin-left: 10px !important;
+  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
+  .cartOpenBtn {
+    display: inline-block;
+    margin-left: 10px !important;
+    font-size: 14px;
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -14,6 +22,12 @@
 @media only screen and (min-width: 992px) {
 }
 @media only screen and (max-width: 991px) {
+  .mb-cat-cart-login {
+    display: block;
+  }
+  .desk-cat-cart-login {
+    display: none !important;
+  }
   .loginNavLink {
     position: relative;
   }
