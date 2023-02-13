@@ -18,9 +18,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ProductDetail from "./components/products/ProductDetail";
 import AddCategory from "./components/products/categories/AddCategory";
 import Admin from "./components/admin/Admin";
-import AdminLogin from "./components/admin/AdminLogin";
-import AdminRegister from "./components/admin/AdminRegister";
-import AdminProfile from "./components/admin/AdminProfile";
 
 function App() {
   return (
@@ -30,10 +27,6 @@ function App() {
         <Routes>
           <Route activeClassName="active_class" exact path="/" element={<Home />}></Route>
           <Route exact path="/secureadmin" element={<Admin />}></Route>
-          <Route exact path="/adminlogin" element={<AdminLogin />}></Route>
-          <Route exact path="/adminregister" element={<AdminRegister />}></Route>
-          <Route exact path="/adminprofile" element={<AdminProfile />}></Route>
-
           <Route activeClassName="active_class" exact path="/products" element={<Products />}>
             <Route path="dryfruits" element={<DryFruits />}></Route>
             <Route path="spices" element={<Spices />}></Route>
