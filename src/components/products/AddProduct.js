@@ -53,7 +53,8 @@ function AddProduct() {
           <form className="container mt-3 mb-3">
             <Row className="mb-3">
               <Form.Group className="col col-sm-6">
-                <Form.Control type="name" name="productName" placeholder="Product Name" className="form-control-sm" defaultValue={product.productName} onChange={(e) => handleChange(e)} />
+                <Form.Control type="name" name="productName" placeholder="Product Name"
+                  className="form-control-sm" defaultValue={product.productName} onChange={(e) => handleChange(e)} />
               </Form.Group>
               <Form.Group className="col col-sm-6">
                 <Form.Select defaultValue="Choose Category" size="sm" className="form-control-sm" name="categoryName" onChange={(e) => handleChange(e)}>

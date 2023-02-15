@@ -11,7 +11,6 @@ const ProductReducer = (state, action) => {
         .filter((curElement) => curElement.categoryType === "Dryfruit");
       const spicesList = action.payload.response.filter((curElement) => curElement.isActive === true)
         .filter((curElement) => curElement.categoryType === "Spices");
-      console.log(spicesList);
       return {
         ...state,
         isLoading: false,

@@ -1,24 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import { Button, Form, Modal, Row } from "react-bootstrap";
-import { MDBContainer, MDBInput, MDBCheckbox, MDBBtn, MDBIcon } from "mdb-react-ui-kit";
-import UserService from "../../services/UserService";
+import { Modal } from "react-bootstrap";
+import { MDBContainer, MDBInput, MDBBtn, MDBIcon } from "mdb-react-ui-kit";
+
+import { useDispatch, useSelector } from "react-redux";
+import { usersOTPGenAction } from "../../store/slices/UserSlice";
 
 function Login() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [msg, setData] = useState(null);
-
+  const data = useSelector((state) => {
+    return state.users;
+  }
+  )
+  const dispatch = useDispatch();
   const [user, setUser] = useState({
-    contactNo: "",
+    number: "",
     otp: ""
   });
 
   const sendOTP = (e) => {
     e.preventDefault();
-
+    dispatch(usersOTPGenAction(user))
   };
   const verifyOTP = (e) => {
     e.preventDefault();
@@ -26,12 +31,10 @@ function Login() {
 
   const handleChangeNumber = (e) => {
     const value = e.target.value;
-    console.log(value);
     setUser({ ...user, [e.target.name]: value });
   };
   const handleChangeOTP = (e) => {
     const value = e.target.value;
-    console.log(value);
     setUser({ ...user, [e.target.name]: value });
   };
 
@@ -46,19 +49,20 @@ function Login() {
         </Modal.Header>
         <Modal.Body>
           <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
-            {msg === "OTP Generated Successfully" ? (
+            {data.dataOTPGen && data.dataOTPGen.message === "OTP Generated Successfully" ? (
               <div>
-                <MDBInput wrapperClass="mb-4" label="Enter OTP" name="otp" id="OTP" type="number" onChange={(e) => handleChangeOTP(e)} />
-                <MDBBtn className="mb-4" onClick={verifyOTP}>
+                <MDBInput wrapperClass="mb-4" label="Enter OTP" name="otp" defaultValue={user.otp}
+                  id="OTP" type="number" onChange={(e) => handleChangeOTP(e)} />
+                <MDBBtn className="mb-4 col-12" onClick={verifyOTP}>
                   Proceed
                 </MDBBtn>
-                <MDBBtn className="mb-4" onClick={sendOTP}>
+                <MDBBtn className="mb-2 btn-sm col-12" onClick={sendOTP}>
                   Request Another OTP
                 </MDBBtn>
               </div>
             ) : (
               <div>
-                <MDBInput wrapperClass="mb-4" label="Phone Number" name="contactNo" id="phoneNumber" type="contact"
+                <MDBInput wrapperClass="mb-4" label="Phone Number" name="number" id="phoneNumber" type="contact"
                   onChange={(e) => handleChangeNumber(e)} />
                 <MDBBtn className="mb-4" onClick={sendOTP}>
                   Get OTP

@@ -6,6 +6,4 @@ const store = configureStore({
         users: userSlice,
     }
 })
-
-console.log(store);
 export default store;
