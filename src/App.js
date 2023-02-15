@@ -31,7 +31,6 @@ function App() {
             <Route path="dryfruits" element={<DryFruits />}></Route>
             <Route path="spices" element={<Spices />}></Route>
           </Route>
-
           <Route path="/dryfruitdetail/:id" element={<ProductDetail />} />
           <Route activeClassName="active_class" exact path="/about" element={<About />}></Route>
           <Route activeClassName="active_class" exact path="/contact" element={<Contact />}></Route>
@@ -43,7 +42,6 @@ function App() {
           <Route activeClassName="active_class" exact path="/addproduct" element={<AddProduct />}></Route>
           <Route activeClassName="active_class" exact path="/addcategory" element={<AddCategory />}></Route>
           <Route activeClassName="active_class" exact path="/update/:productId" element={<UpdateProduct />}></Route>
-
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
         <Footer />
