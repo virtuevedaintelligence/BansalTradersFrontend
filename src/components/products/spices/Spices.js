@@ -31,7 +31,7 @@ function Spices() {
               return <Category key={category.categoryId} category={category} />;
             })}
         </div>
-        <div className="row">
+        <div className="container row">
           <div className="col-sm-12 d-flex">
             <AddCategory />
             <AddProduct />
