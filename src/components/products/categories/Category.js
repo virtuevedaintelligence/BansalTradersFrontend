@@ -42,15 +42,15 @@ function Category({ category }) {
   }
   return (
     <>
-      <a key={category.id} href="#home">
+      <a key={category.id} href="#home" >
         {categoryName}
       </a>
-      <button className="btn-sm btn btn-success" style={{ marginRight: "10px" }} onClick={handleShow}>
+      {/* <button className="btn-sm btn btn-success" style={{ marginRight: "10px" }} onClick={handleShow}>
         <FiEdit2 />
       </button>
       <button className="btn-sm btn btn-danger">
         <MdDelete onClick={deleteCat} />
-      </button>
+      </button> */}
 
       <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
         <Modal.Header closeButton>

@@ -34,7 +34,7 @@ div.scrollmenu {
 div.scrollmenu a {
   display: inline-block;
   background-color: #ffaa2b;
-  color: white;
+  color: #000;
   text-align: center;
   padding: 5px 10px;
   text-decoration: none;
@@ -42,10 +42,16 @@ div.scrollmenu a {
   margin: 10px;
   border-radius: 10px;
   box-shadow: 2px 2px 5px 0px #ccc;
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -ms-transition: 0.4s;
+  -o-transition: 0.4s;
 }
 
 div.scrollmenu a:hover {
   background-color: #4163ef;
+  color: white;
 }
 
 .qty_cost_bg {

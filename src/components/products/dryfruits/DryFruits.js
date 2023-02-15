@@ -36,7 +36,7 @@ const DryFruits = () => {
         </div>
         <div className="container row">
           <div className="col-sm-12 d-flex">
-            <AddCategory />
+            {/* <AddCategory /> */}
             <AddProduct />
           </div>
         </div>
