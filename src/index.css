@@ -59,3 +59,6 @@ a {
 .btn-primary.focus {
   box-shadow: 0 8px 9px -4px #126e6382, 0 4px 18px 0 rgb(59 113 202 / 20%) !important;
 }
+.navbar-light .navbar-toggler-icon {
+  background-image: transparent !important;
+}

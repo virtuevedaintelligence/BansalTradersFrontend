@@ -63,61 +63,60 @@ function TopNavbar() {
         <Navbar.Toggle />
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
-        </button> 
-        <Navbar.Collapse>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav mx-auto">
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/">
-                  Home
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/products/dryfruits">
-                  Dryfruits
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/products/spices">
-                  Spices
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/about">
-                  About
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/contact">
-                  Contact
-                </NavLink>
-              </li>
-            </ul>
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <NavLink className="nav-link">
-                  <ShopByCategory />
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link">
-                  <Cart />
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link">
-                  <Login className="loginNavLink d-flex" />
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link">
-                  <Search />
-                </NavLink>
-              </li>
-            </ul>
-          </div>
-        </Navbar.Collapse>
-      </nav> */}
+        </button>
+
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav mx-auto">
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/">
+                Home
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/products/dryfruits">
+                Dryfruits
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/products/spices">
+                Spices
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/about">
+                About
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/contact">
+                Contact
+              </NavLink>
+            </li>
+          </ul>
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <NavLink className="nav-link">
+                <ShopByCategory />
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link">
+                <Cart />
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link">
+                <Login className="loginNavLink d-flex" />
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link">
+                <Search />
+              </NavLink>
+            </li>
+          </ul>
+        </div>
+      </nav>
       {/* <Navbar expand="lg" className="nav-bg">
         <Container>
           <Navbar.Brand href="/">Bansal Traders</Navbar.Brand>

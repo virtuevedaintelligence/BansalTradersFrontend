@@ -10,10 +10,10 @@ import FormatPrice from "../../helper/formatprice/FormatPrice";
 import { useProductContext } from "../../context/productcontext";
 import { useCategoryContext } from "../../context/categorycontext";
 import Quantity from "../../helper/quantity/QuantityHelper";
+import AddToWishlist from "./../AddToWishlist";
 
 import UpdateProduct from "./UpdateProduct";
 import Preloader from "../preloader/Preloader";
-import AddToWishlist from "../AddToWishlist";
 
 function Product({ product }) {
   const { isLoadingCategory, categories } = useCategoryContext();
@@ -48,6 +48,11 @@ function Product({ product }) {
               <button className="btn-sm btn btn-danger">
                 <MdDelete onClick={deleteProd} />
               </button>
+            </div>
+            <div className=" rounded-circle d-flex align-items-center justify-content-center shadow-1-strong" style={{ width: "35px", height: "35px" }}>
+              <p className="text-white mb-0 small">
+                <FcLike />
+              </p>
             </div>
 
             <AddToWishlist />

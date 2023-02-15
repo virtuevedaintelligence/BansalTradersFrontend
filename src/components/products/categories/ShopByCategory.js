@@ -17,9 +17,9 @@ function Example({ name, ...props }) {
 
   return (
     <>
-      <span onClick={handleShow} className="m-0 cartOpenBtn">
+      <p onClick={handleShow} className="m-0 cartOpenBtn">
         <BiCategoryAlt />
-      </span>
+      </p>
       <Offcanvas show={show} onHide={handleClose} {...props}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Shop By Categories</Offcanvas.Title>
