@@ -3,9 +3,8 @@ import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { Modal } from "react-bootstrap";
 import { MDBContainer, MDBInput, MDBBtn, MDBIcon } from "mdb-react-ui-kit";
-
 import { useDispatch, useSelector } from "react-redux";
-import { usersOTPGenAction } from "../../store/slices/UserSlice";
+import { usersOTPGenAction, usersOTPVerifyAction } from "../../store/slices/UserSlice";
 
 function Login() {
   const [show, setShow] = useState(false);
@@ -27,6 +26,7 @@ function Login() {
   };
   const verifyOTP = (e) => {
     e.preventDefault();
+    dispatch(usersOTPVerifyAction(user));
   };
 
   const handleChangeNumber = (e) => {
