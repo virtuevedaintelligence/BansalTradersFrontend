@@ -3,17 +3,13 @@ import UserService from "../../services/UserService";
 
 export const usersOTPGenAction = createAsyncThunk('users-action-gen', async (user) => {
     const otpResponse = UserService.generateOtp(user);
-    console.log(otpResponse.data);
     return (await otpResponse).data;
 })
 
 export const usersOTPVerifyAction = createAsyncThunk('users-action-verify', async (user) => {
     const otpResponse = UserService.verifyOtp(user);
-    console.log(otpResponse.data);
     return (await otpResponse).data;
 })
-
-
 
 const userSlice = createSlice({
     name: "users",
@@ -24,7 +20,6 @@ const userSlice = createSlice({
         isLoadingOTPVerify: false,
         dataOTPVerify: null,
         isErrorOTPVerify: false
-
     },
     extraReducers: (builder) => {
         builder.addCase(usersOTPGenAction.pending, (state, action) => {
@@ -40,6 +35,7 @@ const userSlice = createSlice({
             console.log("Error", action.payload)
             state.isErrorOTPGen = true;
         });
+
         builder.addCase(usersOTPVerifyAction.pending, (state, action) => {
             state.isLoadingOTPVerify = true;
         });
@@ -50,8 +46,9 @@ const userSlice = createSlice({
         });
 
         builder.addCase(usersOTPVerifyAction.rejected, (state, action) => {
-            console.log("Error", action.payload)
             state.isErrorOTPVerify = true;
+            console.log(action.payload);
+            state.dataOTPVerify = action.payload;
         });
     }
 

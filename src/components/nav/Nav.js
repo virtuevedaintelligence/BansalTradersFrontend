@@ -32,11 +32,14 @@ function TopNavbar() {
             <NavLink className="nav-link" to="/products/spices">
               Spices
             </NavLink>
+            <NavLink className="nav-link" to="/orders">
+              Orders
+            </NavLink>
             <NavLink className="nav-link" to="/about">
               About
             </NavLink>
             <NavLink className="nav-link" to="/contact">
-              contact
+              Contact
             </NavLink>
           </Nav>
           <Nav className="ml-auto">
@@ -45,6 +48,9 @@ function TopNavbar() {
             </Nav.Link>
             <Nav.Link className="desk-cat-cart-login">
               <Cart />
+              <div className="amount-container">
+                <p className="total-amount">0</p>
+              </div>
             </Nav.Link>
             <Nav.Link className="desk-cat-cart-login">
               <Login className="loginNavLink d-flex" />

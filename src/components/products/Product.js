@@ -1,30 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { FcLike } from "react-icons/fc";
 import { MDBCard, MDBCardBody, MDBCardImage, MDBCol } from "mdb-react-ui-kit";
 import "./products.css";
 import { NavLink } from "react-router-dom";
 import Form from "react-bootstrap/Form";
-import { Button } from "react-bootstrap";
 import { MdDelete } from "react-icons/md";
 import FormatPrice from "../../helper/formatprice/FormatPrice";
 import { useProductContext } from "../../context/productcontext";
-import { useCategoryContext } from "../../context/categorycontext";
 import Quantity from "../../helper/quantity/QuantityHelper";
 import AddToWishlist from "./../AddToWishlist";
-
+import { useDispatch, useSelector } from 'react-redux';
 import UpdateProduct from "./UpdateProduct";
 import Preloader from "../preloader/Preloader";
-
+import { addToCart } from "../../store/slices/CartSlice";
 function Product({ product }) {
-  const { isLoadingCategory, categories } = useCategoryContext();
-
+  const dispatch = useDispatch();
   const { isDeleteProductLoading, deleteProductCall, singleProduct } = useProductContext();
   var [actualPrice, setActualPrice] = useState();
   function calculateActualPrice(productPrice) {
     actualPrice = productPrice + 200;
     setActualPrice(actualPrice);
   }
-  const { productId, productName, productImageUrl, productDescription, productPrice, quantity, weight, categoryName, featured, ratingResponse } = product;
+  const { productId, productName, productImageUrl,
+    productDescription, productPrice, quantity, weight,
+    categoryName, featured, ratingResponse } = product;
 
   useEffect(() => {
     calculateActualPrice(productPrice);
@@ -36,6 +34,11 @@ function Product({ product }) {
   if (isDeleteProductLoading) {
     return <Preloader />;
   }
+
+  const handleAdd = (product) => {
+    console.log(product)
+    dispatch(addToCart(product))
+  };
 
   return (
     <>
@@ -49,14 +52,7 @@ function Product({ product }) {
                 <MdDelete onClick={deleteProd} />
               </button>
             </div>
-            <div className=" rounded-circle d-flex align-items-center justify-content-center shadow-1-strong" style={{ width: "35px", height: "35px" }}>
-              <p className="text-white mb-0 small">
-                <FcLike />
-              </p>
-            </div>
-
             <AddToWishlist />
-            {/* add to wishlist component */}
           </div>
           <NavLink to={`/dryfruitdetails/${productId}`}>
             <MDBCardImage src={productImageUrl} position="top" alt={productName} />
@@ -99,7 +95,10 @@ function Product({ product }) {
                 </NavLink>
               </div>
               <div className="col-md-6 mt-3">
-                <button className="btn btn-primary btn-sm mb-0 add_to_cart">Add To Cart</button>
+                <button className="btn btn-primary btn-sm mb-0 add_to_cart"
+                  onClick={() => handleAdd(product)}
+                >
+                  Add To Cart</button>
               </div>
             </div>
           </MDBCardBody>

@@ -2,14 +2,19 @@ import React, { useState } from "react";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { Modal } from "react-bootstrap";
-import { MDBContainer, MDBInput, MDBBtn, MDBIcon } from "mdb-react-ui-kit";
+import { MDBContainer, MDBBtn, MDBIcon, MDBInput } from "mdb-react-ui-kit";
 import { useDispatch, useSelector } from "react-redux";
 import { usersOTPGenAction, usersOTPVerifyAction } from "../../store/slices/UserSlice";
+import { IoLogIn } from "react-icons/io5";
+import { SlLogout } from "react-icons/sl";
 
 function Login() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleCloseLogout = () => setShow(true);
+  const handleShowLogout = () => setShow(false);
+
   const data = useSelector((state) => {
     return state.users;
   }
@@ -37,12 +42,20 @@ function Login() {
     const value = e.target.value;
     setUser({ ...user, [e.target.name]: value });
   };
-
+  const loggedIn = data.dataOTPVerify;
   return (
     <>
-      <span variant="primary" onClick={handleShow} className="cartOpenBtn">
-        <i className="fas fa-user" onClick={handleShow}></i>
-      </span>
+      {loggedIn && loggedIn.message === "User logged in successfully" ? (
+        <span variant="primary" onClick={handleShow} className="cartOpenBtn" closeButton>
+          <SlLogout onClick={handleCloseLogout} />
+        </span>
+      ) : (
+        <span variant="primary" onClick={handleShow} className="cartOpenBtn">
+          <IoLogIn onClick={handleShow} />
+        </span>
+      )
+      }
+
       <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
           <Modal.Title>Login with OTP</Modal.Title>
@@ -51,7 +64,7 @@ function Login() {
           <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
             {data.dataOTPGen && data.dataOTPGen.message === "OTP Generated Successfully" ? (
               <div>
-                <MDBInput wrapperClass="mb-4" label="Enter OTP" name="otp" defaultValue={user.otp}
+                <MDBInput className="mb-4" label="Enter OTP" name="otp" value={user.otp}
                   id="OTP" type="number" onChange={(e) => handleChangeOTP(e)} />
                 <MDBBtn className="mb-4 col-12" onClick={verifyOTP}>
                   Proceed
@@ -60,9 +73,13 @@ function Login() {
                   Request Another OTP
                 </MDBBtn>
               </div>
+            ) : loggedIn && loggedIn.message === "User logged in successfully" ? (
+              <>
+                Logged in Success
+              </>
             ) : (
               <div>
-                <MDBInput wrapperClass="mb-4" label="Phone Number" name="number" id="phoneNumber" type="contact"
+                <MDBInput className="mb-4" label="Phone Number" name="number" id="phoneNumber" type="contact"
                   onChange={(e) => handleChangeNumber(e)} />
                 <MDBBtn className="mb-4" onClick={sendOTP}>
                   Get OTP
