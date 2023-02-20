@@ -29,3 +29,12 @@
   border: thin solid #eee !important;
   box-shadow: 5px 5px 5px 1px #eee;
 }
+.totalCartQty {
+  position: absolute;
+  top: 38px;
+  background: #fe844b;
+  padding: 5px 8px;
+  border-radius: 100%;
+  font-size: 10px;
+  color: white;
+}

@@ -48,9 +48,9 @@ function TopNavbar() {
             </Nav.Link>
             <Nav.Link className="desk-cat-cart-login">
               <Cart />
-              <div className="amount-container">
+              {/* <div className="amount-container">
                 <p className="total-amount">0</p>
-              </div>
+              </div> */}
             </Nav.Link>
             <Nav.Link className="desk-cat-cart-login">
               <Login className="loginNavLink d-flex" />

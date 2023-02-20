@@ -8,7 +8,7 @@ import FormatPrice from "../../helper/formatprice/FormatPrice";
 import { useProductContext } from "../../context/productcontext";
 import Quantity from "../../helper/quantity/QuantityHelper";
 import AddToWishlist from "./../AddToWishlist";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import UpdateProduct from "./UpdateProduct";
 import Preloader from "../preloader/Preloader";
 import { add } from "../../store/slices/CartSlice";
@@ -20,9 +20,7 @@ function Product({ product }) {
     actualPrice = productPrice + 200;
     setActualPrice(actualPrice);
   }
-  const { productId, productName, productImageUrl,
-    productDescription, productPrice, quantity, weight,
-    categoryName, featured, ratingResponse } = product;
+  const { productId, productName, productImageUrl, productDescription, productPrice, quantity, weight, categoryName, featured, ratingResponse } = product;
 
   useEffect(() => {
     calculateActualPrice(productPrice);
@@ -95,10 +93,14 @@ function Product({ product }) {
                 </NavLink>
               </div>
               <div className="col-md-6 mt-3">
-                <button className="btn btn-primary btn-sm mb-0 add_to_cart"
-                  onClick={() => { handleAdd(product) }}
+                <button
+                  className="btn btn-primary btn-sm mb-0 add_to_cart"
+                  onClick={() => {
+                    handleAdd(product);
+                  }}
                 >
-                  Add To Cart</button>
+                  Add To Cart
+                </button>
               </div>
             </div>
           </MDBCardBody>

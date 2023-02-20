@@ -12,20 +12,12 @@ function Cart() {
   const handleShow = () => setShow(true);
   const dispatch = useDispatch();
   const { cartItems, totalQuantity, totalCartAmount } = useSelector((store) => store.cart);
-  if (totalCartAmount < 1) {
-    return (
-      <section className='cart'>
-        <header>
-          <h2>Your Cart</h2>
-          <h4 className='empty-cart'>is currently empty</h4>
-        </header>
-      </section>
-    );
-  }
+
   return (
     <>
       <span variant="primary" onClick={handleShow} className="cartOpenBtn">
         <BsHandbagFill />
+        <span className="totalCartQty">{totalQuantity}</span>
       </span>
 
       <Offcanvas show={show} onHide={handleClose}>
@@ -33,18 +25,26 @@ function Cart() {
           <Offcanvas.Title>Your Cart</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          {
-            cartItems.map((item) => {
-              return <Cartitem key={item.id} {...item}
-                totalCartAmount={totalCartAmount}
-                totalQuantity={totalQuantity} />;
-            })
-          }
-          <div className="cartTotal">Total Quantity: {totalQuantity}</div>
-          <div className="subTotal">Total Price: {totalCartAmount}</div>
-          <div className="Checkout">
-            <Button className="col-12">Proceed To Payment</Button>
-          </div>
+          {totalCartAmount < 1 ? (
+            <section className="cart">
+              <header>
+                <h2>Your Cart</h2>
+                <h4 className="empty-cart">is currently empty</h4>
+              </header>
+            </section>
+          ) : (
+            <>
+              {cartItems.map((item) => {
+                console.log(item);
+                return <Cartitem key={item.id} {...item} totalCartAmount={totalCartAmount} totalQuantity={totalQuantity} />;
+              })}
+              <div className="cartTotal">Total Quantity: {totalQuantity}</div>
+              <div className="subTotal">Total Price: {totalCartAmount}</div>
+              <div className="Checkout">
+                <Button className="col-12">Proceed To Payment</Button>
+              </div>
+            </>
+          )}
         </Offcanvas.Body>
       </Offcanvas>
     </>
