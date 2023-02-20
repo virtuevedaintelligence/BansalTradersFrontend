@@ -15,12 +15,14 @@ import { add } from "../../store/slices/CartSlice";
 function Product({ product }) {
   const dispatch = useDispatch();
   const { isDeleteProductLoading, deleteProductCall, singleProduct } = useProductContext();
+  const [orderQuantity, setOrderQunatity] = useState(1);
+
   var [actualPrice, setActualPrice] = useState();
   function calculateActualPrice(productPrice) {
     actualPrice = productPrice + 200;
     setActualPrice(actualPrice);
   }
-  const { productId, productName, productImageUrl, productDescription, productPrice, quantity, weight, categoryName, featured, ratingResponse } = product;
+  const { productId, productName, productImageUrl, productDescription, productPrice, orderQty, quantity, weight, categoryName, featured, ratingResponse } = product;
 
   useEffect(() => {
     calculateActualPrice(productPrice);
@@ -34,7 +36,10 @@ function Product({ product }) {
   }
 
   const handleAdd = (product) => {
-    console.log(product);
+    console.log(product.orderQty);
+    product.orderQty = orderQuantity;
+    console.log(orderQuantity);
+
     dispatch(add(product));
   };
 
@@ -86,7 +91,7 @@ function Product({ product }) {
                   <option value="3">1000 Gm</option>
                 </Form.Select>
               </div>
-              <Quantity singleProduct={singleProduct} />
+              <Quantity singleProduct={product} orderQuantity={orderQuantity} setOrderQunatity={setOrderQunatity} />
               <div className="col-md-6 mt-3">
                 <NavLink className="btn btn-warning btn-sm mb-0" to={`/dryfruitdetails/${productId}`}>
                   View Product

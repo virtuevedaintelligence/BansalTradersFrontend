@@ -35,7 +35,7 @@ function Cart() {
           ) : (
             <>
               {cartItems.map((item) => {
-                console.log(item);
+                //console.log(item);
                 return <Cartitem key={item.id} {...item} totalCartAmount={totalCartAmount} totalQuantity={totalQuantity} />;
               })}
               <div className="cartTotal">Total Quantity: {totalQuantity}</div>

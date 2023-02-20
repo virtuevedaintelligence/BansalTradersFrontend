@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-function QuantityHelper({ singleProduct }) {
+function QuantityHelper({ singleProduct, setOrderQunatity, orderQuantity }) {
   const { quantity } = singleProduct;
-  const [orderQuantity, setOrderQunatity] = useState(1);
+
   const decreaseQuantity = () => {
     orderQuantity > 1 ? setOrderQunatity(orderQuantity - 1) : setOrderQunatity(1);
   };

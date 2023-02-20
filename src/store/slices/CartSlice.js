@@ -13,6 +13,7 @@ const cartSlice = createSlice({
     },
     add: (state, action) => {
       const product = action.payload;
+
       console.log(product);
       //check item is already exits
       const existsItem = state.cartItems.find((item) => item.id === product.productId);
@@ -23,18 +24,20 @@ const cartSlice = createSlice({
         state.totalQuantity++;
         state.totalCartAmount += product.productPrice;
       } else {
+        const qty = product.quantity;
         state.cartItems.push({
           id: product.productId,
           img: product.productImageUrl,
           price: product.productPrice,
-          quantity: 1,
+          quantity: product.quantity,
           weight: product.weight,
           totalPrice: product.productPrice,
           name: product.productName,
           category: product.categoryName,
         });
-        state.totalQuantity++;
-        state.totalCartAmount += product.productPrice;
+        console.log(qty);
+        state.totalQuantity += qty * 1;
+        state.totalCartAmount += product.productPrice * qty;
       }
     },
     remove: (state, action) => {
