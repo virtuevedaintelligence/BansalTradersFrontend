@@ -11,7 +11,7 @@ import AddToWishlist from "./../AddToWishlist";
 import { useDispatch, useSelector } from 'react-redux';
 import UpdateProduct from "./UpdateProduct";
 import Preloader from "../preloader/Preloader";
-import { addToCart } from "../../store/slices/CartSlice";
+import { add } from "../../store/slices/CartSlice";
 function Product({ product }) {
   const dispatch = useDispatch();
   const { isDeleteProductLoading, deleteProductCall, singleProduct } = useProductContext();
@@ -36,8 +36,8 @@ function Product({ product }) {
   }
 
   const handleAdd = (product) => {
-    console.log(product)
-    dispatch(addToCart(product))
+    console.log(product);
+    dispatch(add(product));
   };
 
   return (
@@ -96,7 +96,7 @@ function Product({ product }) {
               </div>
               <div className="col-md-6 mt-3">
                 <button className="btn btn-primary btn-sm mb-0 add_to_cart"
-                  onClick={() => handleAdd(product)}
+                  onClick={() => { handleAdd(product) }}
                 >
                   Add To Cart</button>
               </div>

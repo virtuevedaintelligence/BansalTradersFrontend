@@ -1,64 +1,70 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-export const placeOrder = createAsyncThunk('place-order', async (order) => {
-    return null;
-})
-const initialState = {
-    cartItems: [],
-    totalQuantity: 0,
-}
 const cartSlice = createSlice({
-    name: "cart",
-    initialState,
-    reducer: {
-        clearCart: (state) => {
+    name: 'cart',
+    initialState: {
+        cartItems: [],
+        totalQuantity: 0,
+        totalCartAmount: 0,
+    },
+    reducers: {
+        clear: (state) => {
             state.cartItems = [];
         },
-        addToCart(state, action) {
+        add: (state, action) => {
             const product = action.payload;
             console.log(product);
             //check item is already exits
-            const exitsItem = state.cartItems.find((item) => item.id === product.id)
-            if (exitsItem) {
-                exitsItem.quantity++
-                exitsItem.totalPrice += product.price
+            const existsItem = state.cartItems.find((item) => item.id === product.productId)
+            console.log(existsItem)
+            if (existsItem) {
+                existsItem.quantity++
+                existsItem.totalPrice += product.productPrice
+                state.totalQuantity++
+                state.totalCartAmount += product.productPrice
             } else {
-                state.itemsList.push({
+                state.cartItems.push({
                     id: product.productId,
+                    img: product.productImageUrl,
                     price: product.productPrice,
                     quantity: 1,
+                    weight: product.weight,
                     totalPrice: product.productPrice,
                     name: product.productName,
+                    category: product.categoryName,
                 })
                 state.totalQuantity++
+                state.totalCartAmount += product.productPrice
             }
         },
-        removeFromCart(state, action) {
+        remove: (state, action) => {
             const id = action.payload
-            const exitstingItem = state.itemsList.find((item) => item.id === id)
+            const exitstingItem = state.cartItems.find((item) => item.id === id)
             if (exitstingItem.quantity === 1) {
-                state.itemsList = state.itemsList.filter((item) => item.id !== id)
+                state.cartItems = state.cartItems.filter((item) => item.id !== id)
                 state.totalQuantity--
+                state.totalCartAmount -= exitstingItem.price
             } else {
                 exitstingItem.quantity--
+                state.totalQuantity--
                 exitstingItem.totalPrice -= exitstingItem.price
+                state.totalCartAmount -= exitstingItem.price
             }
         },
-    },
-    extraReducers: (builder) => {
-        builder.addCase(placeOrder.pending, (state, action) => {
-
-        });
-
-        builder.addCase(placeOrder.fulfilled, (state, action) => {
-        });
-
-        builder.addCase(placeOrder.rejected, (state, action) => {
-
-        });
+        increase: (state, action) => {
+            const id = action.payload
+            console.log(id)
+            const existsItem = state.cartItems.find((item) => item.id === id);
+            if (existsItem) {
+                existsItem.quantity++
+                existsItem.totalPrice += existsItem.totalPrice
+                state.totalQuantity++
+                state.totalCartAmount += existsItem.totalCartAmount
+            }
+        }
     }
 })
 
-export const { clearCart, addToCart, removeFromCart } =
+export const { clear, add, remove, increase, decrease } =
     cartSlice.actions;
 export default cartSlice.reducer;

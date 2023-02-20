@@ -11,8 +11,8 @@ function Cart() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const dispatch = useDispatch();
-  const { cartItems, total, amount } = useSelector((store) => store.cart);
-  if (amount < 1) {
+  const { cartItems, totalQuantity, totalCartAmount } = useSelector((store) => store.cart);
+  if (totalCartAmount < 1) {
     return (
       <section className='cart'>
         <header>
@@ -35,11 +35,13 @@ function Cart() {
         <Offcanvas.Body>
           {
             cartItems.map((item) => {
-              return <Cartitem key={item.id} {...item} />;
+              return <Cartitem key={item.id} {...item}
+                totalCartAmount={totalCartAmount}
+                totalQuantity={totalQuantity} />;
             })
           }
-          <div className="cartTotal">Total:</div>
-          <div className="subTotal">Subtotal:</div>
+          <div className="cartTotal">Total Quantity: {totalQuantity}</div>
+          <div className="subTotal">Total Price: {totalCartAmount}</div>
           <div className="Checkout">
             <Button className="col-12">Proceed To Payment</Button>
           </div>

@@ -11,6 +11,12 @@ export const usersOTPVerifyAction = createAsyncThunk('users-action-verify', asyn
     return (await otpResponse).data;
 })
 
+export const adminRegister = createAsyncThunk('admin-action-register', async (admin) => {
+    console.log(admin);
+    const otpResponse = UserService.registerAdmin(admin);
+    return (await otpResponse).data;
+})
+
 const userSlice = createSlice({
     name: "users",
     initialState: {
@@ -19,7 +25,10 @@ const userSlice = createSlice({
         isErrorOTPGen: false,
         isLoadingOTPVerify: false,
         dataOTPVerify: null,
-        isErrorOTPVerify: false
+        isErrorOTPVerify: false,
+        isLoadingAdminRegister: false,
+        dataAdminRegister: null,
+        isErrorAdminRegister: false
     },
     extraReducers: (builder) => {
         builder.addCase(usersOTPGenAction.pending, (state, action) => {
@@ -50,9 +59,21 @@ const userSlice = createSlice({
             console.log(action.payload);
             state.dataOTPVerify = action.payload;
         });
+        builder.addCase(adminRegister.pending, (state, action) => {
+            state.isLoadingAdminRegister = true;
+        });
+
+        builder.addCase(adminRegister.fulfilled, (state, action) => {
+            state.isLoadingAdminRegister = false;
+            state.dataAdminRegister = action.payload;
+        });
+
+        builder.addCase(adminRegister.rejected, (state, action) => {
+            state.isErrorAdminRegister = true;
+            console.log(action.payload);
+            state.dataAdminRegister = action.payload;
+        });
     }
 
 });
-
-console.log(userSlice);
 export default userSlice.reducer;
