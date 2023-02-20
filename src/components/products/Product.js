@@ -38,7 +38,7 @@ function Product({ product }) {
   const handleAdd = (product) => {
     console.log(product.orderQty);
     product.orderQty = orderQuantity;
-    console.log(orderQuantity);
+    console.log("Product line 42" + product);
 
     dispatch(add(product));
   };

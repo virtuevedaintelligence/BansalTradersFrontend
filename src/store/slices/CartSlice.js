@@ -24,14 +24,14 @@ const cartSlice = createSlice({
         state.totalQuantity++;
         state.totalCartAmount += product.productPrice;
       } else {
-        const qty = product.quantity;
+        const qty = product.orderQty;
         state.cartItems.push({
           id: product.productId,
           img: product.productImageUrl,
           price: product.productPrice,
-          quantity: product.quantity,
+          quantity: product.orderQty,
           weight: product.weight,
-          totalPrice: product.productPrice,
+          totalPrice: product.productPrice * qty,
           name: product.productName,
           category: product.categoryName,
         });
