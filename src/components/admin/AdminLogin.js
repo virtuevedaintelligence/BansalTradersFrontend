@@ -20,11 +20,11 @@ function AdminLogin() {
     <div className="p-5">
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <MDBInput wrapperClassName="mb-4" label="Email Address" name="email" id="email" type="email" value={values.email} onChange={handleChange} onBlur={handleBlur} />
+          <MDBInput className="mb-4" label="Email Address" name="email" id="email" type="email" value={values.email} onChange={handleChange} onBlur={handleBlur} />
           {errors.email && touched.email ? <p className="form-error">{errors.email}</p> : null}
         </div>
         <div className="mb-3">
-          <MDBInput wrapperClassName="mb-4" label="Password" name="password" id="password" type="password" value={values.password} onChange={handleChange} onBlur={handleBlur} />
+          <MDBInput className="mb-4" label="Password" name="password" id="password" type="password" value={values.password} onChange={handleChange} onBlur={handleBlur} />
           {errors.password && touched.password ? <p className="form-error">{errors.password}</p> : null}
         </div>
         <div className="mb-3 text-center">
