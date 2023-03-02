@@ -11,6 +11,7 @@ import NotFound from "./components/notfound/NotFound";
 import Mission from "./components/mission/Mission";
 import Cart from "./components/cart/Cart";
 import Orders from "./components/orders/Orders";
+import Order from "./components/orders/Order";
 import Footer from "./components/footer/Footer";
 import AddProduct from "../src/components/products/AddProduct";
 import UpdateProduct from "../src/components/products/UpdateProduct";
@@ -37,6 +38,7 @@ function App() {
           <Route activeClassName="active_class" exact path="/mission" element={<Mission />}></Route>
           <Route activeClassName="active_class" exact path="/cart" element={<Cart />}></Route>
           <Route activeClassName="active_class" exact path="/orders" element={<Orders />}></Route>
+          <Route activeClassName="active_class" exact path="/Order" element={<Order />}></Route>
           <Route activeClassName="active_class" exact path="/login" element={<Login />}></Route>
           <Route activeClassName="active_class" exact path="/dryfruitdetails/:productId" element={<ProductDetail />}></Route>
           <Route activeClassName="active_class" exact path="/addproduct" element={<AddProduct />}></Route>
