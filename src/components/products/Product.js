@@ -13,8 +13,11 @@ import UpdateProduct from "./UpdateProduct";
 import Preloader from "../preloader/Preloader";
 import { add } from "../../store/slices/CartSlice";
 function Product({ product }) {
+
+
   const dispatch = useDispatch();
   const { isDeleteProductLoading, deleteProductCall, singleProduct } = useProductContext();
+  const [selectedOption, setSelectedOption] = useState("");
   const [orderQuantity, setOrderQunatity] = useState(1);
 
   var [actualPrice, setActualPrice] = useState();
@@ -22,7 +25,21 @@ function Product({ product }) {
     actualPrice = productPrice + 200;
     setActualPrice(actualPrice);
   }
-  const { productId, productName, productImageUrl, productDescription, productPrice, orderQty, quantity, weight, categoryName, featured, ratingResponse } = product;
+  let { productId, productName, productImageUrl, productDescription,
+    productPrice, orderQty, quantity, weight, categoryName, featured, ratingResponse, productInformation } = product;
+  let changedWeight;
+  const handleChange = (e) => {
+    const value = e.target.value;
+    changedWeight = value;
+    console.log(value);
+    setSelectedOption(value);
+  };
+
+  const [productInfo, setProductInfo] = useState({
+    productPrice: "",
+    quantity: "",
+    weight: ""
+  });
 
   useEffect(() => {
     calculateActualPrice(productPrice);
@@ -36,12 +53,27 @@ function Product({ product }) {
   }
 
   const handleAdd = (product) => {
-    console.log(product.orderQty);
     product.orderQty = orderQuantity;
-    console.log("Product line 42" + product);
-
+    product.weight = changedWeight;
     dispatch(add(product));
   };
+
+  const productDetail = () => {
+    console.log(selectedOption);
+    productInformation.map((productInfo, i) => {
+      console.log(selectedOption);
+      return (
+        <div key={i}>
+          <p className="text-muted mb-1 productQty  m-0">
+            In Stock: <span className="fw-bold">{productInfo.quantity} packets</span>
+          </p>
+          <p className="text-muted mb-1">
+            Weight: <span className="fw-bold">{productInfo.weight} gms</span>
+          </p>
+        </div>
+      );
+    })
+  }
 
   return (
     <>
@@ -67,30 +99,24 @@ function Product({ product }) {
                   {categoryName}
                 </a>
               </p>
-              <div className="productDiscCost">
-                {<FormatPrice productPrice={productPrice} />} | <s value={actualPrice}>{<FormatPrice productPrice={actualPrice} />}</s>
+              <div className="col-md-4">
+                <Form.Select name="weight" aria-label="Default select example" size="sm"
+                  onChange={(e) => handleChange(e)}>
+                  {productInformation.map((productInfo) => {
+                    return <option value={productInfo.weight} >{productInfo.weight} GM</option>
+                  })
+                  }</Form.Select>
               </div>
+            </div>
+            <div>
+              {productDetail()}
             </div>
             <div className="d-flex justify-content-between mb-2">
               <h6 className="mb-0 productDesc">{productDescription}</h6>
             </div>
             <div className="d-flex justify-content-between mb-2">
-              <p className="text-muted mb-0 productQty  m-0">
-                In Stock: <span className="fw-bold">{quantity} packets</span>
-              </p>
-              <p className="text-muted mb-0">
-                Weight: <span className="fw-bold">{weight} gms</span>
-              </p>
             </div>
             <div className="row">
-              <div className="col-md-4">
-                <Form.Select aria-label="Default select example" size="sm">
-                  <option>Select Weight</option>
-                  <option value="1">250 GM</option>
-                  <option value="2">500 GM</option>
-                  <option value="3">1000 Gm</option>
-                </Form.Select>
-              </div>
               <Quantity singleProduct={product} orderQuantity={orderQuantity} setOrderQunatity={setOrderQunatity} />
               <div className="col-md-6 mt-3">
                 <NavLink className="btn btn-warning btn-sm mb-0" to={`/dryfruitdetails/${productId}`}>

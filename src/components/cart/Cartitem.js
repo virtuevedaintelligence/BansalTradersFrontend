@@ -4,7 +4,8 @@ import { FaTrash } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { remove, increase, decrease, delItem } from "../../store/slices/CartSlice";
 import "./cart.css";
-function Cartitem({ id, name, category, weight, img, quantity, totalPrice, totalCartAmount, totalQuantity }) {
+function Cartitem({ id, name, category, weight, img, quantity, totalPrice, totalCartAmount,
+  totalQuantity }) {
   console.log(img);
   const dispatch = useDispatch();
   return (
@@ -24,7 +25,7 @@ function Cartitem({ id, name, category, weight, img, quantity, totalPrice, total
               />
               <h5 className="card-title m-0">{name}</h5>
               <p className="text-secondary " style={{ fontSize: "12px", marginBottom: "5px" }}>
-                {category}
+                {category} ---- {weight}
               </p>
               <div className="row">
                 <div className="col-6 d-flex">
@@ -37,8 +38,8 @@ function Cartitem({ id, name, category, weight, img, quantity, totalPrice, total
                     >
                       +
                     </button>
-                    <Form.Control size="sm" readOnly disabled type="text" className="text-center qty_cost_bg" value={quantity} />
-
+                    <Form.Control size="sm" readOnly disabled type="text"
+                      className="text-center qty_cost_bg" value={quantity} />
                     <button
                       className="btn btn-sm btn-danger mb-0"
                       onClick={() => {

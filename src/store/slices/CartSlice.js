@@ -13,12 +13,12 @@ const cartSlice = createSlice({
     },
     add: (state, action) => {
       const product = action.payload;
-
       console.log(product);
       //check item is already exits
       const existsItem = state.cartItems.find((item) => item.id === product.productId);
+      debugger;
       console.log(existsItem);
-      if (existsItem) {
+      if (existsItem && existsItem.weight === product.weight) {
         existsItem.quantity++;
         existsItem.totalPrice += product.productPrice;
         state.totalQuantity++;
@@ -67,7 +67,6 @@ const cartSlice = createSlice({
     },
     increase: (state, action) => {
       const id = action.payload;
-      console.log(id);
       const existsItem = state.cartItems.find((item) => item.id === id);
       if (existsItem) {
         const totalItemQty = existsItem.quantity;

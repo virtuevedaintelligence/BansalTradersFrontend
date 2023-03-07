@@ -88,7 +88,8 @@ function AddProduct() {
             </Row>
             <Row className="mb-3">
               <Form.Group className="col col-sm-4">
-                <Form.Select defaultValue="Choose..." className="form-control-sm" size="sm" name="weight" onChange={(e) => handleChange(e)}>
+                <Form.Select defaultValue="Choose..." className="form-control-sm" size="sm"
+                  name="weight" onChange={(e) => handleChange(e)}>
                   <option value="Choose...">Select Weight</option>
                   <option value="250">250gm</option>
                   <option value="500">500gm</option>
