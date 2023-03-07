@@ -7,7 +7,9 @@ import { FiEdit2 } from "react-icons/fi";
 import Preloader from "../preloader/Preloader";
 
 function UpdateProduct({ product }) {
-  const { productId: id, productName, productImageUrl, productDescription, productPrice, quantity, weight, categoryName, isFeatured, isActive } = product;
+  const { productId: id, productName, productImageUrl, productDescription,
+    productPrice, productPriceWithoutDiscount,
+    quantity, weight, categoryName, isFeatured, isActive } = product;
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -20,6 +22,7 @@ function UpdateProduct({ product }) {
     productImageUrl: productImageUrl,
     productDescription: productDescription,
     productPrice: productPrice,
+    productPriceWithoutDiscount: productPriceWithoutDiscount,
     quantity: quantity,
     weight: weight,
     categoryName: categoryName,
@@ -60,7 +63,9 @@ function UpdateProduct({ product }) {
                 {categories.map((category) => {
                   return (
                     <>
-                      <option key={category.categoryId} value={category.categoryName} {...(category.categoryName ? "" : "selected")}>
+                      <option key={category.categoryId}
+                        value={category.categoryName}
+                        {...(category.categoryName ? "" : "selected")}>
                         {category.categoryName}
                       </option>
                     </>
@@ -89,10 +94,15 @@ function UpdateProduct({ product }) {
               <Form.Control size="sm" type="text" name="productPrice" placeholder="Selling Price" defaultValue={productPrice} onChange={(e) => handleChange(e)} />
             </Form.Group>
             <Form.Group className="mb-3 col col-sm-4">
+              <Form.Control size="sm" type="text" name="productPriceWithoutDiscount" placeholder="Selling Price without discount"
+                defaultValue={productPriceWithoutDiscount} onChange={(e) => handleChange(e)} />
+            </Form.Group>
+            <Form.Group className="mb-3 col col-sm-4">
               <Form.Control size="sm" type="text" placeholder="Quantity" defaultValue={quantity} onChange={(e) => handleChange(e)} />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Control as="textarea" rows={3} placeholder="Product Description" name="productDescription" defaultValue={productDescription} onChange={(e) => handleChange(e)} />
+              <Form.Control as="textarea" rows={3} placeholder="Product Description" name="productDescription"
+                defaultValue={productDescription} onChange={(e) => handleChange(e)} />
             </Form.Group>
             <Form.Group>
               <button type="submit" className="me-4 btn btn-success btn-sm " onClick={update}>

@@ -58,20 +58,23 @@ function Product({ product }) {
     dispatch(add(product));
   };
 
-  const productDetail = () => {
-    console.log(selectedOption);
-    productInformation.map((productInfo, i) => {
-      console.log(selectedOption);
-      return (
-        <div key={i}>
-          <p className="text-muted mb-1 productQty  m-0">
-            In Stock: <span className="fw-bold">{productInfo.quantity} packets</span>
-          </p>
-          <p className="text-muted mb-1">
-            Weight: <span className="fw-bold">{productInfo.weight} gms</span>
-          </p>
-        </div>
-      );
+  function displayProductDeatils() {
+    return productInformation.map((productInfo, i) => {
+      if (selectedOption == productInfo.weight) {
+        return (
+          <div key={i}>
+            <p className="text-muted mb-1 productQty  m-0">
+              In Stock: <span className="fw-bold">{productInfo.quantity} packets</span>
+            </p>
+            <p className="text-muted mb-1">
+              Weight: <span className="fw-bold">{productInfo.weight} gms</span>
+            </p>
+            <p className="text-muted mb-1 productDiscCost  m-0">
+              Price <span className="fw-bold">{productInfo.productPrice} Rs</span>
+            </p>
+          </div>
+        );
+      }
     })
   }
 
@@ -109,7 +112,7 @@ function Product({ product }) {
               </div>
             </div>
             <div>
-              {productDetail()}
+              {displayProductDeatils()}
             </div>
             <div className="d-flex justify-content-between mb-2">
               <h6 className="mb-0 productDesc">{productDescription}</h6>
