@@ -60,7 +60,7 @@ function Category({ category }) {
           <div className="container text-center">
             <Row className="mb-3">
               <Form.Group className="col col-sm-12">
-                <Form.Control type="name" name="categoryName" placeholder="Category Name" className="form-control-sm" defaultValue={categoryName} onChange={(e) => handleChange(e)} />
+                <Form.Control type="name" name="categoryName" placeholder="Category Name" className="form-control-sm mb-2" defaultValue={categoryName} onChange={(e) => handleChange(e)} />
               </Form.Group>
               <Form.Group className="col col-sm-12">
                 <Form.Select name="categoryType" className="form-control-sm" size="sm" onChange={(e) => handleChange(e)} defaultValue={categoryType}>

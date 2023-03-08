@@ -75,8 +75,7 @@ function AddProduct() {
             </Row>
             <Row className="mb-3">
               <Form.Group className="col col-sm-6">
-                <Form.Control aria-label="Upload Product Image" type="file" size="sm" className="form-control"
-                  name="productImageUrl" onChange={(e) => handleChange(e)} />
+                <Form.Control aria-label="Upload Product Image" type="file" size="sm" className="form-control" name="productImageUrl" onChange={(e) => handleChange(e)} />
               </Form.Group>
               <Form.Group className="col col-sm-3">
                 <Form.Check type={"checkbox"} onClick={(e) => handleChange(e)} label="featured" name="featured" />
@@ -87,30 +86,26 @@ function AddProduct() {
             </Row>
             <Row className="mb-3">
               <Form.Group className=" col col-sm-12">
-                <Form.Control as="textarea" placeholder="Product Description" className="form-control-sm"
-                  type="text-area" name="productDescription" defaultValue={product.productDescription} onChange={(e) => handleChange(e)} />
+                <Form.Control as="textarea" placeholder="Product Description" className="form-control-sm" type="text-area" name="productDescription" defaultValue={product.productDescription} onChange={(e) => handleChange(e)} />
               </Form.Group>
             </Row>
             <Row className="mb-3">
-              <Form.Group className="col col-sm-4">
-                <Form.Select defaultValue="Choose..." className="form-control-sm" size="sm" name="weight" onChange={(e) => handleChange(e)}>
+              <Form.Group className="col col-sm-6">
+                <Form.Select defaultValue="Choose..." className="form-control-sm mb-2" size="sm" name="weight" onChange={(e) => handleChange(e)}>
                   <option value="Choose...">Select Weight</option>
                   <option value="250">250gm</option>
                   <option value="500">500gm</option>
                   <option value="1000">1000gm</option>
                 </Form.Select>
               </Form.Group>
-              <Form.Group className="col col-sm-4">
-                <Form.Control className="form-control-sm" type="pin" name="productPrice"
-                  placeholder="Enter Price" defaultValue={product.productPrice} onChange={(e) => handleChange(e)} />
+              <Form.Group className="col col-sm-6">
+                <Form.Control className="form-control-sm mb-2" type="number" name="quantity" placeholder="Enter Quantity" defaultValue={product.quantity} onChange={(e) => handleChange(e)} />
               </Form.Group>
-              <Form.Group className="col col-sm-4">
-                <Form.Control className="form-control-sm" type="pin" name="productPriceWithoutDiscount"
-                  placeholder="Enter Price Without Discount"
-                  defaultValue={product.productPriceWithoutDiscount} onChange={(e) => handleChange(e)} />
+              <Form.Group className="col col-sm-6">
+                <Form.Control className="form-control-sm mb-2" type="pin" name="productPrice" placeholder="Enter Price" defaultValue={product.productPrice} onChange={(e) => handleChange(e)} />
               </Form.Group>
-              <Form.Group className="col col-sm-4">
-                <Form.Control className="form-control-sm" type="number" name="quantity" placeholder="Enter Quantity" defaultValue={product.quantity} onChange={(e) => handleChange(e)} />
+              <Form.Group className="col col-sm-6">
+                <Form.Control className="form-control-sm mb-2" type="pin" name="productPriceWithoutDiscount" placeholder="Enter MRP" defaultValue={product.productPriceWithoutDiscount} onChange={(e) => handleChange(e)} />
               </Form.Group>
             </Row>
             <Row className="mb-3">
