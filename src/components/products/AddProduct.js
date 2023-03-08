@@ -27,11 +27,14 @@ function AddProduct() {
 
   const save = (e) => {
     e.preventDefault();
+    console.log(product);
     saveProductCall(product);
   };
 
   const handleChange = (e) => {
     const value = e.target.value;
+    console.log(value);
+
     setProduct({ ...product, [e.target.name]: value });
   };
 
@@ -54,11 +57,10 @@ function AddProduct() {
           <form className="container mt-3 mb-3">
             <Row className="mb-3">
               <Form.Group className="col col-sm-6">
-                <Form.Control type="name" name="productName" placeholder="Product Name"
-                  className="form-control-sm" defaultValue={product.productName} onChange={(e) => handleChange(e)} />
+                <Form.Control type="name" name="productName" placeholder="Product Name" className="form-control-sm" defaultValue={product.productName} onChange={(e) => handleChange(e)} />
               </Form.Group>
               <Form.Group className="col col-sm-6">
-                <Form.Select defaultValue="Choose Category" size="sm" className="form-control-sm" name="categoryName" onChange={(e) => handleChange(e)}>
+                <Form.Select size="sm" className="form-control-sm" name="categoryName" onChange={(e) => handleChange(e)}>
                   {categories.map((category) => {
                     return (
                       <>
@@ -91,8 +93,7 @@ function AddProduct() {
             </Row>
             <Row className="mb-3">
               <Form.Group className="col col-sm-4">
-                <Form.Select defaultValue="Choose..." className="form-control-sm" size="sm"
-                  name="weight" onChange={(e) => handleChange(e)}>
+                <Form.Select defaultValue="Choose..." className="form-control-sm" size="sm" name="weight" onChange={(e) => handleChange(e)}>
                   <option value="Choose...">Select Weight</option>
                   <option value="250">250gm</option>
                   <option value="500">500gm</option>

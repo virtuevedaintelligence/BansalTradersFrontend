@@ -42,7 +42,7 @@ function Category({ category }) {
   }
   return (
     <>
-      <a key={category.id} href="#home" >
+      <a key={category.id} href="#home">
         {categoryName}
       </a>
       <button className="btn-sm btn btn-success" style={{ marginRight: "10px" }} onClick={handleShow}>
@@ -60,10 +60,13 @@ function Category({ category }) {
           <div className="container text-center">
             <Row className="mb-3">
               <Form.Group className="col col-sm-12">
-                <Form.Control type="name" name="categoryType" placeholder="Category Type" className="form-control-sm" defaultValue={categoryType} onChange={(e) => handleChange(e)} />
+                <Form.Control type="name" name="categoryName" placeholder="Category Name" className="form-control-sm" defaultValue={categoryName} onChange={(e) => handleChange(e)} />
               </Form.Group>
               <Form.Group className="col col-sm-12">
-                <Form.Control type="name" name="categoryName" placeholder="Category Name" className="form-control-sm" defaultValue={categoryName} onChange={(e) => handleChange(e)} />
+                <Form.Select name="categoryType" className="form-control-sm" size="sm" onChange={(e) => handleChange(e)} defaultValue={categoryType}>
+                  <option value="Dryfruit">Dryfruit</option>
+                  <option value="Spices">Spices</option>
+                </Form.Select>
               </Form.Group>
             </Row>
             <Row className="mb-3">

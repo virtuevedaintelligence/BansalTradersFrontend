@@ -5,6 +5,7 @@ import { useCategoryContext } from "../../../context/categorycontext";
 function Addcatmodal(handleCloseCategory, showCat) {
   const [category, setCategory] = useState({
     categoryName: "",
+    categoryType: "",
   });
 
   const [show, setShow] = useState(false);
@@ -30,7 +31,7 @@ function Addcatmodal(handleCloseCategory, showCat) {
   };
 
   if (isSaveCategoryLoading) {
-    return <div>... Loading</div>
+    return <div>... Loading</div>;
   }
   return (
     <>
@@ -46,6 +47,12 @@ function Addcatmodal(handleCloseCategory, showCat) {
             <Row className="mb-3">
               <Form.Group className="col col-sm-12">
                 <Form.Control type="name" name="categoryName" placeholder="Category Name" className="form-control-sm" defaultValue={category.categoryName} onChange={(e) => handleChange(e)} />
+              </Form.Group>
+              <Form.Group className="col col-sm-12">
+                <Form.Select name="categoryType" className="form-control-sm" size="sm" onChange={(e) => handleChange(e)}>
+                  <option value="Dryfruit">Dryfruit</option>
+                  <option value="Spices">Spices</option>
+                </Form.Select>
               </Form.Group>
             </Row>
             <Row className="mb-3">
