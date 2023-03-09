@@ -6,7 +6,6 @@ import { remove, increase, decrease, delItem } from "../../store/slices/CartSlic
 import "./cart.css";
 function Cartitem({ id, name, category, weight, img, quantity, totalPrice, totalCartAmount,
   totalQuantity }) {
-  console.log(img);
   const dispatch = useDispatch();
   return (
     <>

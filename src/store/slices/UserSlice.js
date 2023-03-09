@@ -12,7 +12,6 @@ export const usersOTPVerifyAction = createAsyncThunk("users-action-verify", asyn
 });
 
 export const adminRegister = createAsyncThunk("admin-action-register", async (admin) => {
-  console.log(admin);
   const otpResponse = UserService.registerAdmin(admin);
   return (await otpResponse).data;
 });

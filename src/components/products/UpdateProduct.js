@@ -98,7 +98,7 @@ function UpdateProduct({ product }) {
                 defaultValue={productPriceWithoutDiscount} onChange={(e) => handleChange(e)} />
             </Form.Group>
             <Form.Group className="mb-3 col col-sm-4">
-              <Form.Control size="sm" type="text" placeholder="Quantity" defaultValue={quantity} onChange={(e) => handleChange(e)} />
+              <Form.Control size="sm" type="text"  name="quantity" placeholder="Quantity" defaultValue={quantity} onChange={(e) => handleChange(e)} />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Control as="textarea" rows={3} placeholder="Product Description" name="productDescription"

@@ -27,14 +27,11 @@ function AddProduct() {
 
   const save = (e) => {
     e.preventDefault();
-    console.log(product);
     saveProductCall(product);
   };
 
   const handleChange = (e) => {
     const value = e.target.value;
-    console.log(value);
-
     setProduct({ ...product, [e.target.name]: value });
   };
 
