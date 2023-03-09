@@ -61,6 +61,9 @@ function AddProduct() {
               </Form.Group>
               <Form.Group className="col col-sm-6">
                 <Form.Select size="sm" className="form-control-sm" name="categoryName" onChange={(e) => handleChange(e)}>
+                  <option disabled selected>
+                    Select Category
+                  </option>
                   {categories.map((category) => {
                     return (
                       <>

@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Button, Form, Modal, Row } from "react-bootstrap";
 import { useCategoryContext } from "../../../context/categorycontext";
 
+const initialValues = {
+  categoryName: "",
+  categoryType: "",
+};
+
 function Addcatmodal(handleCloseCategory, showCat) {
   const [category, setCategory] = useState({
     categoryName: "",
@@ -50,6 +55,9 @@ function Addcatmodal(handleCloseCategory, showCat) {
               </Form.Group>
               <Form.Group className="col col-sm-12">
                 <Form.Select name="categoryType" className="form-control-sm" size="sm" onChange={(e) => handleChange(e)}>
+                  <option disabled selected>
+                    Select Category
+                  </option>
                   <option value="Dryfruit">Dryfruit</option>
                   <option value="Spices">Spices</option>
                 </Form.Select>
