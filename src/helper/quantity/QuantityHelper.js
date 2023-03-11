@@ -12,7 +12,7 @@ function QuantityHelper({ singleProduct, setOrderQunatity, orderQuantity }) {
   };
   return (
     <>
-      <div className="col-md-4 py-3">
+      <div className="col-md-12 py-2">
         <div className="d-flex align-middle">
           <button className="btn btn-sm btn-danger mb-0" onClick={decreaseQuantity}>
             -

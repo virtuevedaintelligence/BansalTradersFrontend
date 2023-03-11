@@ -13,8 +13,6 @@ import UpdateProduct from "./UpdateProduct";
 import Preloader from "../preloader/Preloader";
 import { add } from "../../store/slices/CartSlice";
 function Product({ product }) {
-
-
   const dispatch = useDispatch();
   const { isDeleteProductLoading, deleteProductCall, singleProduct } = useProductContext();
   const [selectedOption, setSelectedOption] = useState("");
@@ -25,8 +23,8 @@ function Product({ product }) {
     actualPrice = productPrice + 200;
     setActualPrice(actualPrice);
   }
-  let { productId, productName, productImageUrl, productDescription,
-    productPrice, orderQty, quantity, weight, categoryName, featured, ratingResponse, productInformation } = product;
+  let { productId, productName, productImageUrl, productDescription, productPrice, orderQty, quantity, weight, categoryName, featured, ratingResponse, productInformation } = product;
+  // console.log(product);
   let changedWeight;
   const handleChange = (e) => {
     const value = e.target.value;
@@ -38,7 +36,7 @@ function Product({ product }) {
   const [productInfo, setProductInfo] = useState({
     productPrice: "",
     quantity: "",
-    weight: ""
+    weight: "",
   });
 
   useEffect(() => {
@@ -62,25 +60,30 @@ function Product({ product }) {
     return productInformation.map((productInfo, i) => {
       if (selectedOption == productInfo.weight) {
         return (
-          <div key={i}>
-            <p className="text-muted mb-1 productQty  m-0">
-              In Stock: <span className="fw-bold">{productInfo.quantity} packets</span>
-            </p>
-            <p className="text-muted mb-1">
-              Weight: <span className="fw-bold">{productInfo.weight} gms</span>
-            </p>
+          <>
+            <div className="row py-2" key={i}>
+              <div className="col-6 col-sm-6 p-0 text-center text-muted mb-1 productQty  m-0">
+                In Stock: <span className="fw-bold">{productInfo.quantity} packets</span>
+              </div>
+              <div className="col-6 col-sm-6 p-0 text-center text-muted mb-1">
+                Weight: <span className="fw-bold">{productInfo.weight} gms</span>
+              </div>
+            </div>
             <p className="text-muted mb-1 productDiscCost  m-0">
-              Price <span className="fw-bold">{productInfo.productPrice} Rs</span>
+              ₹<span className="fw-bold">{productInfo.productPrice}</span> |{" "}
+              <s>
+                ₹<span className="fw-bold">{productInfo.productMaxRetailPrice}</span>
+              </s>
             </p>
-          </div>
+          </>
         );
       }
-    })
+    });
   }
 
   return (
     <>
-      <MDBCol sm="6" md="4" lg="4" className="mb-4 products" key={productId}>
+      <MDBCol sm="12" md="6" lg="4" className="mb-4 products" key={productId}>
         <MDBCard>
           <div className="d-flex justify-content-between p-3">
             <p className="lead mb-0">{productName}</p>
@@ -95,7 +98,7 @@ function Product({ product }) {
           <NavLink to={`/dryfruitdetails/${productId}`}>
             <MDBCardImage src={productImageUrl} position="top" alt={productName} />
           </NavLink>
-          <MDBCardBody>
+          <MDBCardBody className="mt-2">
             <div className="d-flex justify-content-between">
               <p className="small mb-2">
                 <a href="#!" className="text-muted">
@@ -103,30 +106,28 @@ function Product({ product }) {
                 </a>
               </p>
               <div className="col-md-4">
-                <Form.Select name="weight" aria-label="Default select example" size="sm"
-                  onChange={(e) => handleChange(e)}>
+                <Form.Select name="weight" aria-label="Default select example" size="sm" onChange={(e) => handleChange(e)}>
                   {productInformation.map((productInfo) => {
-                    return <option value={productInfo.weight} >{productInfo.weight} GM</option>
-                  })
-                  }</Form.Select>
+                    return <option value={productInfo.weight}>{productInfo.weight} GM</option>;
+                  })}
+                </Form.Select>
               </div>
             </div>
-            <div>
-              {displayProductDeatils()}
-            </div>
-            <div className="d-flex justify-content-between mb-2">
+            <div className="d-flex justify-content-between">
               <h6 className="mb-0 productDesc">{productDescription}</h6>
             </div>
-            <div className="d-flex justify-content-between mb-2">
-            </div>
             <div className="row">
-              <Quantity singleProduct={product} orderQuantity={orderQuantity} setOrderQunatity={setOrderQunatity} />
-              <div className="col-md-6 mt-3">
+              <div className="col-sm-4 col-4">
+                <Quantity singleProduct={product} orderQuantity={orderQuantity} setOrderQunatity={setOrderQunatity} />
+              </div>
+              <div className="col-sm-8 col-8">{displayProductDeatils()}</div>
+
+              <div className="col-md-6 col-6">
                 <NavLink className="btn btn-warning btn-sm mb-0" to={`/dryfruitdetails/${productId}`}>
                   View Product
                 </NavLink>
               </div>
-              <div className="col-md-6 mt-3">
+              <div className="col-md-6 col-6">
                 <button
                   className="btn btn-primary btn-sm mb-0 add_to_cart"
                   onClick={() => {

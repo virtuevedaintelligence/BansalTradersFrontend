@@ -13,7 +13,7 @@
 
 .productDiscCost {
   position: absolute;
-  bottom: 33%;
+  bottom: 28%;
   right: 10%;
   background: white;
   box-shadow: 1px 1px 5px 2px #ccc;
@@ -62,4 +62,41 @@ div.scrollmenu a:hover {
 }
 .add_to_cart {
   float: right;
+}
+
+/* resposnive code  */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .productDiscCost {
+    bottom: 40%;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .productDiscCost {
+    bottom: 37%;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .productDiscCost {
+    bottom: 31%;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .productDiscCost {
+    bottom: 31%;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .productDiscCost {
+    bottom: 29%;
+  }
 }

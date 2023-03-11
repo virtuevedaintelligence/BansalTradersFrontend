@@ -61,6 +61,7 @@ const ProductProvider = ({ children }) => {
   };
 
   const saveProductCall = async (product) => {
+    console.log(product);
     dispatch({ type: "SAVE_PRODUCT_LOADING" });
     try {
       const saveReponse = await ProductService.saveProduct(product);

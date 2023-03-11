@@ -4,6 +4,7 @@ const PRODUCTS_API_BASE_URL = "http://localhost:8082/v1/products";
 
 class ProductService {
   saveProduct(product) {
+    console.log(product);
     return axios.post(PRODUCTS_API_BASE_URL + "/createProduct", product);
   }
 
