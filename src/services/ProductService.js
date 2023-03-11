@@ -8,8 +8,14 @@ class ProductService {
     return axios.post(PRODUCTS_API_BASE_URL + "/createProduct", product);
   }
 
-  getProducts() {
-    return axios.get(PRODUCTS_API_BASE_URL + "/getAllProducts");
+  getProducts(userId) {
+    
+    if(userId == null){
+      //return axios.get(PRODUCTS_API_BASE_URL + "/getAllProducts"+ `?userId=${userId}`);
+      return axios.get(PRODUCTS_API_BASE_URL + "/getAllProducts" + `?userId=1`);
+    }else{
+        return axios.get(PRODUCTS_API_BASE_URL + "/getAllProducts");
+    }
   }
 
   getProductById(id) {

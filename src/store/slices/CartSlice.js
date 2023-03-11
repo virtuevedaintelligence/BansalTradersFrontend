@@ -1,4 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
+import OrderService from "../../services/OrderService";
+export const createOrderAction = createAsyncThunk("create-order", async (orderRequest) => {
+  const orderResponse = OrderService.createOrder(orderRequest);
+  return (await orderResponse).data;
+});
 
 const cartSlice = createSlice({
   name: "cart",
@@ -6,6 +11,9 @@ const cartSlice = createSlice({
     cartItems: [],
     totalQuantity: 0,
     totalCartAmount: 0,
+    isLoadingCreateOrder: false,
+    dataCreateOrder: null,
+    isErrorCreateOrder: false
   },
   reducers: {
     clear: (state) => {
@@ -20,24 +28,24 @@ const cartSlice = createSlice({
       console.log(existsItem);
       if (existsItem && existsItem.weight === product.weight) {
         existsItem.quantity++;
-        existsItem.totalPrice += product.productPrice;
+        existsItem.totalPrice += product.productInformation.productPrice;
         state.totalQuantity++;
-        state.totalCartAmount += product.productPrice;
+        state.totalCartAmount += product.productInformation.productPrice;
       } else {
         const qty = product.orderQty;
         state.cartItems.push({
           id: product.productId,
           img: product.productImageUrl,
-          price: product.productPrice,
+          price: product.productInformation.productPrice,
           quantity: product.orderQty,
-          weight: product.weight,
-          totalPrice: product.productPrice * qty,
+          weight: product.productInformation.weight,
+          totalPrice: product.productInformation.productPrice * qty,
           name: product.productName,
           category: product.categoryName,
         });
         console.log(qty);
         state.totalQuantity += qty * 1;
-        state.totalCartAmount += product.productPrice * qty;
+        state.totalCartAmount += product.productInformation.productPrice * qty;
       }
     },
     remove: (state, action) => {
@@ -78,6 +86,21 @@ const cartSlice = createSlice({
       }
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(createOrderAction.pending, (state, action) => {
+      state.isLoadingCreateOrder = true;
+    });
+
+    builder.addCase(createOrderAction.fulfilled, (state, action) => {
+      state.isLoadingCreateOrder = false;
+      state.dataCreateOrder = action.payload;
+    });
+
+    builder.addCase(createOrderAction.rejected, (state, action) => {
+      console.log("Error", action.payload);
+      state.isErrorCreateOrder = true;
+    });
+  }
 });
 
 export const { clear, add, remove, increase, decrease, delItem } = cartSlice.actions;

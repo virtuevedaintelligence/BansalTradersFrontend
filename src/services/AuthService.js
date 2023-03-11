@@ -1,3 +1,5 @@
+
+class AuthService {
 export const goLogin = (data, next) => {
     localStorage.setItem("data", JSON.stringify(data));
 }
@@ -21,4 +23,5 @@ export const getToken = () => {
     } else {
         return false;
     }
+}
 }

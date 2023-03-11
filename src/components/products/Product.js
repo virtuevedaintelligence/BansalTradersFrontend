@@ -7,7 +7,7 @@ import { MdDelete } from "react-icons/md";
 import FormatPrice from "../../helper/formatprice/FormatPrice";
 import { useProductContext } from "../../context/productcontext";
 import Quantity from "../../helper/quantity/QuantityHelper";
-import AddToWishlist from "./../AddToWishlist";
+import AddToWishlist from "./AddToWishlist";
 import { useDispatch, useSelector } from "react-redux";
 import UpdateProduct from "./UpdateProduct";
 import Preloader from "../preloader/Preloader";
@@ -23,13 +23,13 @@ function Product({ product }) {
     actualPrice = productPrice + 200;
     setActualPrice(actualPrice);
   }
-  let { productId, productName, productImageUrl, productDescription, productPrice, orderQty, quantity, weight, categoryName, featured, ratingResponse, productInformation } = product;
-  // console.log(product);
+  let { productId, productName, productImageUrl, productDescription,
+    productPrice, orderQty, quantity, weight, categoryName, featured,
+    ratingResponse, productInformation, isFavorite } = product;
   let changedWeight;
   const handleChange = (e) => {
     const value = e.target.value;
     changedWeight = value;
-    console.log(value);
     setSelectedOption(value);
   };
 
@@ -52,7 +52,10 @@ function Product({ product }) {
 
   const handleAdd = (product) => {
     product.orderQty = orderQuantity;
-    product.weight = changedWeight;
+    product.weight = productInfo.weight;
+    product.productInformation.productPrice = productInfo.productPrice;
+    product.productInformation.quantity = productInfo.quantity;
+    product.productInformation.weight = productInfo.weight;
     dispatch(add(product));
   };
 
@@ -108,9 +111,9 @@ function Product({ product }) {
               <div className="col-md-4">
                 <Form.Select name="weight" aria-label="Default select example" size="sm" onChange={(e) => handleChange(e)}>
                   {productInformation.map((productInfo) => {
-                    return <option value={productInfo.weight}>{productInfo.weight} GM</option>;
-                  })}
-                </Form.Select>
+                    return <option value={productInfo.weight} > {productInfo.weight} GM</option>
+                  })
+                  }</Form.Select>
               </div>
             </div>
             <div className="d-flex justify-content-between">
