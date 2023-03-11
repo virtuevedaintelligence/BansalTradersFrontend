@@ -9,12 +9,11 @@ class ProductService {
   }
 
   getProducts(userId) {
-    
-    if(userId == null){
+    if (userId != null) {
       //return axios.get(PRODUCTS_API_BASE_URL + "/getAllProducts"+ `?userId=${userId}`);
       return axios.get(PRODUCTS_API_BASE_URL + "/getAllProducts" + `?userId=1`);
-    }else{
-        return axios.get(PRODUCTS_API_BASE_URL + "/getAllProducts");
+    } else {
+      return axios.get(PRODUCTS_API_BASE_URL + "/getAllProducts");
     }
   }
 

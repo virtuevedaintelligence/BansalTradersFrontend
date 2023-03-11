@@ -96,7 +96,7 @@ function Product({ product }) {
                 <MdDelete onClick={deleteProd} />
               </button>
             </div>
-            <AddToWishlist />
+            <AddToWishlist isFavorite={isFavorite} />
           </div>
           <NavLink to={`/dryfruitdetails/${productId}`}>
             <MDBCardImage src={productImageUrl} position="top" alt={productName} />
