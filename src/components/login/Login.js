@@ -8,6 +8,7 @@ import { usersOTPGenAction, usersOTPVerifyAction } from "../../store/slices/User
 import { IoLogIn } from "react-icons/io5";
 import { SlLogout } from "react-icons/sl";
 import { ToastContainer, toast } from "react-toastify";
+import { AuthService } from "../../services/AuthService";
 
 function Login() {
   const [show, setShow] = useState(false);
@@ -58,12 +59,21 @@ function Login() {
     const value = e.target.value;
     setUser({ ...user, [e.target.name]: value });
   };
+  const authService = new AuthService();
+  const storeToken = (token) => {
+    console.log(token)
+    authService.goLogin(token);
+  }
+
   const loggedIn = data.dataOTPVerify;
   return (
     <>
       {loggedIn && loggedIn.message === "User logged in successfully" ? (
+
         <span variant="primary" onClick={handleShow} className="cartOpenBtn" closeButton>
           <SlLogout onClick={handleCloseLogout} />
+          <label variant="primary" className="cartOpenBtn" > {loggedIn.response.firstName} </label>
+          {storeToken(loggedIn.response.token)}
         </span>
       ) : (
         <span variant="primary" onClick={handleShow} className="cartOpenBtn">
@@ -77,40 +87,41 @@ function Login() {
           <Modal.Title>Login with OTP</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-
-          {data.dataOTPGen && data.dataOTPGen.message === "OTP Generated Successfully" ? (
-            <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
-              <div>
-                <MDBInput className="mb-4" label="Enter OTP" name="otp" value={user.otp}
-                  id="OTP" type="number" onChange={(e) => handleChangeOTP(e)} />
-                <MDBBtn className="mb-4 col-12" onClick={verifyOTP}>
-                  Proceed
-                </MDBBtn>
-                <MDBBtn className="mb-2 btn-sm col-12" onClick={sendOTP}>
-                  Request Another OTP
-                </MDBBtn>
-              </div>
-            </MDBContainer>
-          ) : loggedIn && loggedIn.message === "User logged in successfully" ? (
-            <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
-              <>
-                Logged in Success
-              </>
-            </MDBContainer>
-          ) : (
-            <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
-              <div>
-                <MDBInput className="mb-4" label="Phone Number" name="number" id="phoneNumber" type="contact"
-                  onChange={(e) => handleChangeNumber(e)} />
-                <MDBBtn className="mb-4 col-12" onClick={sendOTP}>
-                  Get OTP
-                </MDBBtn>
-                <div className="mb-4 col-12">
-                  Sign up With <MDBIcon fab icon="google" size="sm" />
+          {
+            data.dataOTPGen && data.dataOTPGen.message === "OTP Generated Successfully" ? (
+              <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
+                <div>
+                  <MDBInput className="mb-4" label="Enter OTP" name="otp" value={user.otp}
+                    id="OTP" type="number" onChange={(e) => handleChangeOTP(e)} />
+                  <MDBBtn className="mb-4 col-12" onClick={verifyOTP}>
+                    Proceed
+                  </MDBBtn>
+                  <MDBBtn className="mb-2 btn-sm col-12" onClick={sendOTP}>
+                    Request Another OTP
+                  </MDBBtn>
                 </div>
-              </div>
-            </MDBContainer>
-          )}
+              </MDBContainer>
+            ) : loggedIn && loggedIn.message === "User logged in successfully" ? (
+              <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
+                <>
+                  Logged in Success
+                </>
+              </MDBContainer>
+            ) : (
+              <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
+                <div>
+                  <MDBInput className="mb-4" label="Phone Number" name="number" id="phoneNumber" type="contact"
+                    onChange={(e) => handleChangeNumber(e)} />
+                  <MDBBtn className="mb-4 col-12" onClick={sendOTP}>
+                    Get OTP
+                  </MDBBtn>
+                  <div className="mb-4 col-12">
+                    Sign up With <MDBIcon fab icon="google" size="sm" />
+                  </div>
+                </div>
+              </MDBContainer>
+            )
+          }
         </Modal.Body>
       </Modal>
     </>
