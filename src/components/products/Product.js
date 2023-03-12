@@ -23,9 +23,7 @@ function Product({ product }) {
     actualPrice = productPrice + 200;
     setActualPrice(actualPrice);
   }
-  let { productId, productName, productImageUrl, productDescription,
-    productPrice, orderQty, quantity, weight, categoryName, featured,
-    ratingResponse, productInformation, isFavorite } = product;
+  let { productId, productName, productImageUrl, productDescription, productPrice, orderQty, quantity, weight, categoryName, featured, ratingResponse, productInformation, isFavorite } = product;
   let changedWeight;
   const handleChange = (e) => {
     const value = e.target.value;
@@ -111,9 +109,9 @@ function Product({ product }) {
               <div className="col-md-4">
                 <Form.Select name="weight" aria-label="Default select example" size="sm" onChange={(e) => handleChange(e)}>
                   {productInformation.map((productInfo) => {
-                    return <option value={productInfo.weight} > {productInfo.weight} GM</option>
-                  })
-                  }</Form.Select>
+                    return <option value={productInfo.weight}> {productInfo.weight} GM</option>;
+                  })}
+                </Form.Select>
               </div>
             </div>
             <div className="d-flex justify-content-between">

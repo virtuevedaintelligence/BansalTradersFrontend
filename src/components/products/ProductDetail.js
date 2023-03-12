@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./productdetail.css";
 import MoreProducts from "./moreproducts/MoreProducts";
 import { useParams } from "react-router-dom";
@@ -8,16 +8,48 @@ import FormatPrice from "../../helper/formatprice/FormatPrice";
 import Quantity from "../../helper/quantity/QuantityHelper";
 import StarRating from "../reviews/star/StarRating";
 import Preloader from "../preloader/Preloader";
+import { Form } from "react-bootstrap";
 
 function ProductDetail() {
   const { productId } = useParams();
   const { getSingleProduct, isSingleProductLoading, singleProduct } = useProductContext();
-  const { productId: id, productName, productImageUrl, productDescription, productPrice, quantity, weight, categoryName, ratingResponse, avgStarRating } = singleProduct;
-
+  const { productId: id, productName, productImageUrl, productDescription, productInformation, productPrice, quantity, weight, categoryName, ratingResponse, avgStarRating } = singleProduct;
+  console.log(singleProduct);
+  const [selectedOption, setSelectedOption] = useState("");
   useEffect(() => {
     getSingleProduct(productId);
   }, []);
 
+  const handleChange = (e) => {
+    const value = e.target.value;
+    let changedWeight = value;
+    setSelectedOption(value);
+  };
+
+  function displayProductDeatils() {
+    return productInformation.map((productInfo, i) => {
+      if (selectedOption == productInfo.weight) {
+        return (
+          <>
+            <div className="row py-2" key={i}>
+              <div className="col-6 col-sm-6 p-0 text-center text-muted mb-1 productQty  m-0">
+                In Stock: <span className="fw-bold">{productInfo.quantity} packets</span>
+              </div>
+              <div className="col-6 col-sm-6 p-0 text-center text-muted mb-1">
+                Weight: <span className="fw-bold">{productInfo.weight} gms</span>
+              </div>
+            </div>
+            <p className="text-muted mb-1 productDiscCost  m-0">
+              ₹<span className="fw-bold">{productInfo.productPrice}</span> |{" "}
+              <s>
+                ₹<span className="fw-bold">{productInfo.productMaxRetailPrice}</span>
+              </s>
+            </p>
+          </>
+        );
+      }
+    });
+  }
   if (isSingleProductLoading) {
     return <Preloader />;
   }
@@ -38,11 +70,12 @@ function ProductDetail() {
                     <p className="text-dark m-0 p-0">{productName}</p> <StarRating avgStarRating={avgStarRating} />
                   </div>
                   <div className="col-lg-12  d-flex">
-                    <p className="m-0 p-0 text-success price-pro">{<FormatPrice productPrice={productPrice} />} </p>
+                    <div className="col-sm-12 col-12">{displayProductDeatils()}</div>
+                    {/* <p className="m-0 p-0 text-success price-pro">{<FormatPrice productPrice={productPrice} />} </p>
                     <p className="m-0 p-0 text-success price-pro">
                       <b className="px-2"> | </b>
                     </p>
-                    <p className="m-0 p-0 text-danger price-pro">{<s>{<FormatPrice productPrice={productPrice + 200} />}</s>}</p>
+                    <p className="m-0 p-0 text-danger price-pro">{<s>{<FormatPrice productPrice={productPrice + 200} />}</s>}</p> */}
                     <hr className="p-0 m-0 hr_sperator" />
                   </div>
                   <div className="col-lg-12 pt-2">
@@ -63,11 +96,11 @@ function ProductDetail() {
                   <div className="col-lg-4">
                     <h6>Weight :</h6>
                     {/* <input type="number" className="form-control text-center w-100" /> */}
-                    <select className="form-control">
-                      <option>250GM</option>
-                      <option>500GM</option>
-                      <option>1000GM</option>
-                    </select>
+                    <Form.Select name="weight" aria-label="Default select example" size="sm" onChange={(e) => handleChange(e)}>
+                      {productInformation.map((productInfo) => {
+                        return <option value={productInfo.weight}> {productInfo.weight} GM</option>;
+                      })}
+                    </Form.Select>
                   </div>
                   <Quantity singleProduct={singleProduct} />
                   <div className="col-lg-4">
