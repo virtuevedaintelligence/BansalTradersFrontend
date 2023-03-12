@@ -20,6 +20,7 @@ export class AuthService {
 
     getToken = () => {
         if (this.isLoggedIn()) {
+            debugger;
             return JSON.parse(localStorage.getItem("data"));
         } else {
             return false;

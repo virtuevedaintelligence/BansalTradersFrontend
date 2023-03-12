@@ -4,13 +4,14 @@ import Modal from "react-modal";
 import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useProductContext } from "../../context/productcontext";
 import { AuthService } from "../../services/AuthService";
 
-const AddToWishlist = ({ isFavorite }) => {
+const AddToWishlist = ({ productId, isFavorite }) => {
   const data = useSelector((state) => {
     return state.users;
   });
-
+  const { isProducFavLoading, productfav, favoriteProduct } = useProductContext();
   const [wishlist, setWishlist] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const authService = new AuthService();
@@ -18,6 +19,10 @@ const AddToWishlist = ({ isFavorite }) => {
     if (authService.isLoggedIn()) {
       setWishlist([...wishlist, product]);
       toast.success(`${product} added to wishlist!`);
+      debugger;
+      let userId = authService.getToken().userId;
+      console.log(userId + " " + productId);
+      favoriteProduct(productId, userId);
     } else {
       setModalIsOpen(true);
     }

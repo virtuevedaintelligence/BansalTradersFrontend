@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import ProductService from "../services/ProductService";
 import reducer from "../reducer/productReducer";
-
+import { AuthService } from "../services/AuthService";
 const ProductContext = createContext();
 const initialState = {
   isLoading: false,
@@ -19,6 +19,9 @@ const initialState = {
   isErrorProductReview: false,
   productReviews: {},
   isProductReviewLoading: false,
+  isErrorProductFav: false,
+  productfav: {},
+  isProducFavLoading: false,
   dryfruits: [],
   spices: [],
 };
@@ -28,7 +31,10 @@ const ProductProvider = ({ children }) => {
   const fetchData = async () => {
     dispatch({ type: "PRODUCT_LOADING" });
     try {
-      const response = await ProductService.getProducts();
+      const authService = new AuthService();
+      let userId = authService.getToken().userId;
+
+      const response = await ProductService.getProducts(userId);
       const products = await response.data;
       dispatch({ type: "SET_PRODUCT_DATA", payload: products });
     } catch (error) {
@@ -48,6 +54,7 @@ const ProductProvider = ({ children }) => {
       dispatch({ type: "SINGLE_ERROR" });
     }
   };
+
   const getProductReviews = async (id) => {
     dispatch({ type: "PRODUCT_REVIEW_LOADING" });
     try {
@@ -94,7 +101,20 @@ const ProductProvider = ({ children }) => {
       dispatch({ type: "UPDATE_ERROR" });
     }
   };
+
+  const favoriteProduct = async (productId, userId) => {
+    dispatch({ type: "FAV_PRODUCT_LOADING" });
+    try {
+      const response = await ProductService.favoriteProduct(productId, userId);
+      const favProductResponse = await response.data;
+      dispatch({ type: "FAV_PRODUCT_DATA", payload: favoriteProduct });
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: "FAV_ERROR" });
+    }
+  };
   useEffect(() => {
+
     fetchData();
   }, []);
 
@@ -107,6 +127,7 @@ const ProductProvider = ({ children }) => {
         deleteProductCall,
         updateProductCall,
         getProductReviews,
+        favoriteProduct
       }}
     >
       {children}

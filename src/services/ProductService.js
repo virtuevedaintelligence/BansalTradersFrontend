@@ -9,11 +9,10 @@ class ProductService {
   }
 
   getProducts(userId) {
-    if (userId != null) {
-      //return axios.get(PRODUCTS_API_BASE_URL + "/getAllProducts"+ `?userId=${userId}`);
-      return axios.get(PRODUCTS_API_BASE_URL + "/getAllProducts" + `?userId=1`);
-    } else {
+    if (userId == null) {
       return axios.get(PRODUCTS_API_BASE_URL + "/getAllProducts");
+    } else {
+      return axios.get(PRODUCTS_API_BASE_URL + "/getAllProducts" + `?userId=${userId}`);
     }
   }
 
@@ -31,6 +30,9 @@ class ProductService {
 
   getProductReviews(id) {
     return axios.get(PRODUCTS_API_BASE_URL + "/productRating/" + id);
+  }
+  favoriteProduct(productId, userId) {
+    return axios.get(PRODUCTS_API_BASE_URL + "/favorite/" + productId + "/" + userId);
   }
 }
 

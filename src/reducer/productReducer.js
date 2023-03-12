@@ -111,6 +111,23 @@ const ProductReducer = (state, action) => {
         isProductReviewLoading: false,
         isErrorProductReview: true,
       };
+    case "FAV_PRODUCT_LOADING":
+      return {
+        ...state,
+        isProducFavLoading: true,
+      };
+    case "FAV_PRODUCT_DATA":
+      return {
+        ...state,
+        isProducFavLoading: false,
+        productfav: action.payload.response,
+      };
+    case "FAV_ERROR":
+      return {
+        ...state,
+        isProducFavLoading: false,
+        isErrorProductFav: true,
+      };
     default:
       return state;
   }

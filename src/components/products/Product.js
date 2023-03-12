@@ -18,12 +18,16 @@ function Product({ product }) {
   const [selectedOption, setSelectedOption] = useState("");
   const [orderQuantity, setOrderQunatity] = useState(1);
 
+  const { isProducFavLoading, productfav, favoriteProduct } = useProductContext();
+
   var [actualPrice, setActualPrice] = useState();
   function calculateActualPrice(productPrice) {
     actualPrice = productPrice + 200;
     setActualPrice(actualPrice);
   }
-  let { productId, productName, productImageUrl, productDescription, productPrice, orderQty, quantity, weight, categoryName, featured, ratingResponse, productInformation, isFavorite } = product;
+  let { productId, productName, productImageUrl, productDescription,
+    productPrice, orderQty, quantity, weight, categoryName, featured,
+    ratingResponse, productInformation, isFavorite } = product;
   let changedWeight;
   const handleChange = (e) => {
     const value = e.target.value;
@@ -47,7 +51,9 @@ function Product({ product }) {
   if (isDeleteProductLoading) {
     return <Preloader />;
   }
-
+  if (isProducFavLoading) {
+    return <Preloader />;
+  }
   const handleAdd = (product) => {
     product.orderQty = orderQuantity;
     product.weight = productInfo.weight;
@@ -94,7 +100,7 @@ function Product({ product }) {
                 <MdDelete onClick={deleteProd} />
               </button>
             </div>
-            <AddToWishlist isFavorite={isFavorite} />
+            <AddToWishlist isFavorite={isFavorite} productId={productId} />
           </div>
           <NavLink to={`/dryfruitdetails/${productId}`}>
             <MDBCardImage src={productImageUrl} position="top" alt={productName} />

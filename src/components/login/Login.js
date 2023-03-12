@@ -9,6 +9,7 @@ import { IoLogIn } from "react-icons/io5";
 import { SlLogout } from "react-icons/sl";
 import { ToastContainer, toast } from "react-toastify";
 import { AuthService } from "../../services/AuthService";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [show, setShow] = useState(false);
@@ -20,8 +21,8 @@ function Login() {
   const data = useSelector((state) => {
     return state.users;
   }
-
   )
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [user, setUser] = useState({
     number: "",
@@ -60,9 +61,9 @@ function Login() {
     setUser({ ...user, [e.target.name]: value });
   };
   const authService = new AuthService();
-  const storeToken = (token) => {
-    console.log(token)
-    authService.goLogin(token);
+  const storeToken = (user) => {
+    authService.goLogin(user);
+    navigate("/")
   }
 
   const loggedIn = data.dataOTPVerify;
@@ -73,7 +74,7 @@ function Login() {
         <span variant="primary" onClick={handleShow} className="cartOpenBtn" closeButton>
           <SlLogout onClick={handleCloseLogout} />
           <label variant="primary" className="cartOpenBtn" > {loggedIn.response.firstName} </label>
-          {storeToken(loggedIn.response.token)}
+          {storeToken(loggedIn.response)}
         </span>
       ) : (
         <span variant="primary" onClick={handleShow} className="cartOpenBtn">
@@ -100,12 +101,6 @@ function Login() {
                     Request Another OTP
                   </MDBBtn>
                 </div>
-              </MDBContainer>
-            ) : loggedIn && loggedIn.message === "User logged in successfully" ? (
-              <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
-                <>
-                  Logged in Success
-                </>
               </MDBContainer>
             ) : (
               <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
