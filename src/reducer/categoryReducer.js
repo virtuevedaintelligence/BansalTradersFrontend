@@ -34,6 +34,23 @@ const CategoryReducer = (state, action) => {
         isSaveCategoryLoading: false,
         isError: true,
       };
+    case "IMPORT_CATEGORY_LOADING":
+      return {
+        ...state,
+        isImportCategoryLoading: true,
+      };
+    case "IMPORT_CATEGORY_DATA":
+      return {
+        ...state,
+        isImportCategoryLoading: false,
+        importCategory: action.payload,
+      };
+    case "IMPORT_CATEGORY_ERROR":
+      return {
+        ...state,
+        isImportCategoryLoading: false,
+        isErrorImportCategory: true,
+      };
     case "DELETE_CATEGORY_LOADING":
       return {
         ...state,

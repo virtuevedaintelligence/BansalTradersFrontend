@@ -4,7 +4,8 @@ import Product from "../Product";
 import { useProductContext } from "../../../context/productcontext";
 import { useCategoryContext } from "../../../context/categorycontext";
 import Category from "../categories/Category";
-
+import ExcelFuncProducts from "../excelfunctionality/ExcelFuncProducts";
+import ExcelFuncCategories from "../excelfunctionality/ExcelFuncCategories";
 import AddCategory from "../categories/AddCategory";
 import AddProduct from "../AddProduct";
 import { useFilterContext } from "../../../context/fitercontext";
@@ -35,6 +36,8 @@ function Spices() {
           <div className="col-sm-12 d-flex">
             <AddCategory />
             <AddProduct />
+            <ExcelFuncProducts />
+            <ExcelFuncCategories />
           </div>
         </div>
       </div>

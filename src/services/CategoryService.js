@@ -19,6 +19,16 @@ class CategoryService {
   updateCategory(category, id) {
     return axios.put(CATEGORY_API_BASE_URL + "/updateCategory/" + id, category);
   }
+
+  saveCategories(categories) {
+    console.log(categories);
+    return axios.post(CATEGORY_API_BASE_URL + "/importCategories", categories, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    );
+  }
 }
 
 export default new CategoryService();

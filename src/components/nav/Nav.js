@@ -1,19 +1,35 @@
 import "./nav.css";
 import "./responsive.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Cart from "../cart/Cart";
 import ShopByCategory from "../products/categories/ShopByCategory";
 import Login from "../login/Login";
 import Search from "../search/Search";
 import { Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import AdminLogin from "../admin/AdminLogin";
+import { GrUserAdmin } from "react-icons/gr";
+import { AuthService } from "../../services/AuthService";
+import { useEffect } from "react";
 
 function TopNavbar() {
+  const [login, setLogin] = useState(false);
+  const [user, setUser] = useState(undefined);
+  const navigate = useNavigate();
+  const adminNavigate = () => {
+    navigate("/secureadmin");
+  }
+  const auth = new AuthService();
+  useEffect(() => {
+    setLogin(auth.isLoggedIn());
+    setUser(auth.getToken())
+  }, [login])
   return (
     <>
       <Navbar bg="light" expand="lg" className="mx-2">
         <Link className="navbar-brand" to="/">
-          {/* <img src="logo.png" alt="Logo" /> */}Bansal Traders
+          Bansal Traders
         </Link>
         <div className="mb-cat-cart-login">
           <ShopByCategory />
@@ -32,9 +48,13 @@ function TopNavbar() {
             <NavLink className="nav-link" to="/products/spices">
               Spices
             </NavLink>
-            <NavLink className="nav-link" to="/orders">
-              Orders
-            </NavLink>
+            {
+              login && (
+                <NavLink className="nav-link" to="/orders">
+                  Orders
+                </NavLink>
+              )
+            }
             <NavLink className="nav-link" to="/about">
               About
             </NavLink>
@@ -46,15 +66,26 @@ function TopNavbar() {
             <Nav.Link className="desk-cat-cart-login">
               <ShopByCategory />
             </Nav.Link>
-            <Nav.Link className="desk-cat-cart-login">
-              <Cart />
-              {/* <div className="amount-container">
+            {
+              login && (
+                <Nav.Link className="desk-cat-cart-login">
+                  <Cart />
+                  {/* <div className="amount-container">
                 <p className="total-amount">0</p>
               </div> */}
-            </Nav.Link>
+                </Nav.Link>
+              )
+            }
             <Nav.Link className="desk-cat-cart-login">
               <Login className="loginNavLink d-flex" />
             </Nav.Link>
+            {
+              login && (
+                <Nav.Link className="desk-cat-cart-login">
+                  <GrUserAdmin className="loginNavLink d-flex" onClick={adminNavigate} />
+                </Nav.Link>
+              )
+            }
             <Nav.Link className="">
               <Search />
             </Nav.Link>

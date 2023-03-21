@@ -60,6 +60,23 @@ const ProductReducer = (state, action) => {
         isSaveProductLoading: false,
         isError: true,
       };
+    case "IMPORT_PRODUCT_LOADING":
+      return {
+        ...state,
+        isImportProductLoading: true,
+      };
+    case "IMPORT_PRODUCT":
+      return {
+        ...state,
+        isImportProductLoading: false,
+        importProduct: action.payload.response,
+      };
+    case "IMPORT_ERROR":
+      return {
+        ...state,
+        isImportProductLoading: false,
+        isImportProductError: true,
+      };
     case "DELETE_PRODUCT_LOADING":
       return {
         ...state,

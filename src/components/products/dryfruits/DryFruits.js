@@ -9,6 +9,9 @@ import AddCategory from "../categories/AddCategory";
 import AddProduct from "../AddProduct";
 import { useFilterContext } from "../../../context/fitercontext";
 import Preloader from "../../preloader/Preloader";
+import ExcelFuncProducts from "../excelfunctionality/ExcelFuncProducts";
+import ExcelFuncCategories from "../excelfunctionality/ExcelFuncCategories";
+
 
 const DryFruits = () => {
   const { isLoading, products } = useProductContext();
@@ -26,8 +29,7 @@ const DryFruits = () => {
     <>
       <div className="categories">
         <div className="scrollmenu">
-          {categories
-            .filter((category) => category.categoryName !== "Choose Category")
+          {categories && categories
             .filter((category) => category.categoryName !== "all")
             .map((category) => {
               return <Category key={category.categoryId} category={category} />;
@@ -37,6 +39,8 @@ const DryFruits = () => {
           <div className="col-sm-12 d-flex">
             <AddCategory />
             <AddProduct />
+            <ExcelFuncProducts />
+            <ExcelFuncCategories />
           </div>
         </div>
       </div>

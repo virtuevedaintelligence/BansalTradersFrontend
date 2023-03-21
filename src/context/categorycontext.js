@@ -12,7 +12,10 @@ const initialState = {
   isDeleteCategoryLoading: false,
   deleteCategory: {},
   isUpdateCategoryLoading: false,
-  updateCategory: {}
+  updateCategory: {},
+  isErrorImportCategory: false,
+  isImportCategoryLoading: false,
+  importCategory: {}
 };
 
 const CategoryProvider = ({ children }) => {
@@ -39,6 +42,18 @@ const CategoryProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
       dispatch({ type: "SAVE_CATEGORY_ERROR" });
+    }
+  };
+
+  const importCategoriesCall = async (categories) => {
+    try {
+      dispatch({ type: "IMPORT_CATEGORY_LOADING" });
+      const saveReponse = await CategoryService.saveCategories(categories);
+      const saveCategories = await saveReponse.data;
+      dispatch({ type: "IMPORT_CATEGORY_DATA", payload: saveCategories });
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: "IMPORT_CATEGORY_ERROR" });
     }
   };
 
@@ -71,7 +86,7 @@ const CategoryProvider = ({ children }) => {
 
   return <CategoryContext.Provider value={{
     ...state, saveCategoryCall, deleteCategoryCall,
-    updateCategoryCall, fetchCategory
+    updateCategoryCall, fetchCategory, importCategoriesCall
   }}>{children}</CategoryContext.Provider>;
 };
 

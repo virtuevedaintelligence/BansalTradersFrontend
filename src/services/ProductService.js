@@ -3,6 +3,7 @@ import axios from "axios";
 const PRODUCTS_API_BASE_URL = "http://localhost:8082/v1/products";
 
 class ProductService {
+
   saveProduct(product) {
     console.log(product);
     return axios.post(PRODUCTS_API_BASE_URL + "/createProduct", product);
@@ -31,8 +32,21 @@ class ProductService {
   getProductReviews(id) {
     return axios.get(PRODUCTS_API_BASE_URL + "/productRating/" + id);
   }
+
   favoriteProduct(productId, userId) {
     return axios.get(PRODUCTS_API_BASE_URL + "/favorite/" + productId + "/" + userId);
+  }
+  unFavoriteProduct(productId, userId) {
+    return axios.get(PRODUCTS_API_BASE_URL + "/unfavorite/" + productId + "/" + userId);
+  }
+
+  saveProducts(products) {
+    return axios.post(PRODUCTS_API_BASE_URL + "/importProducts", products, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    );
   }
 }
 

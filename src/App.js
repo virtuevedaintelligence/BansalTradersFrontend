@@ -19,6 +19,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ProductDetail from "./components/products/ProductDetail";
 import AddCategory from "./components/products/categories/AddCategory";
 import Admin from "./components/admin/Admin";
+import ExcelFunc from "./components/products/excelfunctionality/ExcelFuncProducts";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
           <Route activeClassName="active_class" exact path="/login" element={<Login />}></Route>
           <Route activeClassName="active_class" exact path="/dryfruitdetails/:productId" element={<ProductDetail />}></Route>
           <Route activeClassName="active_class" exact path="/addproduct" element={<AddProduct />}></Route>
+          <Route activeClassName="active_class" exact path="/addproductwithexcel" element={<ExcelFunc />}></Route>
           <Route activeClassName="active_class" exact path="/addcategory" element={<AddCategory />}></Route>
           <Route activeClassName="active_class" exact path="/update/:productId" element={<UpdateProduct />}></Route>
           <Route path="*" element={<NotFound />}></Route>

@@ -5,6 +5,7 @@ import { Formik, useFormik } from "formik";
 import { validationSchema } from "../../validations";
 import { useDispatch, useSelector } from "react-redux";
 import { adminRegister } from "../../store/slices/UserSlice";
+import { useNavigate } from "react-router-dom";
 
 function AdminRegister() {
   const initialValues = {
@@ -16,7 +17,7 @@ function AdminRegister() {
     confirmpassword: "",
   };
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const { values, errors, handleBlur, touched, handleChange, handleSubmit } = useFormik({
     initialValues: initialValues,
     onSubmit: (values, action) => {
@@ -28,6 +29,7 @@ function AdminRegister() {
 
   const register = (values) => {
     dispatch(adminRegister(values));
+    navigate("/");
   };
 
   return (

@@ -90,7 +90,7 @@ function AddProduct() {
                   <option disabled selected>
                     Select Category
                   </option>
-                  {categories.map((category) => {
+                  {categories && categories.map((category) => {
                     return (
                       <>
                         <option key={category.categoryId} value={category.categoryName}>

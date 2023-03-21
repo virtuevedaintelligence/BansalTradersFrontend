@@ -50,6 +50,7 @@ function Login() {
       return
     }
     dispatch(usersOTPVerifyAction(user));
+    { storeToken(loggedIn.response) }
   };
 
   const handleChangeNumber = (e) => {
@@ -62,19 +63,18 @@ function Login() {
   };
   const authService = new AuthService();
   const storeToken = (user) => {
-    authService.goLogin(user);
-    navigate("/")
+    debugger;
+    authService.doLogin(user);
+    navigate("/");
   }
 
   const loggedIn = data.dataOTPVerify;
   return (
     <>
       {loggedIn && loggedIn.message === "User logged in successfully" ? (
-
         <span variant="primary" onClick={handleShow} className="cartOpenBtn" closeButton>
           <SlLogout onClick={handleCloseLogout} />
           <label variant="primary" className="cartOpenBtn" > {loggedIn.response.firstName} </label>
-          {storeToken(loggedIn.response)}
         </span>
       ) : (
         <span variant="primary" onClick={handleShow} className="cartOpenBtn">

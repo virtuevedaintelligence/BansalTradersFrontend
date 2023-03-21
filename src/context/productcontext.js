@@ -24,6 +24,9 @@ const initialState = {
   isProducFavLoading: false,
   dryfruits: [],
   spices: [],
+  isImportProductLoading: false,
+  importProduct: {},
+  isImportProductError: false
 };
 
 const ProductProvider = ({ children }) => {
@@ -68,7 +71,7 @@ const ProductProvider = ({ children }) => {
   };
 
   const saveProductCall = async (product) => {
-    console.log(product);
+
     dispatch({ type: "SAVE_PRODUCT_LOADING" });
     try {
       const saveReponse = await ProductService.saveProduct(product);
@@ -79,6 +82,19 @@ const ProductProvider = ({ children }) => {
       dispatch({ type: "SAVE_ERROR" });
     }
   };
+
+  const importProductCall = async (products) => {
+    dispatch({ type: "IMPORT_PRODUCT_LOADING" });
+    try {
+      const imReponse = await ProductService.saveProducts(products);
+      const imProduct = await imReponse.data;
+      dispatch({ type: "IMPORT_PRODUCT", payload: imProduct });
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: "IMPORT_ERROR" });
+    }
+  };
+
   const deleteProductCall = async (id) => {
     dispatch({ type: "DELETE_PRODUCT_LOADING" });
     try {
@@ -113,10 +129,13 @@ const ProductProvider = ({ children }) => {
       dispatch({ type: "FAV_ERROR" });
     }
   };
+
   useEffect(() => {
 
     fetchData();
   }, []);
+
+
 
   return (
     <ProductContext.Provider
@@ -127,7 +146,8 @@ const ProductProvider = ({ children }) => {
         deleteProductCall,
         updateProductCall,
         getProductReviews,
-        favoriteProduct
+        favoriteProduct,
+        importProductCall,
       }}
     >
       {children}
