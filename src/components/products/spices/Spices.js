@@ -28,7 +28,7 @@ function Spices() {
           {categories
             .filter((category) => category.categoryName !== "Choose Category")
             .filter((category) => category.categoryName !== "all")
-            .map((category) => {
+            .map((category, i) => {
               return <Category key={category.categoryId} category={category} />;
             })}
         </div>
@@ -43,7 +43,7 @@ function Spices() {
       </div>
       <MDBContainer fluid className="my-5">
         <MDBRow>
-          {filterspices.map((product) => {
+          {filterspices.map((product, i) => {
             return <Product key={product.productId} product={product} />;
           })}
         </MDBRow>

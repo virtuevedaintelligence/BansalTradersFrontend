@@ -21,7 +21,6 @@ class CategoryService {
   }
 
   saveCategories(categories) {
-    console.log(categories);
     return axios.post(CATEGORY_API_BASE_URL + "/importCategories", categories, {
       headers: {
         'Content-Type': 'application/json'

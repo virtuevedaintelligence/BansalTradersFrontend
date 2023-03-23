@@ -16,7 +16,7 @@ function Product({ product }) {
   const dispatch = useDispatch();
   const { isDeleteProductLoading, deleteProductCall, singleProduct } = useProductContext();
   const [selectedOption, setSelectedOption] = useState("");
-  const [orderQuantity, setOrderQunatity] = useState(1);
+  const [orderQuantity, setOrderQuantity] = useState(1);
 
   const { isProducFavLoading, productfav, favoriteProduct } = useProductContext();
 
@@ -63,11 +63,14 @@ function Product({ product }) {
     dispatch(add(product));
   };
 
-  function displayProductDeatils() {
+  function displayProductDetails() {
     return productInformation.map((productInfo, i) => {
       if (selectedOption == productInfo.weight) {
         return (
           <>
+            <div className="col-sm-4 col-4">
+              <Quantity productInfo={productInfo} orderQuantity={orderQuantity} setOrderQuantity={setOrderQuantity} />
+            </div>
             <div className="row py-2" key={i}>
               <div className="col-6 col-sm-6 p-0 text-center text-muted mb-1 productQty  m-0">
                 In Stock: <span className="fw-bold">{productInfo.quantity} packets</span>
@@ -76,7 +79,7 @@ function Product({ product }) {
                 Weight: <span className="fw-bold">{productInfo.weight} gms</span>
               </div>
             </div>
-            <p className="text-muted mb-1 productDiscCost  m-0">
+            <p className="text-muted mb-4 productDiscCost  m-0">
               ₹<span className="fw-bold">{productInfo.productPrice}</span> |{" "}
               <s>
                 ₹<span className="fw-bold">{productInfo.productMaxRetailPrice}</span>
@@ -124,11 +127,7 @@ function Product({ product }) {
               <h6 className="mb-0 productDesc">{productDescription}</h6>
             </div>
             <div className="row">
-              <div className="col-sm-4 col-4">
-                <Quantity singleProduct={product} orderQuantity={orderQuantity} setOrderQunatity={setOrderQunatity} />
-              </div>
-              <div className="col-sm-8 col-8">{displayProductDeatils()}</div>
-
+              <div className="col-sm-8 col-8">{displayProductDetails()}</div>
               <div className="col-md-6 col-6">
                 <NavLink className="btn btn-warning btn-sm mb-0" to={`/dryfruitdetails/${productId}`}>
                   View Product

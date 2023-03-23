@@ -34,7 +34,7 @@ function ExcelFunc() {
             setCategory('{"categoryRequests": ' + JSON.stringify(d) + '}');
         })
     }
-    const saveProducts = () => {
+    const saveCategories = () => {
         importCategoriesCall(categories);
         navigate("/products/dryfruits");
     }
@@ -55,7 +55,7 @@ function ExcelFunc() {
                             readExcel(file);
                         }}
                     />
-                    <button className="me-4 btn btn-success btn-sm" onClick={saveProducts}>
+                    <button className="me-4 btn btn-success btn-sm" onClick={saveCategories}>
                         <AiFillFileExcel />
                     </button>
                 </Modal.Body>

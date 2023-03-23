@@ -13,8 +13,9 @@ import { Form } from "react-bootstrap";
 function ProductDetail() {
   const { productId } = useParams();
   const { getSingleProduct, isSingleProductLoading, singleProduct } = useProductContext();
-  const { productId: id, productName, productImageUrl, productDescription, productInformation, productPrice, quantity, weight, categoryName, ratingResponse, avgStarRating } = singleProduct;
-  console.log(singleProduct);
+  const { productId: id, productName, productImageUrl, productDescription, productInformation,
+    productPrice, quantity, weight, categoryName, ratingResponse, avgStarRating } = singleProduct;
+  const [orderQuantity, setOrderQuantity] = useState(1);
   const [selectedOption, setSelectedOption] = useState("");
   useEffect(() => {
     getSingleProduct(productId);
@@ -26,8 +27,8 @@ function ProductDetail() {
     setSelectedOption(value);
   };
 
-  function displayProductDeatils() {
-    return productInformation.map((productInfo, i) => {
+  function displayProductDetails() {
+    return productInformation && productInformation.map((productInfo, i) => {
       if (selectedOption == productInfo.weight) {
         return (
           <>
@@ -39,6 +40,7 @@ function ProductDetail() {
                 Weight: <span className="fw-bold">{productInfo.weight} gms</span>
               </div>
             </div>
+            <Quantity productInfo={productInfo} orderQuantity={orderQuantity} setOrderQuantity={setOrderQuantity} />
             <p className="text-muted mb-1 productDiscCost  m-0">
               ₹<span className="fw-bold">{productInfo.productPrice}</span> |{" "}
               <s>
@@ -70,7 +72,7 @@ function ProductDetail() {
                     <p className="text-dark m-0 p-0">{productName}</p> <StarRating avgStarRating={avgStarRating} />
                   </div>
                   <div className="col-lg-12  d-flex">
-                    <div className="col-sm-12 col-12">{displayProductDeatils()}</div>
+                    <div className="col-sm-12 col-12">{displayProductDetails()}</div>
                     {/* <p className="m-0 p-0 text-success price-pro">{<FormatPrice productPrice={productPrice} />} </p>
                     <p className="m-0 p-0 text-success price-pro">
                       <b className="px-2"> | </b>
@@ -97,12 +99,12 @@ function ProductDetail() {
                     <h6>Weight :</h6>
                     {/* <input type="number" className="form-control text-center w-100" /> */}
                     <Form.Select name="weight" aria-label="Default select example" size="sm" onChange={(e) => handleChange(e)}>
-                      {productInformation.map((productInfo) => {
+                      {productInformation && productInformation.map((productInfo, i) => {
                         return <option value={productInfo.weight}> {productInfo.weight} GM</option>;
                       })}
                     </Form.Select>
                   </div>
-                  <Quantity singleProduct={singleProduct} />
+
                   <div className="col-lg-4">
                     <h6>Cost :</h6>
                     <label className="my-1">₹60</label>

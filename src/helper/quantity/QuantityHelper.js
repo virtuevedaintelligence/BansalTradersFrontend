@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 
-function QuantityHelper({ singleProduct, setOrderQunatity, orderQuantity }) {
-  const { quantity } = singleProduct;
+function QuantityHelper({ productInfo, setOrderQuantity, orderQuantity }) {
+  const { quantity } = productInfo;
 
   const decreaseQuantity = () => {
-    orderQuantity > 1 ? setOrderQunatity(orderQuantity - 1) : setOrderQunatity(1);
+    orderQuantity > 1 ? setOrderQuantity(orderQuantity - 1) : setOrderQuantity(1);
   };
 
   const increaseQuantity = () => {
-    orderQuantity < quantity ? setOrderQunatity(orderQuantity + 1) : setOrderQunatity(quantity);
+    orderQuantity < quantity ? setOrderQuantity(orderQuantity + 1) : setOrderQuantity(quantity);
   };
   return (
     <>
