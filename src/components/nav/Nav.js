@@ -19,12 +19,12 @@ function TopNavbar() {
   const navigate = useNavigate();
   const adminNavigate = () => {
     navigate("/secureadmin");
-  }
+  };
   const auth = new AuthService();
   useEffect(() => {
     setLogin(auth.isLoggedIn());
-    setUser(auth.getToken())
-  }, [login])
+    setUser(auth.getToken());
+  }, [login]);
   return (
     <>
       <Navbar bg="light" expand="lg" className="mx-2">
@@ -48,13 +48,11 @@ function TopNavbar() {
             <NavLink className="nav-link" to="/products/spices">
               Spices
             </NavLink>
-            {
-              login && (
-                <NavLink className="nav-link" to="/orders">
-                  Orders
-                </NavLink>
-              )
-            }
+            {login && (
+              <NavLink className="nav-link" to="/orders">
+                Orders
+              </NavLink>
+            )}
             <NavLink className="nav-link" to="/about">
               About
             </NavLink>
@@ -66,26 +64,24 @@ function TopNavbar() {
             <Nav.Link className="desk-cat-cart-login">
               <ShopByCategory />
             </Nav.Link>
-            {
-              login && (
-                <Nav.Link className="desk-cat-cart-login">
-                  <Cart />
-                  {/* <div className="amount-container">
+            {/* {
+              login && ( */}
+            <Nav.Link className="desk-cat-cart-login">
+              <Cart />
+              {/* <div className="amount-container">
                 <p className="total-amount">0</p>
               </div> */}
-                </Nav.Link>
-              )
-            }
+            </Nav.Link>
+            {/* )
+            } */}
             <Nav.Link className="desk-cat-cart-login">
               <Login className="loginNavLink d-flex" />
             </Nav.Link>
-            {
-              login && (
-                <Nav.Link className="desk-cat-cart-login">
-                  <GrUserAdmin className="loginNavLink d-flex" onClick={adminNavigate} />
-                </Nav.Link>
-              )
-            }
+            {login && (
+              <Nav.Link className="desk-cat-cart-login">
+                <GrUserAdmin className="loginNavLink d-flex" onClick={adminNavigate} />
+              </Nav.Link>
+            )}
             <Nav.Link className="">
               <Search />
             </Nav.Link>

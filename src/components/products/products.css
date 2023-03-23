@@ -24,6 +24,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  padding: 15px 0px 10px;
 }
 
 div.scrollmenu {
@@ -97,6 +98,6 @@ div.scrollmenu a:hover {
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
   .productDiscCost {
-    bottom: 29%;
+    bottom: 33%;
   }
 }

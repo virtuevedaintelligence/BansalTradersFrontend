@@ -12,6 +12,8 @@ import { useDispatch, useSelector } from "react-redux";
 import UpdateProduct from "./UpdateProduct";
 import Preloader from "../preloader/Preloader";
 import { add } from "../../store/slices/CartSlice";
+import { FiHelpCircle } from "react-icons/fi";
+import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 function Product({ product }) {
   const dispatch = useDispatch();
   const { isDeleteProductLoading, deleteProductCall, singleProduct } = useProductContext();
@@ -25,9 +27,7 @@ function Product({ product }) {
     actualPrice = productPrice + 200;
     setActualPrice(actualPrice);
   }
-  let { productId, productName, productImageUrl, productDescription,
-    productPrice, orderQty, quantity, weight, categoryName, featured,
-    ratingResponse, productInformation, isFavorite } = product;
+  let { productId, productName, productImageUrl, productDescription, productPrice, orderQty, quantity, weight, categoryName, featured, ratingResponse, productInformation, isFavorite } = product;
   let changedWeight;
   const handleChange = (e) => {
     const value = e.target.value;
@@ -60,6 +60,7 @@ function Product({ product }) {
     product.productInformation.productPrice = productInfo.productPrice;
     product.productInformation.quantity = productInfo.quantity;
     product.productInformation.weight = productInfo.weight;
+    console.log(product);
     dispatch(add(product));
   };
 
@@ -68,15 +69,25 @@ function Product({ product }) {
       if (selectedOption == productInfo.weight) {
         return (
           <>
-            <div className="col-sm-4 col-4">
-              <Quantity productInfo={productInfo} orderQuantity={orderQuantity} setOrderQuantity={setOrderQuantity} />
-            </div>
             <div className="row py-2" key={i}>
-              <div className="col-6 col-sm-6 p-0 text-center text-muted mb-1 productQty  m-0">
+              <div className="col-sm-4 col-12">
+                <Quantity productInfo={productInfo} orderQuantity={orderQuantity} setOrderQuantity={setOrderQuantity} />
+              </div>
+              <div className="col-6 col-sm-4 p-0 text-center text-muted mb-1 productQty  m-0">
                 In Stock: <span className="fw-bold">{productInfo.quantity} packets</span>
               </div>
-              <div className="col-6 col-sm-6 p-0 text-center text-muted mb-1">
+              <div className="col-6 col-sm-4 p-0 text-center text-muted mb-1">
                 Weight: <span className="fw-bold">{productInfo.weight} gms</span>
+              </div>
+              <div className="col-12">
+                <button
+                  className="btn btn-primary btn-sm mb-0 add_to_cart"
+                  onClick={() => {
+                    handleAdd(product);
+                  }}
+                >
+                  Add To Cart
+                </button>
               </div>
             </div>
             <p className="text-muted mb-4 productDiscCost  m-0">
@@ -113,10 +124,18 @@ function Product({ product }) {
               <p className="small mb-2">
                 <a href="#!" className="text-muted">
                   {categoryName}
-                </a>
+                </a>{" "}
+                <OverlayTrigger placement="bottom" overlay={<Tooltip id={`tooltip-bottom`}>Hello</Tooltip>}>
+                  <span variant="secondary">
+                    <FiHelpCircle />
+                  </span>
+                </OverlayTrigger>
               </p>
               <div className="col-md-4">
                 <Form.Select name="weight" aria-label="Default select example" size="sm" onChange={(e) => handleChange(e)}>
+                  <option disabled selected>
+                    Select Weight
+                  </option>
                   {productInformation.map((productInfo) => {
                     return <option value={productInfo.weight}> {productInfo.weight} GM</option>;
                   })}
@@ -127,21 +146,11 @@ function Product({ product }) {
               <h6 className="mb-0 productDesc">{productDescription}</h6>
             </div>
             <div className="row">
-              <div className="col-sm-8 col-8">{displayProductDetails()}</div>
-              <div className="col-md-6 col-6">
+              <div className="col-sm-12 col-12">{displayProductDetails()}</div>
+              <div className="col-md-12 col-12">
                 <NavLink className="btn btn-warning btn-sm mb-0" to={`/dryfruitdetails/${productId}`}>
                   View Product
                 </NavLink>
-              </div>
-              <div className="col-md-6 col-6">
-                <button
-                  className="btn btn-primary btn-sm mb-0 add_to_cart"
-                  onClick={() => {
-                    handleAdd(product);
-                  }}
-                >
-                  Add To Cart
-                </button>
               </div>
             </div>
           </MDBCardBody>
