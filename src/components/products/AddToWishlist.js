@@ -30,11 +30,9 @@ const AddToWishlist = ({ productId, isFavorite }) => {
 
   return (
     <div>
-      <div className=" rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
-        style={{ width: "35px", height: "35px" }} onClick={() => handleAddToWishlist("product1")}>
-        <p className="text-white mb-0 small">
-          {isFavorite === true ? <FcLike /> : <FcLikePlaceholder />}
-        </p>
+      <div className=" rounded-circle d-flex align-items-center justify-content-center shadow-1-strong" style={{ width: "35px", height: "35px" }}
+      onClick={() => handleAddToWishlist("product")}>
+        <p className="text-white mb-0 small">{isFavorite === true ? <FcLike /> : <FcLikePlaceholder />}</p>
       </div>
 
       <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} contentLabel="Please log in to add to wishlist">

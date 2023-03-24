@@ -64,16 +64,9 @@ function TopNavbar() {
             <Nav.Link className="desk-cat-cart-login">
               <ShopByCategory />
             </Nav.Link>
-            {/* {
-              login && ( */}
             <Nav.Link className="desk-cat-cart-login">
               <Cart />
-              {/* <div className="amount-container">
-                <p className="total-amount">0</p>
-              </div> */}
             </Nav.Link>
-            {/* )
-            } */}
             <Nav.Link className="desk-cat-cart-login">
               <Login className="loginNavLink d-flex" />
             </Nav.Link>
