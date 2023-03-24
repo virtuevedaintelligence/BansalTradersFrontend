@@ -33,7 +33,7 @@ function App() {
             <Route path="dryfruits" element={<DryFruits />}></Route>
             <Route path="spices" element={<Spices />}></Route>
           </Route>
-          <Route path="/dryfruitdetail/:id" element={<ProductDetail />} />
+          {/* <Route path="/dryfruitdetail/:id" element={<ProductDetail />} /> */}
           <Route activeClassName="active_class" exact path="/about" element={<About />}></Route>
           <Route activeClassName="active_class" exact path="/contact" element={<Contact />}></Route>
           <Route activeClassName="active_class" exact path="/mission" element={<Mission />}></Route>

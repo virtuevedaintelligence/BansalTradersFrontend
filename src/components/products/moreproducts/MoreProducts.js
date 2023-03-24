@@ -11,7 +11,7 @@ function MoreProducts({ categoryName, id }) {
   }
   return (
     <>
-      <div className="row mt-3 p-0 text-center pro-box-section">
+      <div className="row mt-3 p-0 pro-box-section">
         {products
           .filter((product) => product.productId !== id)
           .filter((product) => product.categoryName === categoryName)

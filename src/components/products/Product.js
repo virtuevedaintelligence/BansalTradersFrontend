@@ -125,7 +125,7 @@ function Product({ product }) {
                 <a href="#!" className="text-muted">
                   {categoryName}
                 </a>{" "}
-                <OverlayTrigger placement="bottom" overlay={<Tooltip id={`tooltip-bottom`}>Hello</Tooltip>}>
+                <OverlayTrigger placement="bottom" overlay={<Tooltip id={`tooltip-bottom`}>Please select weight to buy product</Tooltip>}>
                   <span variant="secondary">
                     <FiHelpCircle />
                   </span>
