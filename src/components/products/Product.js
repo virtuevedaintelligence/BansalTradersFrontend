@@ -27,11 +27,12 @@ function Product({ product }) {
     actualPrice = productPrice + 200;
     setActualPrice(actualPrice);
   }
-  let { productId, productName, productImageUrl, productDescription, productPrice, orderQty, quantity, weight, categoryName, featured, ratingResponse, productInformation, isFavorite } = product;
-  let changedWeight;
+  let { productId, productName, productImageUrl,
+    productDescription, productPrice, orderQty,
+    quantity, weight, categoryName, featured,
+    ratingResponse, productInformation, isFavorite } = product;
   const handleChange = (e) => {
     const value = e.target.value;
-    changedWeight = value;
     setSelectedOption(value);
   };
 
@@ -39,6 +40,17 @@ function Product({ product }) {
     productPrice: "",
     quantity: "",
     weight: "",
+  });
+
+
+  let [cartProduct, setCartProduct] = useState({
+    productId: "",
+    productImageUrl: "",
+    productPrice: "",
+    orderQty: "",
+    weight: "",
+    productName: "",
+    categoryName: ""
   });
 
   useEffect(() => {
@@ -55,13 +67,19 @@ function Product({ product }) {
     return <Preloader />;
   }
   const handleAdd = (product) => {
-    product.orderQty = orderQuantity;
-    product.weight = productInfo.weight;
-    product.productInformation.productPrice = productInfo.productPrice;
-    product.productInformation.quantity = productInfo.quantity;
-    product.productInformation.weight = productInfo.weight;
-    console.log(product);
-    dispatch(add(product));
+    cartProduct.orderQty = orderQuantity;
+    cartProduct.weight = selectedOption;
+    cartProduct.productId = product.productId;
+    cartProduct.productImageUrl = product.productImageUrl;
+    cartProduct.productName = product.productName;
+    product.productInformation.map((productInfo) => {
+      if (productInfo.weight == cartProduct.weight) {
+        cartProduct.productPrice = productInfo.productPrice;
+        cartProduct.quantity = productInfo.quantity;
+        cartProduct.weight = productInfo.weight;
+      }
+    })
+    dispatch(add(cartProduct));
   };
 
   function displayProductDetails() {
@@ -125,14 +143,16 @@ function Product({ product }) {
                 <a href="#!" className="text-muted">
                   {categoryName}
                 </a>{" "}
-                <OverlayTrigger placement="bottom" overlay={<Tooltip id={`tooltip-bottom`}>Please select weight to buy product</Tooltip>}>
+                <OverlayTrigger placement="bottom" overlay={<Tooltip id={`tooltip-bottom`}>
+                  Please select weight to buy product</Tooltip>}>
                   <span variant="secondary">
                     <FiHelpCircle />
                   </span>
                 </OverlayTrigger>
               </p>
               <div className="col-md-4">
-                <Form.Select name="weight" aria-label="Default select example" size="sm" onChange={(e) => handleChange(e)}>
+                <Form.Select name="weight" aria-label="Default select example" size="sm"
+                  onChange={(e) => handleChange(e)}>
                   <option disabled selected>
                     Select Weight
                   </option>

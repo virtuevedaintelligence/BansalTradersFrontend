@@ -1,4 +1,4 @@
-import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import OrderService from "../../services/OrderService";
 export const createOrderAction = createAsyncThunk("create-order", async (orderRequest) => {
   const orderResponse = OrderService.createOrder(orderRequest);
@@ -21,31 +21,27 @@ const cartSlice = createSlice({
     },
     add: (state, action) => {
       const product = action.payload;
-      console.log(product);
       //check item is already exits
       const existsItem = state.cartItems.find((item) => item.id === product.productId);
-      debugger;
-      console.log(existsItem);
       if (existsItem && existsItem.weight === product.weight) {
         existsItem.quantity++;
-        existsItem.totalPrice += product.productInformation.productPrice;
+        existsItem.totalPrice += product.productPrice;
         state.totalQuantity++;
-        state.totalCartAmount += product.productInformation.productPrice;
+        state.totalCartAmount += product.productPrice;
       } else {
         const qty = product.orderQty;
         state.cartItems.push({
           id: product.productId,
           img: product.productImageUrl,
-          price: product.productInformation.productPrice,
+          price: product.productPrice,
           quantity: product.orderQty,
-          weight: product.productInformation.weight,
-          totalPrice: product.productInformation.productPrice * qty,
+          weight: product.weight,
+          totalPrice: product.productPrice * qty,
           name: product.productName,
           category: product.categoryName,
         });
-        console.log(qty);
         state.totalQuantity += qty * 1;
-        state.totalCartAmount += product.productInformation.productPrice * qty;
+        state.totalCartAmount += product.productPrice * qty;
       }
     },
     remove: (state, action) => {
