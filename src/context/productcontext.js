@@ -70,11 +70,11 @@ const ProductProvider = ({ children }) => {
     }
   };
 
-  const saveProductCall = async (product) => {
+  const saveProductCall = async (product, token) => {
 
     dispatch({ type: "SAVE_PRODUCT_LOADING" });
     try {
-      const saveReponse = await ProductService.saveProduct(product);
+      const saveReponse = await ProductService.saveProduct(product, token);
       const saveProduct = await saveReponse.data;
       dispatch({ type: "SAVE_PRODUCT", payload: saveProduct });
     } catch (error) {
@@ -98,6 +98,7 @@ const ProductProvider = ({ children }) => {
   const deleteProductCall = async (id) => {
     dispatch({ type: "DELETE_PRODUCT_LOADING" });
     try {
+      debugger;
       const deleteResponse = await ProductService.deleteProduct(id);
       const deleteProduct = await deleteResponse.data;
       dispatch({ type: "DELETE_PRODUCT", payload: deleteProduct });

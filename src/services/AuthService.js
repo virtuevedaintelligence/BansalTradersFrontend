@@ -1,7 +1,7 @@
 
 export class AuthService {
     goLogin = (data) => {
-        console.log(data);
+        debugger;
         localStorage.setItem("data", JSON.stringify(data));
     };
 
@@ -20,7 +20,6 @@ export class AuthService {
 
     getToken = () => {
         if (this.isLoggedIn()) {
-            debugger;
             return JSON.parse(localStorage.getItem("data"));
         } else {
             return false;

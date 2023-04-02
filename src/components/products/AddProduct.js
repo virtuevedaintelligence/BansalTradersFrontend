@@ -19,7 +19,7 @@ const initialValues = {
   featured: "off",
   isactive: "off",
 };
-function AddProduct() {
+function AddProduct({ token }) {
   const { values, errors, handleBlur, touched, handleChange, handleSubmit } = useFormik({
     initialValues: initialValues,
     onSubmit: (values, action) => {
@@ -36,33 +36,13 @@ function AddProduct() {
 
   const { isLoadingCategory, categories } = useCategoryContext();
 
-  // const [product, setProduct] = useState({
-  //   productName: "",
-  //   productImageUrl: "",
-  //   productDescription: "",
-  //   productPrice: "",
-  //   productPriceWithoutDiscount: "",
-  //   quantity: "",
-  //   weight: "",
-  //   categoryName: "",
-  //   featured: "off",
-  //   isactive: "off",
-  // });
-
   const { isSaveProductLoading, saveProductCall } = useProductContext();
 
   const save = (e) => {
     // e.preventDefault();
-    // console.log(values);
 
-    saveProductCall(values);
+    saveProductCall(values, token);
   };
-
-  // const handleChange = (e) => {
-  //   const value = e.target.value;
-  //   setProduct({ ...product, [e.target.name]: value });
-  // };
-
   if (isLoadingCategory) {
     return <Preloader />;
   }
@@ -108,12 +88,10 @@ function AddProduct() {
                 <Form.Control aria-label="Upload Product Image" type="file" size="sm" className="form-control" name="productImageUrl" onChange={(e) => handleChange(e)} onBlur={handleBlur} />
               </Form.Group>
               <Form.Group className="col col-sm-3">
-                <Form.Check type={"checkbox"} onClick={(e) => handleChange(e)} label="featured" name="featured" onBlur={handleBlur} />
-                {errors.featured && touched.featured ? <p className="form-error">{errors.featured}</p> : null}
+                <Form.Check type={"checkbox"} onClick={(e) => handleChange(e)} label="featured" name="featured" />
               </Form.Group>
               <Form.Group className="col col-sm-3">
-                <Form.Check type={"checkbox"} onClick={(e) => handleChange(e)} label="isactive" name="isactive" onBlur={handleBlur} />
-                {errors.isactive && touched.isactive ? <p className="form-error">{errors.isactive}</p> : null}
+                <Form.Check type={"checkbox"} onClick={(e) => handleChange(e)} label="isactive" name="isactive" />
               </Form.Group>
             </Row>
             <Row className="mb-3">

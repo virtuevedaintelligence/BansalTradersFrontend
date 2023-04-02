@@ -51,7 +51,6 @@ function Category({ category }) {
       <button className="btn-sm btn btn-danger">
         <MdDelete onClick={deleteCat} />
       </button>
-
       <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
           <Modal.Title>Update Category</Modal.Title>

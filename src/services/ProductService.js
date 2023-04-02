@@ -1,12 +1,20 @@
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const PRODUCTS_API_BASE_URL = "http://localhost:8082/v1/products";
 
 class ProductService {
 
-  saveProduct(product) {
+  saveProduct(product, token) {
     console.log(product);
-    return axios.post(PRODUCTS_API_BASE_URL + "/createProduct", product);
+    console.log(token);
+    return axios.post(PRODUCTS_API_BASE_URL + "/createProduct", product, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    }
+    );
   }
 
   getProducts(userId) {

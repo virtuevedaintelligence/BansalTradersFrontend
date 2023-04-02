@@ -8,18 +8,12 @@ import Search from "../search/Search";
 import { Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import AdminLogin from "../admin/AdminLogin";
-import { GrUserAdmin } from "react-icons/gr";
 import { AuthService } from "../../services/AuthService";
 import { useEffect } from "react";
 
 function TopNavbar() {
   const [login, setLogin] = useState(false);
   const [user, setUser] = useState(undefined);
-  const navigate = useNavigate();
-  const adminNavigate = () => {
-    navigate("/secureadmin");
-  };
   const auth = new AuthService();
   useEffect(() => {
     setLogin(auth.isLoggedIn());
@@ -64,17 +58,16 @@ function TopNavbar() {
             <Nav.Link className="desk-cat-cart-login">
               <ShopByCategory />
             </Nav.Link>
-            <Nav.Link className="desk-cat-cart-login">
-              <Cart />
-            </Nav.Link>
+            {
+              login && (
+                <Nav.Link className="desk-cat-cart-login">
+                  <Cart />
+                </Nav.Link>
+              )
+            }
             <Nav.Link className="desk-cat-cart-login">
               <Login className="loginNavLink d-flex" />
             </Nav.Link>
-            {login && (
-              <Nav.Link className="desk-cat-cart-login">
-                <GrUserAdmin className="loginNavLink d-flex" onClick={adminNavigate} />
-              </Nav.Link>
-            )}
             <Nav.Link className="">
               <Search />
             </Nav.Link>

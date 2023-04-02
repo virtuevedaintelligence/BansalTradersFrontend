@@ -4,7 +4,7 @@ import { Formik, useFormik } from "formik";
 
 import { validationSchema } from "../../validations";
 import { useDispatch, useSelector } from "react-redux";
-import { adminRegister } from "../../store/slices/UserSlice";
+import { adminRegister } from "../../store/slices/AdminSlice";
 import { useNavigate } from "react-router-dom";
 
 function AdminRegister() {
@@ -18,18 +18,19 @@ function AdminRegister() {
   };
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { values, errors, handleBlur, touched, handleChange, handleSubmit } = useFormik({
-    initialValues: initialValues,
-    onSubmit: (values, action) => {
-      register(values);
-      action.resetForm();
-    },
-    validationSchema: validationSchema,
-  });
+  const { values, errors, handleBlur,
+    touched, handleChange, handleSubmit } = useFormik({
+      initialValues: initialValues,
+      onSubmit: (values, action) => {
+        register(values);
+        action.resetForm();
+      },
+      validationSchema: validationSchema,
+    });
 
   const register = (values) => {
     dispatch(adminRegister(values));
-    navigate("/");
+    navigate("/welcomeadmin");
   };
 
   return (

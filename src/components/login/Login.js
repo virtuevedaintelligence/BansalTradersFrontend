@@ -17,10 +17,15 @@ function Login() {
   const handleShow = () => setShow(true);
   const handleCloseLogout = () => setShow(true);
   const handleShowLogout = () => setShow(false);
-
   const data = useSelector((state) => {
     return state.users;
   }
+  )
+
+  const adminData = useSelector((state) => {
+    return state.admin;
+  }
+
   )
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -50,8 +55,18 @@ function Login() {
       return
     }
     dispatch(usersOTPVerifyAction(user));
-    { storeToken(loggedIn.response) }
+    navigateTo()
   };
+
+  function navigateTo() {
+    if (data.dataOTPVerify && data.dataOTPVerify.message === "User logged in successfully") {
+      const authService = new AuthService();
+      authService.goLogin(data.dataOTPVerify.response);
+      navigate("/products/dryfruits");
+    } else {
+      navigate("/");
+    }
+  }
 
   const handleChangeNumber = (e) => {
     const value = e.target.value;
@@ -61,21 +76,25 @@ function Login() {
     const value = e.target.value;
     setUser({ ...user, [e.target.name]: value });
   };
-  const authService = new AuthService();
-  const storeToken = (user) => {
-    debugger;
-    authService.doLogin(user);
-    navigate("/");
-  }
 
   const loggedIn = data.dataOTPVerify;
+
   return (
     <>
       {loggedIn && loggedIn.message === "User logged in successfully" ? (
-        <span variant="primary" onClick={handleShow} className="cartOpenBtn" closeButton>
-          <SlLogout onClick={handleCloseLogout} />
+        <>
+          <span variant="primary" onClick={handleClose} className="cartOpenBtn" closeButton>
+            <SlLogout onClick={handleCloseLogout} />
+          </span>
           <label variant="primary" className="cartOpenBtn" > {loggedIn.response.firstName} </label>
-        </span>
+        </>
+      ) : adminData.dataAdminLogin && adminData.dataAdminLogin.message === "Admin logged in successfully" ? (
+        <>
+          <span variant="primary" onClick={handleClose} className="cartOpenBtn" closeButton>
+            <SlLogout onClick={handleCloseLogout} />
+          </span>
+          <label variant="primary" className="cartOpenBtn" > {adminData.dataAdminLogin.response.firstName} </label>
+        </>
       ) : (
         <span variant="primary" onClick={handleShow} className="cartOpenBtn">
           <IoLogIn onClick={handleShow} />
@@ -88,6 +107,7 @@ function Login() {
           <Modal.Title>Login with OTP</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+
           {
             data.dataOTPGen && data.dataOTPGen.message === "OTP Generated Successfully" ? (
               <MDBContainer className="p-3 my-5 d-flex flex-column w-50">

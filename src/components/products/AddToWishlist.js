@@ -19,7 +19,6 @@ const AddToWishlist = ({ productId, isFavorite }) => {
     if (authService.isLoggedIn()) {
       setWishlist([...wishlist, product]);
       toast.success(`${product} added to wishlist!`);
-      debugger;
       let userId = authService.getToken().userId;
       console.log(userId + " " + productId);
       favoriteProduct(productId, userId);

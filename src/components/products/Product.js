@@ -3,17 +3,16 @@ import { MDBCard, MDBCardBody, MDBCardImage, MDBCol } from "mdb-react-ui-kit";
 import "./products.css";
 import { NavLink } from "react-router-dom";
 import Form from "react-bootstrap/Form";
-import { MdDelete } from "react-icons/md";
 import FormatPrice from "../../helper/formatprice/FormatPrice";
 import { useProductContext } from "../../context/productcontext";
 import Quantity from "../../helper/quantity/QuantityHelper";
 import AddToWishlist from "./AddToWishlist";
 import { useDispatch, useSelector } from "react-redux";
-import UpdateProduct from "./UpdateProduct";
 import Preloader from "../preloader/Preloader";
 import { add } from "../../store/slices/CartSlice";
 import { FiHelpCircle } from "react-icons/fi";
 import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
+import UpdateDeleteProduct from "./admin/UpdateDeleteProduct";
 function Product({ product }) {
   const dispatch = useDispatch();
   const { isDeleteProductLoading, deleteProductCall, singleProduct } = useProductContext();
@@ -56,10 +55,7 @@ function Product({ product }) {
   useEffect(() => {
     calculateActualPrice(productPrice);
   }, []);
-  const deleteProd = (e) => {
-    e.preventDefault();
-    deleteProductCall(productId);
-  };
+
   if (isDeleteProductLoading) {
     return <Preloader />;
   }
@@ -127,11 +123,8 @@ function Product({ product }) {
           <div className="d-flex justify-content-between p-3">
             <p className="lead mb-0">{productName}</p>
             <div className="justify-content-between">
-              <UpdateProduct product={product} />
-              <button className="btn-sm btn btn-danger">
-                <MdDelete onClick={deleteProd} />
-              </button>
             </div>
+            <UpdateDeleteProduct product={product} productId={productId} />
             <AddToWishlist isFavorite={isFavorite} productId={productId} />
           </div>
           <NavLink to={`/dryfruitdetails/${productId}`}>

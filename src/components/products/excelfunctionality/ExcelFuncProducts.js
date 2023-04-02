@@ -34,7 +34,6 @@ function ExcelFunc() {
     });
   };
   const saveProducts = () => {
-    debugger;
     importProductCall(products);
     handleClose();
   };
