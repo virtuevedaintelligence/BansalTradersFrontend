@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { AuthService } from "../../services/AuthService";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 function TopNavbar() {
   const [login, setLogin] = useState(false);
@@ -19,6 +20,9 @@ function TopNavbar() {
     setLogin(auth.isLoggedIn());
     setUser(auth.getToken());
   }, [login]);
+  const adminData = useSelector((state) => {
+    return state.admin;
+  });
   return (
     <>
       <Navbar bg="light" expand="lg" className="mx-2">
@@ -36,12 +40,24 @@ function TopNavbar() {
             <NavLink className="nav-link" to="/">
               Home
             </NavLink>
-            <NavLink className="nav-link" to="/products/dryfruits">
-              Dryfruits
-            </NavLink>
-            <NavLink className="nav-link" to="/products/spices">
-              Spices
-            </NavLink>
+            {!adminData.dataAdminLogin && (
+              <>
+                <NavLink className="nav-link" to="/products/dryfruits">
+                  Dryfruits
+                </NavLink>
+                <NavLink className="nav-link" to="/products/spices">
+                  Spices
+                </NavLink>
+              </>
+            )}
+            {adminData.dataAdminLogin && (
+              <>
+                <NavLink className="nav-link" to="/products/dryfruits">
+                  Products
+                </NavLink>
+              </>
+            )}
+
             {login && (
               <NavLink className="nav-link" to="/orders">
                 Orders

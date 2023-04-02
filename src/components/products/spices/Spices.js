@@ -4,14 +4,11 @@ import Product from "../Product";
 import { useProductContext } from "../../../context/productcontext";
 import { useCategoryContext } from "../../../context/categorycontext";
 import Category from "../categories/Category";
-import ExcelFuncProducts from "../excelfunctionality/ExcelFuncProducts";
-import ExcelFuncCategories from "../excelfunctionality/ExcelFuncCategories";
-import AddCategory from "../categories/AddCategory";
-import AddProduct from "../AddProduct";
 import { useFilterContext } from "../../../context/fitercontext";
 import Preloader from "../../preloader/Preloader";
+import AddImportProductCategory from "../admin/AddImportProductCategory";
 function Spices() {
-  const { isLoading, products } = useProductContext();
+  const { isLoading, allspecies } = useProductContext();
   const { filterspices } = useFilterContext();
   const { isLoadingCategory, categories } = useCategoryContext();
   if (isLoading) {
@@ -34,10 +31,7 @@ function Spices() {
         </div>
         <div className="container row">
           <div className="col-sm-12 d-flex">
-            <AddCategory />
-            <AddProduct />
-            <ExcelFuncProducts />
-            <ExcelFuncCategories />
+            <AddImportProductCategory />
           </div>
         </div>
       </div>
