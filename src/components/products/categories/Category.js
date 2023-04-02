@@ -3,9 +3,10 @@ import { Button, Form, Modal, Row } from "react-bootstrap";
 import { FiEdit2 } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
 import { useCategoryContext } from "../../../context/categorycontext";
+import { useFilterContext } from "../../../context/fitercontext";
 import Preloader from "../../preloader/Preloader";
 
-function Category({ category }) {
+function Category({ category, filters, filterDryfruits }) {
   const [show, setShow] = useState(false);
   const { isDeleteCategoryLoading, deleteCategoryCall, isUpdateCategoryLoading, updateCategoryCall, fetchCategory } = useCategoryContext();
   const { id, categoryName, categoryType } = category;
@@ -42,9 +43,18 @@ function Category({ category }) {
   }
   return (
     <>
-      <a key={category.id} href="#home">
+      <button
+
+        className="col-sm-12 shopbycategory"
+        type="button"
+        name="cat"
+        value={filters.cat}
+        onClick={(event) => {
+          filterDryfruits(event);
+        }}
+      >
         {categoryName}
-      </a>
+      </button>
       <button className="btn-sm btn btn-success" style={{ marginRight: "10px" }} onClick={handleShow}>
         <FiEdit2 />
       </button>

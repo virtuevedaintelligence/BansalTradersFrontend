@@ -22,6 +22,10 @@ const DryFruits = () => {
   if (isLoadingCategory) {
     return <Preloader />;
   }
+  let {
+    filters: { cat },
+    filterDryfruits,
+  } = useFilterContext();
   if (adminData.dataAdminLogin && adminData.dataAdminLogin.message === "Admin logged in successfully") {
 
     return (
@@ -31,7 +35,10 @@ const DryFruits = () => {
             {categories && categories
               .filter((category) => category.categoryName !== "all")
               .map((category) => {
-                return <Category key={category.categoryId} category={category} />;
+                return <Category key={category.categoryId} category={category}
+                  filters={filters}
+                  filterDryfruits={filterDryfruits}
+                />;
               })}
           </div>
           <div className="container row">
@@ -44,7 +51,8 @@ const DryFruits = () => {
           <MDBRow>
             {
               products.map((product) => {
-                return <Product key={product.productId} product={product} />;
+                return <Product key={product.productId} product={product}
+                />;
               })}
           </MDBRow>
         </MDBContainer>
@@ -58,7 +66,9 @@ const DryFruits = () => {
             {categories && categories
               .filter((category) => category.categoryName !== "all")
               .map((category) => {
-                return <Category key={category.categoryId} category={category} />;
+                return <Category key={category.categoryId} category={category}
+                  filters={filters}
+                  filterDryfruits={filterDryfruits} />;
               })}
           </div>
         </div>

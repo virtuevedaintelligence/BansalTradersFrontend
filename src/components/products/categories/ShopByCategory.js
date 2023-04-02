@@ -29,30 +29,6 @@ function Example({ name, ...props }) {
             <div className="row">
               {categories &&
                 categories
-                  .filter((category) => category.categoryName === "all")
-                  .map((category) => {
-                    let { categoryName } = category;
-                    cat = categoryName;
-                    return (
-                      <button
-                        key={category.id}
-                        className="col-sm-12 shopbycategory"
-                        type="button"
-                        name="cat"
-                        value={cat}
-                        onClick={(event) => {
-                          filterDryfruits(event);
-                          handleClose(event);
-                        }}
-                      >
-                        {category.categoryName}
-                      </button>
-                    );
-                  })}
-              {categories &&
-                categories
-                  .filter((category) => category.categoryName !== "Choose Category")
-                  .filter((category) => category.categoryName !== "all")
                   .map((category) => {
                     let { categoryName } = category;
                     cat = categoryName;
