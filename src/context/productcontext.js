@@ -26,7 +26,7 @@ const initialState = {
   spices: [],
   isImportProductLoading: false,
   importProduct: {},
-  isImportProductError: false
+  isImportProductError: false,
 };
 
 const ProductProvider = ({ children }) => {
@@ -41,7 +41,6 @@ const ProductProvider = ({ children }) => {
       const products = await response.data;
       dispatch({ type: "SET_PRODUCT_DATA", payload: products });
     } catch (error) {
-      console.log(error);
       dispatch({ type: "PRODUCT_ERROR" });
     }
   };
@@ -53,7 +52,6 @@ const ProductProvider = ({ children }) => {
       const singleProduct = await response.data;
       dispatch({ type: "SET_SINGLE_DATA", payload: singleProduct });
     } catch (error) {
-      console.log(error);
       dispatch({ type: "SINGLE_ERROR" });
     }
   };
@@ -65,20 +63,17 @@ const ProductProvider = ({ children }) => {
       const productReviews = await response.data;
       dispatch({ type: "PRODUCT_REVIEW", payload: productReviews });
     } catch (error) {
-      console.log(error);
       dispatch({ type: "PRODUCT_REVIEW_ERROR" });
     }
   };
 
   const saveProductCall = async (product, token) => {
-
     dispatch({ type: "SAVE_PRODUCT_LOADING" });
     try {
       const saveReponse = await ProductService.saveProduct(product, token);
       const saveProduct = await saveReponse.data;
       dispatch({ type: "SAVE_PRODUCT", payload: saveProduct });
     } catch (error) {
-      console.log(error);
       dispatch({ type: "SAVE_ERROR" });
     }
   };
@@ -90,7 +85,6 @@ const ProductProvider = ({ children }) => {
       const imProduct = await imReponse.data;
       dispatch({ type: "IMPORT_PRODUCT", payload: imProduct });
     } catch (error) {
-      console.log(error);
       dispatch({ type: "IMPORT_ERROR" });
     }
   };
@@ -103,7 +97,6 @@ const ProductProvider = ({ children }) => {
       const deleteProduct = await deleteResponse.data;
       dispatch({ type: "DELETE_PRODUCT", payload: deleteProduct });
     } catch (error) {
-      console.log(error);
       dispatch({ type: "DELETE_ERROR" });
     }
   };
@@ -114,7 +107,6 @@ const ProductProvider = ({ children }) => {
       const updateProduct = await updateResponse.data;
       dispatch({ type: "UPDATE_PRODUCT", payload: updateProduct });
     } catch (error) {
-      console.log(error);
       dispatch({ type: "UPDATE_ERROR" });
     }
   };
@@ -126,17 +118,13 @@ const ProductProvider = ({ children }) => {
       const favProductResponse = await response.data;
       dispatch({ type: "FAV_PRODUCT_DATA", payload: favoriteProduct });
     } catch (error) {
-      console.log(error);
       dispatch({ type: "FAV_ERROR" });
     }
   };
 
   useEffect(() => {
-
     fetchData();
   }, []);
-
-
 
   return (
     <ProductContext.Provider

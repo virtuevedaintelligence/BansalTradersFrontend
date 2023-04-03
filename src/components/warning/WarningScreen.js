@@ -9,9 +9,7 @@ function WarningScreen() {
     async function check() {
       try {
         const warning = await WarningService.generateWarning();
-        const warnData = await warning.data;
-        debugger;
-        if (!warnData.message === 'OK') {
+        if (warning.status !== 200) {
           throw new Error("Backend not working");
         }
       } catch (error) {
@@ -33,7 +31,7 @@ function WarningScreen() {
       <>
         <App />
       </>
-    )
+    );
   }
 }
 

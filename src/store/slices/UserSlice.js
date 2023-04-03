@@ -32,7 +32,6 @@ const userSlice = createSlice({
     });
 
     builder.addCase(usersOTPGenAction.rejected, (state, action) => {
-      console.log("Error", action.payload);
       state.isErrorOTPGen = true;
     });
 

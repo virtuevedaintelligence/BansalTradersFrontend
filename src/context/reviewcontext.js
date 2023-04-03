@@ -25,7 +25,6 @@ const ReviewProvider = ({ children }) => {
       const saveReview = await saveReponse.data;
       dispatch({ type: "SAVE_REVIEW_DATA", payload: saveReview });
     } catch (error) {
-      console.log(error);
       dispatch({ type: "SAVE_REVIEW_ERROR" });
     }
   };
@@ -37,7 +36,6 @@ const ReviewProvider = ({ children }) => {
       const deleteReview = await deleteReponse.data;
       dispatch({ type: "DELETE_REVIEW", payload: deleteReview });
     } catch (error) {
-      console.log(error);
       dispatch({ type: "DELETE_ERROR" });
     }
   };
@@ -49,7 +47,6 @@ const ReviewProvider = ({ children }) => {
       const updateReview = await updateReponse.data;
       dispatch({ type: "UPDATE_REVIEW", payload: updateReview });
     } catch (error) {
-      console.log(error);
       dispatch({ type: "UPDATE_ERROR" });
     }
   };

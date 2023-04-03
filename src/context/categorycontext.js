@@ -15,7 +15,7 @@ const initialState = {
   updateCategory: {},
   isErrorImportCategory: false,
   isImportCategoryLoading: false,
-  importCategory: {}
+  importCategory: {},
 };
 
 const CategoryProvider = ({ children }) => {
@@ -28,7 +28,6 @@ const CategoryProvider = ({ children }) => {
       const categories = await response.data;
       dispatch({ type: "SET_CATEGORY_DATA", payload: categories });
     } catch (error) {
-      console.log(error);
       dispatch({ type: "CATEGORY_ERROR" });
     }
   };
@@ -40,7 +39,6 @@ const CategoryProvider = ({ children }) => {
       const saveCategory = await saveReponse.data;
       dispatch({ type: "SAVE_CATEGORY_DATA", payload: saveCategory });
     } catch (error) {
-      console.log(error);
       dispatch({ type: "SAVE_CATEGORY_ERROR" });
     }
   };
@@ -52,7 +50,6 @@ const CategoryProvider = ({ children }) => {
       const saveCategories = await saveReponse.data;
       dispatch({ type: "IMPORT_CATEGORY_DATA", payload: saveCategories });
     } catch (error) {
-      console.log(error);
       dispatch({ type: "IMPORT_CATEGORY_ERROR" });
     }
   };
@@ -64,7 +61,6 @@ const CategoryProvider = ({ children }) => {
       const deleteCategory = await deleteReponse.data;
       dispatch({ type: "DELETE_CATEGORY", payload: deleteCategory });
     } catch (error) {
-      console.log(error);
       dispatch({ type: "DELETE_ERROR" });
     }
   };
@@ -76,7 +72,6 @@ const CategoryProvider = ({ children }) => {
       const updateCategory = await updateReponse.data;
       dispatch({ type: "UPDATE_CATEGORY", payload: updateCategory });
     } catch (error) {
-      console.log(error);
       dispatch({ type: "UPDATE_ERROR" });
     }
   };
@@ -84,10 +79,20 @@ const CategoryProvider = ({ children }) => {
     fetchCategory();
   }, []);
 
-  return <CategoryContext.Provider value={{
-    ...state, saveCategoryCall, deleteCategoryCall,
-    updateCategoryCall, fetchCategory, importCategoriesCall
-  }}>{children}</CategoryContext.Provider>;
+  return (
+    <CategoryContext.Provider
+      value={{
+        ...state,
+        saveCategoryCall,
+        deleteCategoryCall,
+        updateCategoryCall,
+        fetchCategory,
+        importCategoriesCall,
+      }}
+    >
+      {children}
+    </CategoryContext.Provider>
+  );
 };
 
 //custom hook

@@ -13,7 +13,7 @@ const cartSlice = createSlice({
     totalCartAmount: 0,
     isLoadingCreateOrder: false,
     dataCreateOrder: null,
-    isErrorCreateOrder: false
+    isErrorCreateOrder: false,
   },
   reducers: {
     clear: (state) => {
@@ -93,10 +93,9 @@ const cartSlice = createSlice({
     });
 
     builder.addCase(createOrderAction.rejected, (state, action) => {
-      console.log("Error", action.payload);
       state.isErrorCreateOrder = true;
     });
-  }
+  },
 });
 
 export const { clear, add, remove, increase, decrease, delItem } = cartSlice.actions;
