@@ -11,6 +11,7 @@ import AddImportProductCategory from "../admin/AddImportProductCategory";
 const DryFruits = () => {
   const { isLoading, products } = useProductContext();
   const { filterdryfruits } = useFilterContext();
+
   const { isLoadingCategory, categories } = useCategoryContext();
   const adminData = useSelector((state) => {
     return state.admin;
@@ -30,7 +31,6 @@ const DryFruits = () => {
           <div className="scrollmenu">
             {categories &&
               categories
-                .filter((category) => category.categoryName !== "all")
                 .map((category) => {
                   return <Category key={category.categoryId} category={category} />;
                 })}
@@ -57,14 +57,11 @@ const DryFruits = () => {
           <div className="scrollmenu">
             {categories &&
               categories
-                .filter((category) => category.categoryName !== "all")
                 .map((category) => {
                   return (
                     <Category
                       key={category.categoryId}
                       category={category}
-                      //filters={filters}
-                      //filterDryfruits={filterDryfruits}
                     />
                   );
                 })}
