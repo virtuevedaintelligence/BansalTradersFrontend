@@ -2,11 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Button, Form, Modal, Row } from "react-bootstrap";
 import { FiEdit2 } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
+import { useSelector } from "react-redux";
 import { useCategoryContext } from "../../../context/categorycontext";
 import { useFilterContext } from "../../../context/fitercontext";
 import Preloader from "../../preloader/Preloader";
+import UpdateDeleteCategory from "../admin/UpdateDeleteCategory";
 
 function Category({ category, filters, filterDryfruits }) {
+  const adminData = useSelector((state) => {
+    return state.admin;
+  });
   const [show, setShow] = useState(false);
   const { isDeleteCategoryLoading, deleteCategoryCall, isUpdateCategoryLoading, updateCategoryCall, fetchCategory } = useCategoryContext();
   const { id, categoryName, categoryType } = category;
@@ -41,26 +46,21 @@ function Category({ category, filters, filterDryfruits }) {
   if (isUpdateCategoryLoading) {
     return <Preloader />;
   }
+
+  if (adminData.dataAdminLogin) {
+  }
+
   return (
     <>
-      <button
-
-        className="col-sm-12 shopbycategory"
-        type="button"
-        name="cat"
-        value={filters.cat}
-        onClick={(event) => {
-          filterDryfruits(event);
-        }}
-      >
-        {categoryName}
-      </button>
-      <button className="btn-sm btn btn-success" style={{ marginRight: "10px" }} onClick={handleShow}>
+      <a href="">{categoryName}</a>
+      <UpdateDeleteCategory category={category.categoryName} categoryId={category.id} />
+      {/* <button className="btn-sm btn btn-success" style={{ marginRight: "10px" }} onClick={handleShow}>
         <FiEdit2 />
       </button>
       <button className="btn-sm btn btn-danger">
         <MdDelete onClick={deleteCat} />
-      </button>
+      </button> */}
+
       <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
           <Modal.Title>Update Category</Modal.Title>

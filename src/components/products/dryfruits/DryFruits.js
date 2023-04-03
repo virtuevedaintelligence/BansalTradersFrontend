@@ -22,24 +22,18 @@ const DryFruits = () => {
   if (isLoadingCategory) {
     return <Preloader />;
   }
-  let {
-    filters: { cat },
-    filterDryfruits,
-  } = useFilterContext();
-  if (adminData.dataAdminLogin && adminData.dataAdminLogin.message === "Admin logged in successfully") {
 
+  if (adminData.dataAdminLogin && adminData.dataAdminLogin.message === "Admin logged in successfully") {
     return (
       <>
         <div className="categories">
           <div className="scrollmenu">
-            {categories && categories
-              .filter((category) => category.categoryName !== "all")
-              .map((category) => {
-                return <Category key={category.categoryId} category={category}
-                  filters={filters}
-                  filterDryfruits={filterDryfruits}
-                />;
-              })}
+            {categories &&
+              categories
+                .filter((category) => category.categoryName !== "all")
+                .map((category) => {
+                  return <Category key={category.categoryId} category={category} />;
+                })}
           </div>
           <div className="container row">
             <div className="col-sm-12 d-flex">
@@ -49,11 +43,9 @@ const DryFruits = () => {
         </div>
         <MDBContainer fluid className="my-5">
           <MDBRow>
-            {
-              products.map((product) => {
-                return <Product key={product.productId} product={product}
-                />;
-              })}
+            {products.map((product) => {
+              return <Product key={product.productId} product={product} />;
+            })}
           </MDBRow>
         </MDBContainer>
       </>
@@ -63,21 +55,26 @@ const DryFruits = () => {
       <>
         <div className="categories">
           <div className="scrollmenu">
-            {categories && categories
-              .filter((category) => category.categoryName !== "all")
-              .map((category) => {
-                return <Category key={category.categoryId} category={category}
-                  filters={filters}
-                  filterDryfruits={filterDryfruits} />;
-              })}
+            {categories &&
+              categories
+                .filter((category) => category.categoryName !== "all")
+                .map((category) => {
+                  return (
+                    <Category
+                      key={category.categoryId}
+                      category={category}
+                      //filters={filters}
+                      //filterDryfruits={filterDryfruits}
+                    />
+                  );
+                })}
           </div>
         </div>
         <MDBContainer fluid className="my-5">
           <MDBRow>
-            {
-              filterdryfruits.map((product) => {
-                return <Product key={product.productId} product={product} />;
-              })}
+            {filterdryfruits.map((product) => {
+              return <Product key={product.productId} product={product} />;
+            })}
           </MDBRow>
         </MDBContainer>
       </>
