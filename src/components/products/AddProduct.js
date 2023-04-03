@@ -23,7 +23,7 @@ function AddProduct({ token }) {
   const { values, errors, handleBlur, touched, handleChange, handleSubmit } = useFormik({
     initialValues: initialValues,
     onSubmit: (values, action) => {
-      console.log(values);
+
       save();
       action.resetForm();
     },

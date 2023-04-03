@@ -11,7 +11,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { FilterContextProvider } from "./context/fitercontext";
 import { Provider } from "react-redux";
-import WarningScreen from "./WarningScreen.js";
+import WarningScreen from "./components/warning/WarningScreen";
 
 AOS.init();
 

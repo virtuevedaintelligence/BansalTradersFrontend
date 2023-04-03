@@ -20,7 +20,7 @@ const AddToWishlist = ({ productId, isFavorite }) => {
       setWishlist([...wishlist, product]);
       toast.success(`${product} added to wishlist!`);
       let userId = authService.getToken().userId;
-      console.log(userId + " " + productId);
+
       favoriteProduct(productId, userId);
     } else {
       setModalIsOpen(true);
@@ -30,7 +30,7 @@ const AddToWishlist = ({ productId, isFavorite }) => {
   return (
     <div>
       <div className=" rounded-circle d-flex align-items-center justify-content-center shadow-1-strong" style={{ width: "35px", height: "35px" }}
-      onClick={() => handleAddToWishlist("product")}>
+        onClick={() => handleAddToWishlist("product")}>
         <p className="text-white mb-0 small">{isFavorite === true ? <FcLike /> : <FcLikePlaceholder />}</p>
       </div>
 

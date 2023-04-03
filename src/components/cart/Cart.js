@@ -23,14 +23,10 @@ function Cart() {
   const authService = new AuthService();
   const handleProceedToCheckout = (product) => {
     if (authService.isLoggedIn()) {
-      console.log("clocked 25");
       setWishlist([...wishlist, product]);
       toast.success(`${product} added to wishlist!`);
-      debugger;
       let userId = authService.getToken().userId;
-      console.log("about to order");
     } else {
-      console.log("clocked 32");
       handleClose();
       setModalIsOpen(true);
     }

@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 function MoreProduct({ product }) {
   const { productId } = product;
-  console.log(product);
+
   return (
     <>
       <div className="col-lg-3 pb-2">

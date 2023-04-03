@@ -47,7 +47,6 @@ const userSlice = createSlice({
 
     builder.addCase(usersOTPVerifyAction.rejected, (state, action) => {
       state.isErrorOTPVerify = true;
-      console.log(action.payload);
       state.dataOTPVerify = action.payload;
     });
   },

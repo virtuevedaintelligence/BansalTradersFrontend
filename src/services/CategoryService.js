@@ -4,7 +4,7 @@ const CATEGORY_API_BASE_URL = "http://localhost:8082/v1/categories";
 
 class CategoryService {
   saveCategory(category) {
-    console.log(category);
+
     return axios.post(CATEGORY_API_BASE_URL + "/createCategory", category);
   }
 

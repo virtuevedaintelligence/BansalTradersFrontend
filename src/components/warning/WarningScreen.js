@@ -1,31 +1,40 @@
 import React, { useEffect, useState } from "react";
+import App from "../../App";
+import WarningService from "../../services/WarningService";
 
-function App() {
+function WarningScreen() {
   const [backendWorking, setBackendWorking] = useState(true);
-
   useEffect(() => {
     // Check backend status using an HTTP request to a health check endpoint
-    fetch("/health-check")
-      .then((response) => {
-        console.log(response);
-        if (!response.ok) {
+    async function check() {
+      try {
+        const warning = await WarningService.generateWarning();
+        const warnData = await warning.data;
+        debugger;
+        if (!warnData.message === 'OK') {
           throw new Error("Backend not working");
         }
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error(error);
         setBackendWorking(false);
-      });
+      }
+    }
+    check();
   }, []);
 
   if (!backendWorking) {
-    console.log(backendWorking);
     return (
       <div>
         <h1>Error: Backend is not working. Please try again later.</h1>
       </div>
     );
+  } else {
+    return (
+      <>
+        <App />
+      </>
+    )
   }
 }
 
-export default App;
+export default WarningScreen;
