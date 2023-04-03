@@ -11,6 +11,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { FilterContextProvider } from "./context/fitercontext";
 import { Provider } from "react-redux";
+import WarningScreen from "./WarningScreen.js";
+
 AOS.init();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -22,7 +24,9 @@ root.render(
         <ReviewProvider>
           <FilterContextProvider>
             <Provider store={store}>
-              <App />
+              <WarningScreen>
+                <App />
+              </WarningScreen>
             </Provider>
           </FilterContextProvider>
         </ReviewProvider>

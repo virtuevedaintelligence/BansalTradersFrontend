@@ -1,4 +1,3 @@
-
 import { useFilterContext } from "../../../context/fitercontext";
 import UpdateDeleteCategory from "../admin/UpdateDeleteCategory";
 
@@ -11,13 +10,16 @@ function Category({ category }) {
   return (
     <>
       <button
+        className="btn"
         name="cat"
         value={cat}
         type="button"
         onClick={(event) => {
           filterDryfruits(event);
         }}
-      >{category.categoryName}</button>
+      >
+        {category.categoryName}
+      </button>
       <UpdateDeleteCategory category={category} categoryId={category.id} />
     </>
   );
