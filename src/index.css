@@ -7,8 +7,8 @@ body {
 }
 /* width */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 2px;
+  height: 2px;
 }
 
 /* Track */
@@ -64,11 +64,10 @@ a {
 }
 
 input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button 
-{ -webkit-appearance: none;
- margin: 0;
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
-input[type=number] {
--moz-appearance: textfield;
+input[type="number"] {
+  -moz-appearance: textfield;
 }
-
