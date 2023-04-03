@@ -7,6 +7,7 @@ import { FiEdit2 } from "react-icons/fi";
 import { useCategoryContext } from "../../../context/categorycontext";
 
 import { Button, Form, Modal, Row } from "react-bootstrap";
+import Preloader from "../../preloader/Preloader";
 
 function UpdateDeleteCategory({ category, categoryId }) {
   const [show, setShow] = useState(false);
@@ -23,6 +24,9 @@ function UpdateDeleteCategory({ category, categoryId }) {
     categoryType: categoryType,
   });
 
+  const adminData = useSelector((state) => {
+    return state.admin;
+  });
   const handleShow = () => setShow(true);
   const deleteCat = (e) => {
     e.preventDefault();
@@ -51,10 +55,6 @@ function UpdateDeleteCategory({ category, categoryId }) {
     return <Preloader />;
   }
 
-  const adminData = useSelector((state) => {
-    return state.admin;
-  });
-
   if (adminData.dataAdminLogin && adminData.dataAdminLogin.message === "Admin logged in successfully") {
     return (
       <>
@@ -72,7 +72,7 @@ function UpdateDeleteCategory({ category, categoryId }) {
             <div className="container text-center">
               <Row className="mb-3">
                 <Form.Group className="col col-sm-12">
-                  <Form.Control type="name" name="categoryName" placeholder="Category Name" className="form-control-sm mb-2" defaultValue={categoryName} onChange={(e) => handleChange(e)} />
+                  <Form.Control type="name" name="categoryName" placeholder="Category Name" className="form-control-sm mb-2" defaultValue={category.categoryName} onChange={(e) => handleChange(e)} />
                 </Form.Group>
                 <Form.Group className="col col-sm-12">
                   <Form.Select name="categoryType" className="form-control-sm" size="sm" onChange={(e) => handleChange(e)} defaultValue={categoryType}>
