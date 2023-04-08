@@ -12,7 +12,7 @@ import { AuthService } from "../../services/AuthService";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-function  TopNavbar() {
+function TopNavbar() {
   const [login, setLogin] = useState(false);
   const [user, setUser] = useState(undefined);
   const auth = new AuthService();
@@ -37,6 +37,13 @@ function  TopNavbar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="px-2">
           <Nav className="mx-auto">
+            {adminData.dataAdminLogin && (
+              <>
+                <NavLink className="nav-link" to="/dashboard">
+                  Dashboard
+                </NavLink>
+              </>
+            )}
             <NavLink className="nav-link" to="/">
               Home
             </NavLink>
@@ -74,13 +81,11 @@ function  TopNavbar() {
             <Nav.Link className="desk-cat-cart-login">
               <ShopByCategory />
             </Nav.Link>
-            {
-              login && (
-                <Nav.Link className="desk-cat-cart-login">
-                  <Cart />
-                </Nav.Link>
-              )
-            }
+            {login && (
+              <Nav.Link className="desk-cat-cart-login">
+                <Cart />
+              </Nav.Link>
+            )}
             <Nav.Link className="desk-cat-cart-login">
               <Login className="loginNavLink d-flex" />
             </Nav.Link>
