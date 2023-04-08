@@ -32,7 +32,7 @@ div.scrollmenu {
   white-space: nowrap;
 }
 
-div.scrollmenu button {
+div.scrollmenu .scrollmenu_button {
   display: inline-block;
   text-align: center;
   text-decoration: none;
@@ -52,7 +52,7 @@ div.scrollmenu button {
   -o-transition: 0.4s;
 }
 
-div.scrollmenu button:hover {
+div.scrollmenu .scrollmenu_button:hover {
   background-color: #ffaa2b;
   color: #000;
 }

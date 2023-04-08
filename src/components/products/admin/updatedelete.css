@@ -1,0 +1,20 @@
+.scrollmenu_edit {
+  margin-right: 10px;
+  background: transparent;
+  color: green;
+  border: none;
+  box-shadow: 0 0;
+  position: relative;
+  left: 10px;
+  bottom: -15px;
+}
+.scrollmenu_delete {
+  margin-right: 10px;
+  background: transparent;
+  color: red;
+  border: none;
+  box-shadow: 0 0;
+  position: relative;
+  left: -30px;
+  top: -25px;
+}

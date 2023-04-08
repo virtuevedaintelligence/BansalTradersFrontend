@@ -10,7 +10,7 @@ function Category({ category }) {
   return (
     <>
       <button
-        className="btn"
+        className="btn scrollmenu_button"
         name="cat"
         value={cat}
         type="button"
@@ -18,7 +18,7 @@ function Category({ category }) {
           filterDryfruits(event);
         }}
       >
-        {category.categoryName}
+        <span>{category.categoryName}</span>
       </button>
       <UpdateDeleteCategory category={category} categoryId={category.id} />
     </>

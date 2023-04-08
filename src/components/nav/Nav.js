@@ -12,7 +12,7 @@ import { AuthService } from "../../services/AuthService";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-function TopNavbar() {
+function  TopNavbar() {
   const [login, setLogin] = useState(false);
   const [user, setUser] = useState(undefined);
   const auth = new AuthService();

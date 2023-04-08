@@ -8,7 +8,7 @@ import { useCategoryContext } from "../../../context/categorycontext";
 
 import { Button, Form, Modal, Row } from "react-bootstrap";
 import Preloader from "../../preloader/Preloader";
-
+import "./updatedelete.css";
 function UpdateDeleteCategory({ category, categoryId }) {
   const [show, setShow] = useState(false);
   const { isDeleteProductLoading, deleteProductCall, singleProduct } = useProductContext();
@@ -58,10 +58,10 @@ function UpdateDeleteCategory({ category, categoryId }) {
   if (adminData.dataAdminLogin && adminData.dataAdminLogin.message === "Admin logged in successfully") {
     return (
       <>
-        <button className="btn-sm btn btn-success" style={{ marginRight: "10px" }} onClick={handleShow}>
+        <button className="btn-sm btn text-success " style={{ marginRight: "10px" }} onClick={handleShow}>
           <FiEdit2 />
         </button>
-        <button className="btn-sm btn btn-danger">
+        <button className="btn-sm btn text-danger">
           <MdDelete onClick={deleteCat} />
         </button>
         <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
