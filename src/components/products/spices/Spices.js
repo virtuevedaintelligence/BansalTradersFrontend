@@ -23,8 +23,7 @@ function Spices() {
       <div className="categories">
         <div className="scrollmenu">
           {categories
-            .filter((category) => category.categoryName !== "Choose Category")
-            .filter((category) => category.categoryName !== "all")
+            .filter((category) => category.categoryType === 'Spices')
             .map((category, i) => {
               return <Category key={category.categoryId} category={category} />;
             })}

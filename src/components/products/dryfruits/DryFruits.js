@@ -57,6 +57,7 @@ const DryFruits = () => {
           <div className="scrollmenu">
             {categories &&
               categories
+                .filter((category) => category.categoryType === 'Dryfruit')
                 .map((category) => {
                   return (
                     <Category
