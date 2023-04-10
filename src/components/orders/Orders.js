@@ -51,27 +51,9 @@ function Orders() {
                     <h6 class="heading-title fw-bolder">$20.60</h6>
                   </div>
                   <div class="d-flex align-items-center" id="action-01">
-                    <button class="btn btn-icon btn-outline-success ctc-button" data-action="click" data-closest="#action-01" data-status="complete">
-                      <span class="btn-inner d-flex align-items-center">
-                        <span>
-                          <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0.667969 4.09434L3.93567 7.33366L10.668 0.666992" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
-                          </svg>
-                        </span>
-                        <span class="status pe-2">Completed</span>
-                      </span>
-                    </button>
-                    <button class="btn btn-icon btn-outline-danger ctc-button ms-3" data-action="click" data-closest="#action-01" data-status="reject">
-                      <span class="btn-inner d-flex align-items-center">
-                        <span>
-                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10.6654 5.33496L5.33203 10.6683" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                            <path d="M10.6643 10.6663L5.33203 5.33301" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                          </svg>
-                        </span>
-                        <span class="status pe-2">Rejected</span>
-                      </span>
-                    </button>
+                    <NavLink class="btn btn-icon btn-outline-success btn-sm" to="/order">
+                      View Order
+                    </NavLink>
                   </div>
                 </div>
               </div>
@@ -540,28 +522,6 @@ function Orders() {
             </div>{" "}
           </div>
         </div>
-      </div>
-      <div className="container">
-        <h1 className="py-2 text-center">All Orders</h1>
-        <table className="table border text-center" id="">
-          <thead>
-            <tr>
-              <th>Order ID</th>
-              <th>Delivery Status</th>
-              <th>Order Date</th>
-              <th>Shipped Date</th>
-              <th>Total Order Price</th>
-              <th>View More</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr></tr>
-            <Order />
-            <tr>
-              <Order />
-            </tr>
-          </tbody>
-        </table>
       </div>
     </>
   );
