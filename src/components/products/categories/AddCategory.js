@@ -10,11 +10,10 @@ const initialValues = {
   categoryType: "",
 };
 
-function Addcatmodal(handleCloseCategory, showCat) {
+function Addcatmodal(handleCloseCategory, showCat, token) {
   const { values, errors, handleBlur, touched, handleChange, handleSubmit } = useFormik({
     initialValues: initialValues,
     onSubmit: (values, action) => {
-
       saveCategory();
       action.resetForm();
     },
@@ -32,7 +31,7 @@ function Addcatmodal(handleCloseCategory, showCat) {
   }, []);
 
   const saveCategory = (e) => {
-    saveCategoryCall(values);
+    saveCategoryCall(values, token);
     setShow(false);
     fetchCategory();
   };

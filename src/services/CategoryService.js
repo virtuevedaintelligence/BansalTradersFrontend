@@ -3,9 +3,14 @@ import axios from "axios";
 const CATEGORY_API_BASE_URL = "http://localhost:8082/v1/categories";
 
 class CategoryService {
-  saveCategory(category) {
+  saveCategory(category, token) {
 
-    return axios.post(CATEGORY_API_BASE_URL + "/createCategory", category);
+    return axios.post(CATEGORY_API_BASE_URL + "/createCategory", category, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    });
   }
 
   getCategories() {

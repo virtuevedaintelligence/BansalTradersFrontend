@@ -32,10 +32,10 @@ const CategoryProvider = ({ children }) => {
     }
   };
 
-  const saveCategoryCall = async (category) => {
+  const saveCategoryCall = async (category, token) => {
     try {
       dispatch({ type: "SAVE_CATEGORY_LOADING" });
-      const saveReponse = await CategoryService.saveCategory(category);
+      const saveReponse = await CategoryService.saveCategory(category, token);
       const saveCategory = await saveReponse.data;
       dispatch({ type: "SAVE_CATEGORY_DATA", payload: saveCategory });
     } catch (error) {
