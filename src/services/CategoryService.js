@@ -4,12 +4,11 @@ const CATEGORY_API_BASE_URL = "http://localhost:8082/v1/categories";
 
 class CategoryService {
   saveCategory(category, token) {
-
     return axios.post(CATEGORY_API_BASE_URL + "/createCategory", category, {
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      }
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     });
   }
 
@@ -28,10 +27,9 @@ class CategoryService {
   saveCategories(categories) {
     return axios.post(CATEGORY_API_BASE_URL + "/importCategories", categories, {
       headers: {
-        'Content-Type': 'application/json'
-      }
-    }
-    );
+        "Content-Type": "application/json",
+      },
+    });
   }
 }
 

@@ -10,7 +10,7 @@ const initialValues = {
   categoryType: "",
 };
 
-function Addcatmodal(handleCloseCategory, showCat, token) {
+function Addcatmodal({ token }) {
   const { values, errors, handleBlur, touched, handleChange, handleSubmit } = useFormik({
     initialValues: initialValues,
     onSubmit: (values, action) => {
