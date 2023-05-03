@@ -6,6 +6,7 @@ import { BiCategoryAlt } from "react-icons/bi";
 import { useProductContext } from "../../../context/productcontext";
 import { useNavigate } from "react-router-dom";
 import { useCategoryContext } from "../../../context/categorycontext";
+import { useSelector } from "react-redux";
 
 function ExcelFunc() {
   const navigate = useNavigate();
@@ -34,8 +35,12 @@ function ExcelFunc() {
       setCategory('{"categoryRequests": ' + JSON.stringify(d) + "}");
     });
   };
+  const adminData = useSelector((state) => {
+    return state.admin;
+  });
   const saveCategories = () => {
-    importCategoriesCall(categories);
+    const token = adminData.dataAdminLogin.response.token;
+    importCategoriesCall(categories, token);
     navigate("/products/dryfruits");
     handleClose();
   };

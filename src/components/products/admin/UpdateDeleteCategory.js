@@ -30,7 +30,8 @@ function UpdateDeleteCategory({ category, categoryId }) {
   const handleShow = () => setShow(true);
   const deleteCat = (e) => {
     e.preventDefault();
-    deleteCategoryCall(id);
+    const token = adminData.dataAdminLogin.response.token;
+    deleteCategoryCall(id, token);
     fetchCategory();
   };
   const handleClose = () => setShow(false);
@@ -40,7 +41,8 @@ function UpdateDeleteCategory({ category, categoryId }) {
   }, []);
   const updateCat = (e) => {
     e.preventDefault();
-    updateCategoryCall(id, categoryToUpdate);
+    const token = adminData.dataAdminLogin.response.token;
+    updateCategoryCall(id, categoryToUpdate, token);
     handleClose();
     fetchCategory();
   };

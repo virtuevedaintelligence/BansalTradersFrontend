@@ -6,13 +6,12 @@ const authService = new AuthService();
 
 class CategoryService {
   saveCategory(category, token) {
-    console.log(token);
     return axios.post(CATEGORY_API_BASE_URL + "/createCategory", category, {
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
-        "Accept": "*/*",
-        "Cookie": "JSESSIONID=7324D07B01008E7B08C077211722C45B"
+        Authorization: `Bearer ${token}`,
+        Accept: "*/*",
+        Cookie: "JSESSIONID=7324D07B01008E7B08C077211722C45B",
       },
     });
   }
@@ -21,21 +20,35 @@ class CategoryService {
     return axios.get(CATEGORY_API_BASE_URL + "/getAllCategories");
   }
 
-  deleteCategory(id) {
-    return axios.delete(CATEGORY_API_BASE_URL + "/delete/" + id);
+  deleteCategory(id, token) {
+    return axios.delete(CATEGORY_API_BASE_URL + "/delete/" + id, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        Accept: "*/*",
+        Cookie: "JSESSIONID=7324D07B01008E7B08C077211722C45B",
+      },
+    });
   }
 
-  updateCategory(category, id) {
-    return axios.put(CATEGORY_API_BASE_URL + "/updateCategory/" + id, category);
+  updateCategory(category, id, token) {
+    console.log(token);
+    return axios.put(CATEGORY_API_BASE_URL + "/updateCategory/" + id, category, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        Accept: "*/*",
+        Cookie: "JSESSIONID=7324D07B01008E7B08C077211722C45B",
+      },
+    });
   }
 
-  saveCategories(categories) {
-    debugger;
-    var token = authService.getToken;
+  saveCategories(categories, token) {
     return axios.post(CATEGORY_API_BASE_URL + "/importCategories", categories, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
+        Accept: "*/*",
       },
     });
   }

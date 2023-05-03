@@ -43,10 +43,10 @@ const CategoryProvider = ({ children }) => {
     }
   };
 
-  const importCategoriesCall = async (categories) => {
+  const importCategoriesCall = async (categories, token) => {
     try {
       dispatch({ type: "IMPORT_CATEGORY_LOADING" });
-      const saveReponse = await CategoryService.saveCategories(categories);
+      const saveReponse = await CategoryService.saveCategories(categories, token);
       const saveCategories = await saveReponse.data;
       dispatch({ type: "IMPORT_CATEGORY_DATA", payload: saveCategories });
     } catch (error) {
@@ -54,10 +54,10 @@ const CategoryProvider = ({ children }) => {
     }
   };
 
-  const deleteCategoryCall = async (id) => {
+  const deleteCategoryCall = async (id, token) => {
     dispatch({ type: "DELETE_CATEGORY_LOADING" });
     try {
-      const deleteReponse = await CategoryService.deleteCategory(id);
+      const deleteReponse = await CategoryService.deleteCategory(id, token);
       const deleteCategory = await deleteReponse.data;
       dispatch({ type: "DELETE_CATEGORY", payload: deleteCategory });
     } catch (error) {
@@ -65,10 +65,10 @@ const CategoryProvider = ({ children }) => {
     }
   };
 
-  const updateCategoryCall = async (id, category) => {
+  const updateCategoryCall = async (id, category, token) => {
     dispatch({ type: "UPDATE_CATEGORY_LOADING" });
     try {
-      const updateReponse = await CategoryService.updateCategory(category, id);
+      const updateReponse = await CategoryService.updateCategory(category, id, token);
       const updateCategory = await updateReponse.data;
       dispatch({ type: "UPDATE_CATEGORY", payload: updateCategory });
     } catch (error) {
