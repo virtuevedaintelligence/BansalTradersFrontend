@@ -6,6 +6,7 @@ import Preloader from "../preloader/Preloader";
 
 import { useFormik } from "formik";
 import { productSchema } from "../../validations";
+import { useSelector } from "react-redux";
 
 const initialValues = {
   productName: "",
@@ -23,7 +24,6 @@ function AddProduct({ token }) {
   const { values, errors, handleBlur, touched, handleChange, handleSubmit } = useFormik({
     initialValues: initialValues,
     onSubmit: (values, action) => {
-
       save();
       action.resetForm();
     },
@@ -37,10 +37,12 @@ function AddProduct({ token }) {
   const { isLoadingCategory, categories } = useCategoryContext();
 
   const { isSaveProductLoading, saveProductCall } = useProductContext();
-
+  const adminData = useSelector((state) => {
+    return state.admin;
+  });
   const save = (e) => {
     // e.preventDefault();
-
+    const token = adminData.dataAdminLogin.response.token;
     saveProductCall(values, token);
   };
   if (isLoadingCategory) {
@@ -70,15 +72,16 @@ function AddProduct({ token }) {
                   <option disabled selected>
                     Select Category
                   </option>
-                  {categories && categories.map((category) => {
-                    return (
-                      <>
-                        <option key={category.categoryId} value={category.categoryName}>
-                          {category.categoryName}
-                        </option>
-                      </>
-                    );
-                  })}
+                  {categories &&
+                    categories.map((category) => {
+                      return (
+                        <>
+                          <option key={category.categoryId} value={category.categoryName}>
+                            {category.categoryName}
+                          </option>
+                        </>
+                      );
+                    })}
                 </Form.Select>
                 {errors.categoryName && touched.categoryName ? <p className="form-error">{errors.categoryName}</p> : null}
               </Form.Group>

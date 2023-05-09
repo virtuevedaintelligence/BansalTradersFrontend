@@ -5,6 +5,7 @@ import * as XLSX from "xlsx";
 import { FaProductHunt } from "react-icons/fa";
 import { useProductContext } from "../../../context/productcontext";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function ExcelFunc() {
   const navigate = useNavigate();
@@ -24,17 +25,25 @@ function ExcelFunc() {
         const ws = wb.Sheets[wsname];
         const data = XLSX.utils.sheet_to_json(ws);
         resolve(data);
+        console.log(data);
       };
       fileReader.onerror = (error) => {
         reject(error);
       };
     });
     promise.then((d) => {
+      console.log(d);
       setProduct('{"productRequests": ' + JSON.stringify(d) + "}");
+      
     });
   };
+  const adminData = useSelector((state) => {
+    return state.admin;
+  });
   const saveProducts = () => {
-    importProductCall(products);
+    const token = adminData.dataAdminLogin.response.token;
+    console.log("admin" + token);
+    importProductCall(products, token);
     handleClose();
   };
   return (

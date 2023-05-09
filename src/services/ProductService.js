@@ -4,15 +4,15 @@ import { useSelector } from "react-redux";
 const PRODUCTS_API_BASE_URL = "http://localhost:8082/v1/products";
 
 class ProductService {
-
   saveProduct(product, token) {
     return axios.post(PRODUCTS_API_BASE_URL + "/createProduct", product, {
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      }
-    }
-    );
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        Accept: "*/*",
+        Cookie: "JSESSIONID=7324D07B01008E7B08C077211722C45B",
+      },
+    });
   }
 
   getProducts(userId) {
@@ -27,12 +27,26 @@ class ProductService {
     return axios.get(PRODUCTS_API_BASE_URL + "/productDetail/" + id);
   }
 
-  deleteProduct(id) {
-    return axios.delete(PRODUCTS_API_BASE_URL + "/delete/" + id);
+  deleteProduct(id, token) {
+    return axios.delete(PRODUCTS_API_BASE_URL + "/delete/" + id, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        Accept: "*/*",
+        Cookie: "JSESSIONID=7324D07B01008E7B08C077211722C45B",
+      },
+    });
   }
 
-  updateProduct(id, product) {
-    return axios.put(PRODUCTS_API_BASE_URL + "/updateProduct/" + id, product);
+  updateProduct(id, product, token) {
+    return axios.put(PRODUCTS_API_BASE_URL + "/updateProduct/" + id, product, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        Accept: "*/*",
+        Cookie: "JSESSIONID=7324D07B01008E7B08C077211722C45B",
+      },
+    });
   }
 
   getProductReviews(id) {
@@ -46,13 +60,16 @@ class ProductService {
     return axios.get(PRODUCTS_API_BASE_URL + "/unfavorite/" + productId + "/" + userId);
   }
 
-  saveProducts(products) {
+  saveProducts(products, token) {
+    console.log(products);
+    console.log(token);
     return axios.post(PRODUCTS_API_BASE_URL + "/importProducts", products, {
       headers: {
-        'Content-Type': 'application/json'
-      }
-    }
-    );
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        Accept: "*/*",
+      },
+    });
   }
 }
 

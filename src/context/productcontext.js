@@ -78,10 +78,11 @@ const ProductProvider = ({ children }) => {
     }
   };
 
-  const importProductCall = async (products) => {
+  const importProductCall = async (products, token) => {
+    console.log(products);
     dispatch({ type: "IMPORT_PRODUCT_LOADING" });
     try {
-      const imReponse = await ProductService.saveProducts(products);
+      const imReponse = await ProductService.saveProducts(products, token);
       const imProduct = await imReponse.data;
       dispatch({ type: "IMPORT_PRODUCT", payload: imProduct });
     } catch (error) {
@@ -100,7 +101,7 @@ const ProductProvider = ({ children }) => {
       dispatch({ type: "DELETE_ERROR" });
     }
   };
-  const updateProductCall = async (id, product) => {
+  const updateProductCall = async (id, product, token) => {
     dispatch({ type: "UPDATE_PRODUCT_LOADING" });
     try {
       const updateResponse = await ProductService.updateProduct(id, product);
