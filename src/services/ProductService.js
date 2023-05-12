@@ -5,12 +5,12 @@ const PRODUCTS_API_BASE_URL = "http://localhost:8082/v1/products";
 
 class ProductService {
   saveProduct(product, token) {
+    console.log("product in service", product);
     return axios.post(PRODUCTS_API_BASE_URL + "/createProduct", product, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
         Accept: "*/*",
-        Cookie: "JSESSIONID=7324D07B01008E7B08C077211722C45B",
       },
     });
   }
@@ -33,18 +33,20 @@ class ProductService {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
         Accept: "*/*",
-        Cookie: "JSESSIONID=7324D07B01008E7B08C077211722C45B",
       },
     });
   }
 
   updateProduct(id, product, token) {
+    console.log("Token" + token);
+    console.log("product" + product);
+    console.log("id" + id);
+
     return axios.put(PRODUCTS_API_BASE_URL + "/updateProduct/" + id, product, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
         Accept: "*/*",
-        Cookie: "JSESSIONID=7324D07B01008E7B08C077211722C45B",
       },
     });
   }

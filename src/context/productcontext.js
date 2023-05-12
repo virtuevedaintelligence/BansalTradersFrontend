@@ -103,7 +103,7 @@ const ProductProvider = ({ children }) => {
   const updateProductCall = async (id, product, token) => {
     dispatch({ type: "UPDATE_PRODUCT_LOADING" });
     try {
-      const updateResponse = await ProductService.updateProduct(id, product);
+      const updateResponse = await ProductService.updateProduct(id, product, token);
       const updateProduct = await updateResponse.data;
       dispatch({ type: "UPDATE_PRODUCT", payload: updateProduct });
     } catch (error) {

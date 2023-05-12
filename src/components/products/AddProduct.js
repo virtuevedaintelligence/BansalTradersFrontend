@@ -8,27 +8,47 @@ import { useFormik } from "formik";
 import { productSchema } from "../../validations";
 import { useSelector } from "react-redux";
 
-const initialValues = {
-  productName: "",
-  productImageUrl: "",
-  productDescription: "",
-  productPrice: "",
-  productPriceWithoutDiscount: "",
-  quantity: "",
-  weight: "",
-  categoryName: "",
-  featured: "off",
-  isactive: "off",
-};
 function AddProduct({ token }) {
-  const { values, errors, handleBlur, touched, handleChange, handleSubmit } = useFormik({
-    initialValues: initialValues,
+  const [featured, setFeatured] = useState(0);
+  const [isactive, setIsactive] = useState(0);
+
+  const { values, errors, handleBlur, touched, handleChange, handleSubmit, setValues } = useFormik({
+    initialValues: {
+      productName: "",
+      productImageUrl: "",
+      productDescription: "",
+      productPrice: "",
+      productPriceWithoutDiscount: "",
+      quantity: "",
+      weight: "",
+      categoryName: "",
+      featured: 0,
+      isactive: 0,
+    },
     onSubmit: (values, action) => {
       save();
       action.resetForm();
     },
     validationSchema: productSchema,
   });
+
+  const handleFeatured = () => {
+    const updatedFeatured = featured === 0 ? 1 : 0;
+    setFeatured(updatedFeatured);
+    setValues((prevValues) => ({
+      ...prevValues,
+      featured: updatedFeatured,
+    }));
+  };
+
+  const handleIsactive = () => {
+    const updatedIsactive = isactive === 0 ? 1 : 0;
+    setIsactive(updatedIsactive);
+    setValues((prevValues) => ({
+      ...prevValues,
+      isactive: updatedIsactive,
+    }));
+  };
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -91,10 +111,10 @@ function AddProduct({ token }) {
                 <Form.Control aria-label="Upload Product Image" type="file" size="sm" className="form-control" name="productImageUrl" onChange={(e) => handleChange(e)} onBlur={handleBlur} />
               </Form.Group>
               <Form.Group className="col col-sm-3">
-                <Form.Check type={"checkbox"} onClick={(e) => handleChange(e)} label="featured" name="featured" />
+                <Form.Check type={"checkbox"} onClick={handleFeatured} value="0" label="featured" name="featured" />
               </Form.Group>
               <Form.Group className="col col-sm-3">
-                <Form.Check type={"checkbox"} onClick={(e) => handleChange(e)} label="isactive" name="isactive" />
+                <Form.Check type={"checkbox"} onClick={handleIsactive} value="0" label="isactive" name="isactive" />
               </Form.Group>
             </Row>
             <Row className="mb-3">

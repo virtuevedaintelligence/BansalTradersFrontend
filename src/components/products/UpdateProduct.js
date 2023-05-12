@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 
 function UpdateProduct({ product }) {
   const { productId: id, productName, productImageUrl, productDescription, productPrice, productPriceWithoutDiscount, quantity, weight, categoryName, isFeatured, isActive } = product;
+  //console.log(product);
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -25,11 +26,19 @@ function UpdateProduct({ product }) {
     quantity: quantity,
     weight: weight,
     categoryName: categoryName,
-    featured: isFeatured,
-    isactive: isActive,
+    featured: [isFeatured],
+    isactive: [isActive],
   });
 
   const { categories } = useCategoryContext();
+  const handleClick = (e) => {
+    const { name, value, type, checked } = e.target;
+    console.log(checked);
+    if (type === "checkbox") {
+      console.log("in checkbox if");
+      setProductUpdate({ ...productUpdate, [e.target.name]: checked });
+    }
+  };
   const handleChange = (e) => {
     const value = e.target.value;
     setProductUpdate({ ...productUpdate, [e.target.name]: value });
@@ -79,8 +88,8 @@ function UpdateProduct({ product }) {
             </Form.Group>
 
             <Form.Group className="col col-sm-6">
-              <Form.Check inline type={"checkbox"} label="Featured" checked={isFeatured} name="featured" onChange={(e) => handleChange(e)} />
-              <Form.Check inline type={"checkbox"} label="Active" checked={isActive} name="isactive" onChange={(e) => handleChange(e)} />
+              <Form.Check inline type={"checkbox"} label="Featured" checked={isFeatured} name="featured" onClick={(e) => handleClick(e)} />
+              <Form.Check inline type={"checkbox"} label="Active" checked={isActive} name="isactive" onClick={(e) => handleClick(e)} />
             </Form.Group>
 
             <Form.Group className="mb-3 col col-sm-4">
