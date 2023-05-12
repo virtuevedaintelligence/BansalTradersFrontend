@@ -7,7 +7,8 @@ function UpdateDeleteProduct({ product, productId }) {
     const { isDeleteProductLoading, deleteProductCall, singleProduct } = useProductContext();
     const deleteProd = (e) => {
         e.preventDefault();
-        deleteProductCall(productId);
+        const token = adminData.dataAdminLogin.response.token;
+        deleteProductCall(productId, token);
     };
     const adminData = useSelector((state) => {
         return state.admin;

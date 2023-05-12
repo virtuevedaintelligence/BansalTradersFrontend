@@ -90,11 +90,10 @@ const ProductProvider = ({ children }) => {
     }
   };
 
-  const deleteProductCall = async (id) => {
+  const deleteProductCall = async (id, token) => {
     dispatch({ type: "DELETE_PRODUCT_LOADING" });
     try {
-      debugger;
-      const deleteResponse = await ProductService.deleteProduct(id);
+      const deleteResponse = await ProductService.deleteProduct(id, token);
       const deleteProduct = await deleteResponse.data;
       dispatch({ type: "DELETE_PRODUCT", payload: deleteProduct });
     } catch (error) {
