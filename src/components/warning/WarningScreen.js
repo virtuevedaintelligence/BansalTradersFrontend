@@ -24,6 +24,7 @@ function WarningScreen() {
     return (
       <div>
         <h1>Error: Backend is not working. Please try again later.</h1>
+        <h2> Chill for sometime</h2>
       </div>
     );
   } else {
