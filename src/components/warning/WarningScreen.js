@@ -25,6 +25,7 @@ function WarningScreen() {
       <div>
         <h1>Error: Backend is not working. Please try again later.</h1>
         <h2> Chill for sometime</h2>
+        <h3>Kasa kai backend in progress!!!!</h3>
       </div>
     );
   } else {
